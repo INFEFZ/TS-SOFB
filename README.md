@@ -1,6 +1,6 @@
-|                      |                           |                               |
-| -------------------- | ------------------------- | ----------------------------- |
-| **HF Systemtechnik** | **Softwareentwicklung B** | ![logo](../x_gitres/logo.png) |
+|                      |                           |                              |
+| -------------------- | ------------------------- | ---------------------------- |
+| **HF Systemtechnik** | **Softwareentwicklung B** | ![logo](./x_gitres/logo.png) |
 
 </br>
 
