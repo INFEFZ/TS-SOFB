@@ -5,11 +5,13 @@
 - [1. Voraussetzungen / Softwareinstallationen](#1-voraussetzungen--softwareinstallationen)
   - [1.1. SQLite](#11-sqlite)
   - [1.2. Arduino IDE](#12-arduino-ide)
-  - [1.3. Visual Studio Code](#13-visual-studio-code)
-  - [1.4. Extension Draw.io Integration](#14-extension-drawio-integration)
-    - [1.4.1. Extension Material Icon Theme](#141-extension-material-icon-theme)
-    - [1.4.2. Extension Markdown All in One](#142-extension-markdown-all-in-one)
-  - [1.5. Flowgorithm](#15-flowgorithm)
+  - [1.3. .NET SDK](#13-net-sdk)
+  - [1.4. Visual Studio Code](#14-visual-studio-code)
+  - [1.5. C# Extension für VS Code](#15-c-extension-für-vs-code)
+  - [1.6. Extension Draw.io Integration](#16-extension-drawio-integration)
+    - [1.6.1. Extension Material Icon Theme](#161-extension-material-icon-theme)
+    - [1.6.2. Extension Markdown All in One](#162-extension-markdown-all-in-one)
+  - [1.7. Flowgorithm](#17-flowgorithm)
 - [2. Aufgaben](#2-aufgaben)
   - [2.1. Installation u. Softwarevoraussetzungen / Tools](#21-installation-u-softwarevoraussetzungen--tools)
   - [2.2. GitHub Account erstellen](#22-github-account-erstellen)
@@ -26,6 +28,8 @@
   - > **"Command-line tools for Windows x64"** wählen
 - [DB Browser for SQLite](https://sqlitebrowser.org) (grafisches Tool) verwenden.
 
+---
+
 ## 1.2. Arduino IDE
 
 ![Arduino](./x_gitres/arduino-ide.jpg)
@@ -34,7 +38,19 @@
 
 ---
 
-## 1.3. Visual Studio Code
+## 1.3. .NET SDK
+
+Dies ist das wichtigste **Werkzeugpaket** von Microsoft, das zum Erstellen, Kompilieren und Ausführen von **C#-Anwendungen** erforderlich ist.
+
+![Build it with .NET](./x_gitres/net-sdk.png)
+
+[Download .NET SDK for Windows](https://dotnet.microsoft.com/en-us/download)
+
+---
+
+## 1.4. Visual Studio Code
+
+**VS Code** ist ein leichtgewichtiger Editor, der auf Windows, macOS und Linux läuft.
 
 ![visual studio code](./x_gitres/visual-studio-code.jpg)
 
@@ -42,11 +58,19 @@
 
 ---
 
-</br>
+## 1.5. C# Extension für VS Code
 
-## 1.4. Extension Draw.io Integration
+Dieses Kit installiert automatisch alle nötigen Abhängigkeiten wie die **Basis-C#-Unterstützung**, **IntelliCode** und das **.NET Install Tool**.
 
-![visual studio code](./x_gitres/visual-studio-code-extension-drawio.png)
+![vsc extension c#](./x_gitres/vc-extension-c#.png)
+
+---
+
+## 1.6. Extension Draw.io Integration
+
+Diese Erweiterung integriert die **draw.io** Anwendung in Visual Studio Code.
+
+![vsc extension draw.io](./x_gitres/visual-studio-code-extension-drawio.png)
 
 Alternativ stehen auch folgende Möglichkeiten zur Verfügung:
 
@@ -55,13 +79,13 @@ Alternativ stehen auch folgende Möglichkeiten zur Verfügung:
 
 ---
 
-### 1.4.1. Extension Material Icon Theme
+### 1.6.1. Extension Material Icon Theme
 
 ![Material Icon Theme](./x_gitres/visual-studio-code-extension-material.png)
 
-</br>
+---
 
-### 1.4.2. Extension Markdown All in One
+### 1.6.2. Extension Markdown All in One
 
 ![Markdown All in One](./x_gitres/visual-studio-code-extension-markdown.png)
 
@@ -71,7 +95,7 @@ Alternativ stehen auch folgende Möglichkeiten zur Verfügung:
 
 </br>
 
-## 1.5. Flowgorithm
+## 1.7. Flowgorithm
 
 ![Flowgorithm](./x_gitres/flowgorithm.png)
 [Download Flowgorithm](http://www.flowgorithm.org/download/index.html)
