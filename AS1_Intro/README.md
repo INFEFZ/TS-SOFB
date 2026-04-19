@@ -228,3 +228,6 @@ Zeit pro Iteration: 2 Minuten
 - Welche Methode war erfolgreicher?
 - Welche Methode machte mehr Spass?
 - Welche Methode lernte schneller?
+
+© 2026 Lukas Müller – Licensed under CC BY-NC-ND 4.0
+See [LICENSE](..\license.md) file for details.

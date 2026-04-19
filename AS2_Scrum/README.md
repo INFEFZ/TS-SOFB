@@ -2,9 +2,32 @@
 | -------------------- | ------------------------- | ----------------------------- |
 | **HF Systemtechnik** | **Softwareentwicklung B** | ![logo](../x_gitres/logo.png) |
 
-# Einführung Einführung in Scrum
+- [1. Einführung in Scrum](#1-einführung-in-scrum)
+  - [1.1. Lernziele](#11-lernziele)
+  - [1.2. Was ist Scrum?](#12-was-ist-scrum)
+  - [1.3. Rollen und Verantwortlichkeiten in Scrum](#13-rollen-und-verantwortlichkeiten-in-scrum)
+    - [1.3.1. 👤 Product Owner (PO)](#131--product-owner-po)
+    - [1.3.2. 🛡️ Scrum Master (SM)](#132-️-scrum-master-sm)
+    - [1.3.3. 💻 Developer (Entwicklungsteam)](#133--developer-entwicklungsteam)
+  - [1.4. Die Artefakte in Scrum](#14-die-artefakte-in-scrum)
+  - [1.5. Die fünf Scrum-Events](#15-die-fünf-scrum-events)
+  - [1.6. Der Sprint-Zyklus im Überblick](#16-der-sprint-zyklus-im-überblick)
+  - [1.7. Scrum in der Praxis](#17-scrum-in-der-praxis)
+    - [1.7.1. Schätzungen mit Story Points](#171-schätzungen-mit-story-points)
+      - [1.7.1.1. Fibonacci-Skala](#1711-fibonacci-skala)
+    - [1.7.2. Das Kanban-Board](#172-das-kanban-board)
+  - [1.8. Fazit](#18-fazit)
+- [2. Aufgaben](#2-aufgaben)
+  - [2.1. Datenbankprojekt mit SQLite](#21-datenbankprojekt-mit-sqlite)
+  - [2.2. Wetterstation mit Arduino](#22-wetterstation-mit-arduino)
 
-## Lernziele
+---
+
+</br>
+
+# 1. Einführung in Scrum
+
+## 1.1. Lernziele
 
 - den Zweck von Scrum erklären
 - die drei Scrum-Rollen beschreiben
@@ -14,9 +37,9 @@
 
 ---
 
-## Was ist Scrum?
+## 1.2. Was ist Scrum?
 
-Scrum ist eine agile Methode um ein Projekt zu managen und durchzuführen. Genauer gesagt ist Scrum ein **Framework – also Grundgerüst – zum Managen eines Prozesses**. Primär wurde Scrum in der Entwicklung von Software eingesetzt. Darüber hinaus kann und wird Scrum mittlerweile aber in den unterschiedlichsten Bereichen zum Projektmanagement genutzt – überall dort wo im Team an einem Produkt bzw. einer Dienstleistung gearbeitet wird. Ob im E-Commerce, der IT-Branche oder der agilen Hardwareentwicklung, findet agiles Projektmanagement nach Scrum mittlerweile Anwendung.
+**Scrum** ist eine agile Methode um ein Projekt zu managen und durchzuführen. Genauer gesagt ist Scrum ein **Framework – also Grundgerüst – zum Managen eines Prozesses**. Primär wurde Scrum in der Entwicklung von Software eingesetzt. Darüber hinaus kann und wird Scrum mittlerweile aber in den unterschiedlichsten Bereichen zum Projektmanagement genutzt – überall dort wo im Team an einem Produkt bzw. einer Dienstleistung gearbeitet wird. Ob im E-Commerce, der IT-Branche oder der agilen Hardwareentwicklung, findet agiles Projektmanagement nach Scrum mittlerweile Anwendung.
 
 Statt, wie bisher in der klassischen Projekt- oder Produktplanung üblich, bis ins letzte Detail Vorgaben zu tätigen, **überträgt** man in Scrum viele Entscheidungen und damit einhergehend auch Verantwortung an das Team und die beteiligten Rollen. Diesem Vorgehen liegt zugrunde, dass man:
 
@@ -39,11 +62,11 @@ Scrum wird unter anderem von [Scrum.org](https://www.scrum.org/) verbreitet und 
 
 ---
 
-## Rollen und Verantwortlichkeiten in Scrum
+## 1.3. Rollen und Verantwortlichkeiten in Scrum
 
-Die Scrum Methode bringt klar definierte Rollen mit, die wichtig sind, um den Projekterfolg sicherzustellen. Die Rollen umfassen:
+Die Scrum Methode bringt klar definierte **Rollen** mit, die wichtig sind, um den Projekterfolg sicherzustellen. Die Rollen umfassen:
 
-### 👤 Product Owner (PO)
+### 1.3.1. 👤 Product Owner (PO)
 
 - Verantwortlich für die Maximierung des **Produktwerts**
 - Pflegt und priorisiert den **Product Backlog**
@@ -51,7 +74,7 @@ Die Scrum Methode bringt klar definierte Rollen mit, die wichtig sind, um den Pr
 - Vertritt die Interessen der **Stakeholder**
 - Muss verfügbar und entscheidungsfähig sein
 
-### 🛡️ Scrum Master (SM)
+### 1.3.2. 🛡️ Scrum Master (SM)
 
 - **Servant Leader** – dient dem Team, nicht umgekehrt
 - Entfernt **Impediments** (Hindernisse) für das Team
@@ -59,7 +82,7 @@ Die Scrum Methode bringt klar definierte Rollen mit, die wichtig sind, um den Pr
 - Fördert das Verständnis und die Anwendung von Scrum
 - Moderiert alle **Scrum Events**
 
-### 💻 Developer (Entwicklungsteam)
+### 1.3.3. 💻 Developer (Entwicklungsteam)
 
 - Setzt das Sprint Backlog um, erstellt das Increment
 - **Selbstorganisierend**: Das Team entscheidet selbst, wie Arbeit erledigt wird
@@ -69,9 +92,9 @@ Die Scrum Methode bringt klar definierte Rollen mit, die wichtig sind, um den Pr
 
 ---
 
-## Die Artefakte in Scrum
+## 1.4. Die Artefakte in Scrum
 
-Neben den Scrum Rollen, sind auch die Scrum Artefakte klar definiert. Sie dienen dazu, den Fortschritt im Projekt und die Zusammenarbeit des Scrum Teams zu unterstützen. Die drei Artefakte sind das Product Backlog, das Sprint Backlog und das Produktinkrement:
+Neben den Scrum Rollen, sind auch die Scrum **Artefakte** klar definiert. Sie dienen dazu, den Fortschritt im Projekt und die Zusammenarbeit des Scrum Teams zu unterstützen. Die drei Artefakte sind das Product Backlog, das Sprint Backlog und das Produktinkrement:
 
 | **Artefakt**        | **Beschreibung**                                                                         | **Commitment**     |
 | ------------------- | ---------------------------------------------------------------------------------------- | ------------------ |
@@ -81,10 +104,10 @@ Neben den Scrum Rollen, sind auch die Scrum Artefakte klar definiert. Sie dienen
 
 ---
 
-## Die fünf Scrum-Events
+## 1.5. Die fünf Scrum-Events
 
-Neben der Struktur, die durch die Rollen und die Scrum-Artefakte gegeben wird, ist auch der Scrum-Prozess selbst durch einzelne **Ereignisse** strukturiert. Ein Scrum-Sprint umfasst verschiedene Ereignisse, die regelmäßig während eines Sprints stattfinden. 
-Der Scrum-Prozess besteht aus vier Ereignissen: 
+Neben der Struktur, die durch die Rollen und die Scrum-Artefakte gegeben wird, ist auch der Scrum-Prozess selbst durch einzelne **Ereignisse** strukturiert. Ein Scrum-Sprint umfasst verschiedene Ereignisse, die regelmäßig während eines Sprints stattfinden.
+Der Scrum-Prozess besteht aus vier Ereignissen:
 
 | **Event**           | **Max. Dauer** | **Zweck**                                                           |
 | ------------------- | -------------- | ------------------------------------------------------------------- |
@@ -94,7 +117,7 @@ Der Scrum-Prozess besteht aus vier Ereignissen:
 | **Sprint Review**   | 4 h            | Increment wird vorgestellt, Stakeholder-Feedback, Backlog angepasst |
 | **Retrospektive**   | 3 h            | Team reflektiert Prozess: Was lief gut? Was verbessern wir?         |
 
-## Der Sprint-Zyklus im Überblick
+## 1.6. Der Sprint-Zyklus im Überblick
 
 ```console
 Product Backlog
@@ -114,28 +137,28 @@ Sprint Backlog ──► Sprint (1–4 Wochen) ──► Increment
 
 ---
 
-## Scrum in der Praxis
+## 1.7. Scrum in der Praxis
 
-### Schätzungen mit Story Points
+### 1.7.1. Schätzungen mit Story Points
 
 Story Points messen **relativen Aufwand** (nicht Zeit) und berücksichtigen Komplexität, Umfang und Risiko.
 
-#### Fibonacci-Skala
+#### 1.7.1.1. Fibonacci-Skala
 
-```
+```console
 1 · 2 · 3 · 5 · 8 · 13 · 21 · ?
 ```
 
 - Relativ zur einfachsten Story des Teams
 - **Planning Poker**: Alle schätzen gleichzeitig → Diskussion bei Abweichungen
 
-### Das Kanban-Board
+### 1.7.2. Das Kanban-Board
 
 Visualisiert den Fortschritt des Sprint Backlogs:
 
-```
+```console
 ┌─────────────┬─────────────┬───────────────┬─────────────┬─────────────┐
-│  📋 Backlog │  🔜 To Do  │ ⚙️ In Progress│  🔍 Review  │  ✅ Done    │
+│  📋 Backlog │  🔜 To Do  │ ⚙️ InProgress│  🔍 Review  │  ✅ Done    │
 ├─────────────┼─────────────┼───────────────┼─────────────┼─────────────┤
 │ Tasks       │ Login-      │ Task          │ Task        │ Startseite  │
 │ exportieren │ Screen      │ erstellen     │ löschen     │             │
@@ -149,7 +172,7 @@ Visualisiert den Fortschritt des Sprint Backlogs:
 
 ---
 
-## Fazit
+## 1.8. Fazit
 
 > **Die Stärke der Scrum-Methode liegt in ihrer strikten Prozess- und Rollenstruktur sowie der Möglichkeit, kurzfristige Änderungen vorzunehmen**
 
@@ -159,323 +182,9 @@ Visualisiert den Fortschritt des Sprint Backlogs:
 
 # 2. Aufgaben
 
-## 2.1. Smart-Pflanzenüberwachung
+## 2.1. [Datenbankprojekt mit SQLite](./Gruppenauftrag_LibTrack.md)
 
-| **Vorgabe**             | **Beschreibung**                            |
-| :---------------------- | :------------------------------------------ |
-| **Lernziele**           | Studierende sollen Scrum praktisch erleben. |
-| **Sozialform**          | Gruppenarbeit                               |
-| **Auftrag**             | siehe unten                                 |
-| **Hilfsmittel**         | A4 Papier                                   |
-| **Erwartete Resultate** |                                             |
-| **Zeitbedarf**          | 15 min                                      |
-| **Lösungselemente**     | Scrum Board                                 |
+## 2.2. [Wetterstation mit Arduino](./Gruppenauftrag_Wetterstation.md)
 
-**Auftrag:**
-
-Teams entwickeln eine Idee für eine Smart-Pflanzenüberwachung (Arduino-Projekt).
-
-Hardwareplattform: Arduino Uno
-
-1. Schritt 1 – Product Backlog erstellen (5 Minuten)
-   1. Teams schreiben User Stories auf Post-its.
-2. Sprint Planung (5 Minuten)
-   1. Teams wählen 3 User Stories für den Sprint.
-   2. Dann zerlegen sie diese in Tasks.
-3. Scrum Board erstellen (5 Minuten)
-   1. To Do | In Progress | Done
-   2. Tasks werden auf Post-its geschrieben und in die Spalten gelegt.
-
----
-
-
-## Arduino Wetterstation
-
-> **Projektziel:** Ihr entwickelt als Team eine **Arduino-basierte Wetterstation** über drei simulierte Sprints. Das System misst Temperatur und Luftfeuchtigkeit, zeigt die Werte auf einem Display an und gibt bei Grenzwertüberschreitung einen Alarm aus. Jeder Sprint entspricht einer Unterrichtseinheit. Alle Scrum-Events finden statt.
-
-### Systemübersicht
-
-```console
-┌─────────────────────────────────────────────────────────┐
-│                  Arduino Wetterstation                   │
-│                                                         │
-│  [DHT22 Sensor] ──► [Arduino Uno] ──► [LCD 16x2]        │
-│  [LDR Sensor]   ──►      │       ──► [RGB LED]          │
-│                          │       ──► [Buzzer]            │
-│                          └───────► [Serial Monitor]      │
-└─────────────────────────────────────────────────────────┘
-```
-
-### Benötigte Hardware (pro Team)
-
-| Komponente              | Anzahl | Verwendung                        |
-| ----------------------- | :----: | --------------------------------- |
-| Arduino Uno (oder Nano) |   1    | Mikrocontroller                   |
-| DHT22 Temperatursensor  |   1    | Temperatur & Luftfeuchtigkeit     |
-| LCD Display 16×2 (I2C)  |   1    | Anzeige der Messwerte             |
-| RGB LED                 |   1    | Statusanzeige (grün/gelb/rot)     |
-| Buzzer (passiv)         |   1    | Alarm bei Grenzwertüberschreitung |
-| LDR (Fotowiderstand)    |   1    | Helligkeit messen (Sprint 2)      |
-| Widerstände 10kΩ        |   3    | Pull-down für Sensoren            |
-| Breadboard + Kabel      | 1 Set  | Verkabelung                       |
-| USB-Kabel               |   1    | Programmierung & Stromversorgung  |
-
-### Technologie-Stack
-
-| Schicht                | Technologie                                 |
-| ---------------------- | ------------------------------------------- |
-| Mikrocontroller        | Arduino C++ (Arduino IDE)                   |
-| Bibliotheken           | `DHT.h`, `LiquidCrystal_I2C.h`              |
-| Serielle Kommunikation | Arduino Serial Monitor / Python-Script      |
-| Optionale Erweiterung  | Python + `pyserial` für Datenlogging auf PC |
-
----
-
-## 4.2 Rollenverteilung
-
-| Rolle                     | Person | Hauptaufgaben im Arduino-Projekt                                                              |
-| ------------------------- | ------ | --------------------------------------------------------------------------------------------- |
-| **Product Owner**         |        | Backlog pflegen, Akzeptanzkriterien definieren (z. B. «Sensor liest alle 2 s»), Demo abnehmen |
-| **Scrum Master**          |        | Events moderieren, Impediments lösen (z. B. fehlende Bauteile), Team schützen                 |
-| **Developer HW**          |        | Schaltung aufbauen, Sensoren anschliessen, Verkabelung dokumentieren                          |
-| **Developer SW**          |        | Arduino-Sketch schreiben, Bibliotheken einbinden, testen                                      |
-| **Developer Integration** |        | HW + SW zusammenführen, Serial-Output, optionales Python-Logging                              |
-
-> 💡 In kleinen Teams (3 Personen) übernimmt der PO auch Entwicklungsaufgaben. Die Rollen können pro Sprint rotieren.
-
----
-
-## Übung 3 · Sprint 1 – Sensor auslesen & Display anzeigen
-
-⏱ **60 Minuten**
-
-**Sprint-Ziel:** Der DHT22-Sensor ist angeschlossen und zeigt Temperatur & Luftfeuchtigkeit alle 2 Sekunden auf dem LCD-Display an.
-
-**Sprint Planning (15 Min.)**
-1. Wählt User Stories aus dem Product Backlog (→ Anhang A)
-2. Definiert das Sprint-Ziel als Team
-3. Schätzt die Stories in Story Points (Planning Poker)
-4. Erstellt euren Sprint Backlog (Board: To Do / In Progress / Review / Done)
-
-**Entwicklung (35 Min.)**
-5. Führt (simuliert) einen Daily Scrum durch (3 Fragen, max. 5 Min.)
-6. Dokumentiert Impediments sofort im Protokoll (z. B. «I2C-Adresse des Displays unbekannt»)
-7. HW-Developer baut Schaltung auf, SW-Developer schreibt Sketch parallel
-
-**Starter-Sketch als Ausgangsbasis:**
-
-```cpp
-#include <DHT.h>
-#include <LiquidCrystal_I2C.h>
-
-#define DHTPIN 2
-#define DHTTYPE DHT22
-
-DHT dht(DHTPIN, DHTTYPE);
-LiquidCrystal_I2C lcd(0x27, 16, 2);  // I2C-Adresse ggf. anpassen
-
-void setup() {
-  Serial.begin(9600);
-  dht.begin();
-  lcd.init();
-  lcd.backlight();
-}
-
-void loop() {
-  float temp = dht.readTemperature();
-  float humi = dht.readHumidity();
-
-  lcd.setCursor(0, 0);
-  lcd.print("Temp: ");
-  lcd.print(temp, 1);
-  lcd.print(" C");
-
-  lcd.setCursor(0, 1);
-  lcd.print("Humi: ");
-  lcd.print(humi, 1);
-  lcd.print(" %");
-
-  Serial.print("T="); Serial.print(temp);
-  Serial.print(" H="); Serial.println(humi);
-
-  delay(2000);
-}
-```
-
-**Sprint Review + Retrospektive (10 Min.)**
-8. Live-Demo: Sensor vor Klasse auslesen, Werte auf Display zeigen
-9. Retrospektive: Was lief gut? Was war das grösste Impediment (HW oder SW)?
-
----
-
-### Sprint 1 – Daily Scrum Protokoll
-
-**Sprint-Ziel:** ________________________________________________________________
-
-**Datum:** __________________
-
-| Person | Was tat ich gestern? | Was tue ich heute? | Impediments? |
-| ------ | -------------------- | ------------------ | ------------ |
-|        |                      |                    |              |
-|        |                      |                    |              |
-|        |                      |                    |              |
-|        |                      |                    |              |
-
-**Impediment-Log:**
-
-| #   | Impediment | Gemeldet von | Gelöst durch | Status           |
-| --- | ---------- | ------------ | ------------ | ---------------- |
-| 1   |            |              |              | ☐ offen ☐ gelöst |
-| 2   |            |              |              | ☐ offen ☐ gelöst |
-| 3   |            |              |              | ☐ offen ☐ gelöst |
-
----
-
-### Sprint 1 – Retrospektive
-
-**Methode: Start / Stop / Continue**
-
-| 🟢 Start (anfangen) | 🔴 Stop (aufhören) | 🔵 Continue (beibehalten) |
-| ------------------ | ----------------- | ------------------------ |
-|                    |                   |                          |
-|                    |                   |                          |
-|                    |                   |                          |
-
-**Massnahmen für Sprint 2:**
-
-| Massnahme | Verantwortlich | Bis wann |
-| --------- | -------------- | -------- |
-|           |                |          |
-|           |                |          |
-
----
-
-## Übung 4 · Sprint 2 – Grenzwerte, Alarm & Helligkeitsmessung
-
-⏱ **60 Minuten**
-
-**Sprint-Ziel:** Das System gibt bei Temperatur > 28 °C einen optischen (RGB LED) und akustischen (Buzzer) Alarm aus. Der LDR misst zusätzlich die Helligkeit.
-
-**Zusatzaufgaben Sprint 2:**
-- Sprint Planning anhand der Retro-Erkenntnisse aus Sprint 1 durchführen
-- Mindestens 1 aufgetretenes Impediment dokumentieren und lösen
-- **Backlog Refinement** (20 Min.): Sprint-3-Stories verfeinern und schätzen
-- **Burndown-Diagramm** für den Sprint führen
-
-**Erweiterung Sketch – Alarm-Logik:**
-
-```cpp
-#define LED_R 9
-#define LED_G 10
-#define LED_B 11
-#define BUZZER 8
-#define LDR_PIN A0
-
-#define TEMP_WARN  25.0   // Gelb
-#define TEMP_ALARM 28.0   // Rot + Buzzer
-
-void setStatus(float temp) {
-  if (temp >= TEMP_ALARM) {
-    // Rot + Buzzer
-    analogWrite(LED_R, 255); analogWrite(LED_G, 0); analogWrite(LED_B, 0);
-    tone(BUZZER, 1000, 500);
-  } else if (temp >= TEMP_WARN) {
-    // Gelb
-    analogWrite(LED_R, 255); analogWrite(LED_G, 80); analogWrite(LED_B, 0);
-    noTone(BUZZER);
-  } else {
-    // Grün – alles OK
-    analogWrite(LED_R, 0); analogWrite(LED_G, 255); analogWrite(LED_B, 0);
-    noTone(BUZZER);
-  }
-}
-
-// Im loop() ergänzen:
-// int licht = analogRead(LDR_PIN);
-// setStatus(temp);
-```
-
-### Burndown-Diagramm Sprint 2
-
-Tragt täglich den verbleibenden Aufwand in Story Points ein:
-
-```
-SP
-│
-30 │ ×
-   │    \  (Ideallinie)
-20 │     \
-   │      \
-10 │       \
-   │        \
- 0 └──────────────────────────
-   Tag 1  Tag 2  Tag 3  Tag 4  Tag 5
-```
-
-| Tag | Geplante SP (Ideal) | Tatsächliche Rest-SP |
-| --- | ------------------: | -------------------: |
-| 1   |                     |                      |
-| 2   |                     |                      |
-| 3   |                     |                      |
-| 4   |                     |                      |
-| 5   |                     |                      |
-
----
-
-## Übung 5 · Sprint 3 – Datenlogging, Kalibrierung & Präsentation
-
-⏱ **60 Minuten**
-
-**Sprint-Ziel:** Das System loggt Messwerte über die serielle Schnittstelle. Ein Python-Script liest die Daten aus und zeigt sie als Verlaufsgraph an. Präsentation der Wetterstation vor der Klasse.
-
-**Lieferobjekte Sprint 3:**
-- Vollständig funktionierende Wetterstation (Demo live vor der Klasse)
-- Python-Script für serielles Datenlogging (optional als Erweiterung)
-- Schaltplan (Fritzing oder handgezeichnet, fotografiert)
-- Sprint Review: 5-minütige Live-Demo mit Erklärung der Architektur
-- Abschlussdiskussion: Was würdet ihr beim nächsten Hardware-Scrum-Projekt anders machen?
-
-**Optionale Erweiterung – Python Serial Logger:**
-
-```python
-import serial
-import csv
-from datetime import datetime
-
-PORT = "COM3"       # Windows: COM3, macOS/Linux: /dev/ttyUSB0
-BAUD = 9600
-
-with serial.Serial(PORT, BAUD, timeout=1) as ser:
-    with open("messwerte.csv", "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["Zeitstempel", "Temperatur", "Luftfeuchtigkeit"])
-        print("Logging gestartet – CTRL+C zum Beenden")
-        while True:
-            line = ser.readline().decode("utf-8").strip()
-            # Erwartet Format: "T=23.5 H=55.2"
-            if line.startswith("T="):
-                parts = line.replace("T=","").replace("H=","").split()
-                row = [datetime.now().isoformat()] + parts
-                writer.writerow(row)
-                print(row)
-```
-
-**Definition of Done – Arduino Wetterstation:**
-- ✅ DHT22 liest Temperatur und Luftfeuchtigkeit alle 2 Sekunden korrekt aus
-- ✅ LCD zeigt beide Werte formatiert an
-- ✅ RGB LED zeigt korrekten Status (grün / gelb / rot)
-- ✅ Buzzer löst bei Temperatur > 28 °C aus
-- ✅ Serielle Ausgabe im Format `T=xx.x H=xx.x`
-- ✅ Schaltplan vorhanden und korrekt
-- ✅ Code kommentiert und im Team-Repository eingecheckt
-- ✅ Live-Demo vor der Klasse erfolgreich durchgeführt
-
-**Bewertungskriterien:**
-
-| Kriterium                                                         | Gewichtung |
-| ----------------------------------------------------------------- | ---------- |
-| Einhaltung des Scrum-Frameworks (Rollen, Events, Artefakte)       | 25 %       |
-| Funktionierende Hardware (Definition of Done)                     | 30 %       |
-| Qualität der Dokumentation (User Stories, Schaltplan, Protokolle) | 20 %       |
-| Teamarbeit und Selbstorganisation                                 | 15 %       |
-| Präsentation und Reflexion                                        | 10 %       |
+© 2026 Lukas Müller – Licensed under CC BY-NC-ND 4.0
+See [LICENSE](..\license.md) file for details.
