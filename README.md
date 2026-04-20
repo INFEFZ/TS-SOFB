@@ -10,21 +10,21 @@
 
 ## Unterrichtstage
 
-### [Unit 1](./GE1_Agenda/01.md)
+### [Tag 1](./GE1_Agenda/01.md)
 
-### [Unit 2](./GE1_Agenda/02.md)
+### [Tag 2](./GE1_Agenda/02.md)
 
-### [Unit 3](./GE1_Agenda/03.md)
+### [Tag 3](./GE1_Agenda/03.md)
 
-### [Unit 4](./GE1_Agenda/04.md)
+### [Tag 4](./GE1_Agenda/04.md)
 
-### [Unit 5](./GE1_Agenda/05.md)
+### [Tag 5](./GE1_Agenda/05.md)
 
-### [Unit 6](./GE1_Agenda/06.md)
+### [Tag 6](./GE1_Agenda/06.md)
 
-### [Unit 7](./GE1_Agenda/07.md)
+### [Tag 7](./GE1_Agenda/07.md)
 
-### [Unit 8](./GE1_Agenda/08.md)
+### [Tag 8](./GE1_Agenda/08.md)
 
 ---
 
