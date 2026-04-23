@@ -60,5 +60,14 @@ Softwareentwicklung A
 
 ---
 
+## Vorstellungsrunde
+
+- Name, Vorname
+- Arbeitgeber u. aktuelle Tätigkeit
+- Vorkenntnisse über Datenbanken u. SQL und der Programmiersprache C etc.
+- Erwartungen / Anregungen an Unterricht
+- Warum Studium an der IPSO?
+
+
 © 2026 Lukas Müller – Licensed under CC BY-NC-ND 4.0
 See [LICENSE](license.md) file for details.

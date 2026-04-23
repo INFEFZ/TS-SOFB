@@ -31,7 +31,8 @@
   - [1.16. Mit draw.io ein UML-Aktivitätsdiagramm erstellen](#116-mit-drawio-ein-uml-aktivitätsdiagramm-erstellen)
 - [2. Aufgaben](#2-aufgaben)
   - [2.1. Kurzrecherche UML (Unified Modeling Language)](#21-kurzrecherche-uml-unified-modeling-language)
-  - [2.2. Aufgabe Aktivitätsdiagramm entwickeln](#22-aufgabe-aktivitätsdiagramm-entwickeln)
+  - [2.2. Aufgabe Aktivitätsdiagramm für Geldautomat entwickeln](#22-aufgabe-aktivitätsdiagramm-für-geldautomat-entwickeln)
+  - [2.3. Aufgabe Aktivitätsdiagramm für Kaffeeautomat entwickeln](#23-aufgabe-aktivitätsdiagramm-für-kaffeeautomat-entwickeln)
 
 ---
 
@@ -334,33 +335,7 @@ Eine **Aktivität** ist ein **komplexer Ablauf oder ein gesamter Prozess**, der 
 
 Betrachten Sie das folgende Aktivitätsdiagramm eines **E-Mail-Versandprozesses** und beantworten Sie die Fragen.
 
-```console
-                    ●
-                    |
-                    ↓
-          ╭────────────────────╮
-          │  E-Mail verfassen  │
-          ╰────────────────────╯
-                    |
-                    ↓
-                    ◆
-                   / \
-      [Empfänger  /   \ [Empfänger
-        gültig]  /     \  ungültig]
-                ↓       ↓
-   ╭──────────────╮  ╭───────────────╮
-   │ E-Mail senden│  │Fehler anzeigen│
-   ╰──────────────╯  ╰───────────────╯
-          |                  |
-          ↓                  ↓
- ╭──────────────────────╮     (●)
- │Sendebericht speichern│  (Fehler-Ende)
- ╰──────────────────────╯
-          |
-          ↓
-         (●)
-      (Erfolg-Ende)
-```
+![UML E-Mail verfassen](./x_gitres/email-verfassen.png)
 
 **Fragen:**
 
@@ -388,7 +363,7 @@ Betrachten Sie das folgende Aktivitätsdiagramm eines **E-Mail-Versandprozesses*
 
 </br>
 
-## 2.2. Aufgabe Aktivitätsdiagramm entwickeln
+## 2.2. Aufgabe Aktivitätsdiagramm für Geldautomat entwickeln
 
 | **Vorgabe**         | **Beschreibung**                                       |
 | :------------------ | :----------------------------------------------------- |
@@ -402,7 +377,7 @@ Betrachten Sie das folgende Aktivitätsdiagramm eines **E-Mail-Versandprozesses*
 | **Zeitbedarf**      | 20min                                                  |
 | **Lösungselemente** | Vollständiges Aktivitätsdiagramm                       |
 
-Modellieren Sie den folgenden Ablauf als **vollständiges Aktivitätsdiagramm**. Verwenden Sie korrekte UML-Notation für alle Elemente.
+Modelliere den folgenden Ablauf als **vollständiges Aktivitätsdiagramm**. Verwende korrekte UML-Notation für alle Elemente.
 
 > **Szenario: Geldautomat (ATM) – Bargeld abheben**
 >
@@ -424,6 +399,52 @@ Modellieren Sie den folgenden Ablauf als **vollständiges Aktivitätsdiagramm**.
 - Markieren Sie alle Guards an den Entscheidungsknoten deutlich in eckigen Klammern.
 - Achten Sie auf die **Schleife** bei falscher PIN (Rückwärtspfeil einzeichnen).
 - Verwenden Sie **unterschiedliche Endknoten** für Sperrung, Erfolg und fehlende Deckung.
+
+---
+
+## 2.3. Aufgabe Aktivitätsdiagramm für Kaffeeautomat entwickeln
+
+| **Vorgabe**         | **Beschreibung**                                       |
+| :------------------ | :----------------------------------------------------- |
+| **Lernziele**       | Ein UML-Aktivitätsdiagramm erstellt                    |
+|                     | Grundelementen der UML-Notation                        |
+|                     | Verständnis für für strukturierte Ablaufbeschreibungen |
+|                     | Abläufe und Prozesse grafisch darzustellen             |
+| **Sozialform**      | Einzelarbeit                                           |
+| **Auftrag**         | siehe unten                                            |
+| **Hilfsmittel**     |                                                        |
+| **Zeitbedarf**      | 20min                                                  |
+| **Lösungselemente** | Vollständiges Aktivitätsdiagramm                       |
+
+Modelliere den folgenden Ablauf als **vollständiges Aktivitätsdiagramm**. Verwende korrekte UML-Notation für alle Elemente.
+
+Ein **Kaffeeautomat** funktioniert wie folgt:
+
+- Ein Benutzer startet den Automaten.
+- Danach wählt er ein Getränk:
+  - Kaffee
+  - Tee
+- Wenn der Benutzer Kaffee wählt:
+  - Es wird geprüft, ob genügend Wasser vorhanden ist
+  - Wenn ja → Kaffee wird zubereitet
+  - Wenn nein → Fehlermeldung "Wasser nachfüllen"
+- Wenn der Benutzer Tee wählt:
+  - Tee wird direkt zubereitet
+- Am Ende wird das Getränk ausgegeben.
+
+Dein Diagramm soll enthalten:
+
+- Start- und Endknoten
+- Aktionen (z.B. "Getränk wählen")
+- Eine Entscheidung (Kaffee oder Tee)
+- Eine weitere Entscheidung (Wasser vorhanden?)
+- Korrekte Beschriftung der Bedingungen (z. B. `[ja]`, `[nein]`)
+
+Optional (leichte Erweiterung)
+
+- Oder erweitere um eine dritte Auswahl (z.B. "Heisse Schokolade")
+
+</br>
 
 © 2026 Lukas Müller – Licensed under CC BY-NC-ND 4.0
 See [LICENSE](..\license.md) file for details.
