@@ -31,8 +31,9 @@
   - [1.16. Mit draw.io ein UML-Aktivitätsdiagramm erstellen](#116-mit-drawio-ein-uml-aktivitätsdiagramm-erstellen)
 - [2. Aufgaben](#2-aufgaben)
   - [2.1. Kurzrecherche UML (Unified Modeling Language)](#21-kurzrecherche-uml-unified-modeling-language)
-  - [2.2. Aufgabe Aktivitätsdiagramm für Geldautomat entwickeln](#22-aufgabe-aktivitätsdiagramm-für-geldautomat-entwickeln)
-  - [2.3. Aufgabe Aktivitätsdiagramm für Kaffeeautomat entwickeln](#23-aufgabe-aktivitätsdiagramm-für-kaffeeautomat-entwickeln)
+  - [2.2. Aktivitätsdiagramm für Geldautomat entwickeln](#22-aktivitätsdiagramm-für-geldautomat-entwickeln)
+  - [2.3. Aktivitätsdiagramm für Kaffeeautomat entwickeln](#23-aktivitätsdiagramm-für-kaffeeautomat-entwickeln)
+  - [2.4. Aktivitätsdiagramm für Passwortprüfung mit begrenzter Anzahl an Fehlversuchen](#24-aktivitätsdiagramm-für-passwortprüfung-mit-begrenzter-anzahl-an-fehlversuchen)
 
 ---
 
@@ -363,7 +364,7 @@ Betrachten Sie das folgende Aktivitätsdiagramm eines **E-Mail-Versandprozesses*
 
 </br>
 
-## 2.2. Aufgabe Aktivitätsdiagramm für Geldautomat entwickeln
+## 2.2. Aktivitätsdiagramm für Geldautomat entwickeln
 
 | **Vorgabe**         | **Beschreibung**                                       |
 | :------------------ | :----------------------------------------------------- |
@@ -402,7 +403,7 @@ Modelliere den folgenden Ablauf als **vollständiges Aktivitätsdiagramm**. Verw
 
 ---
 
-## 2.3. Aufgabe Aktivitätsdiagramm für Kaffeeautomat entwickeln
+## 2.3. Aktivitätsdiagramm für Kaffeeautomat entwickeln
 
 | **Vorgabe**         | **Beschreibung**                                       |
 | :------------------ | :----------------------------------------------------- |
@@ -440,9 +441,26 @@ Dein Diagramm soll enthalten:
 - Eine weitere Entscheidung (Wasser vorhanden?)
 - Korrekte Beschriftung der Bedingungen (z. B. `[ja]`, `[nein]`)
 
-Optional (leichte Erweiterung)
+Optional (keine Erweiterung)
 
 - Oder erweitere um eine dritte Auswahl (z.B. "Heisse Schokolade")
+
+---
+
+## 2.4. Aktivitätsdiagramm für Passwortprüfung mit begrenzter Anzahl an Fehlversuchen
+
+| **Vorgabe**             | **Beschreibung**                                                                           |
+| :---------------------- | :----------------------------------------------------------------------------------------- |
+| **Lernziele**           | komplexe Abläufe mit Verzweigungen und Schleifen in einem UML Aktivitätsdiagramm umsetzen. |
+|                         | Ablauf und Logik prüfen                                                                    |
+| **Sozialform**          | Einzelarbeit                                                                               |
+| **Hilfsmittel**         |                                                                                            |
+| **Erwartete Resultate** |                                                                                            |
+| **Zeitbedarf**          | 30 min                                                                                     |
+| **Lösungselemente**     | Vollständiges UML Aktivitätsdiagramm                                                       |
+
+Nach dem die Logik der Passwortanmeldung grafisch als PAP (siehe vorherige Aufgabe) entwickelt wurde, soll nun diese in einem UML Aktivitätsdiagramm implementiert werden.
+Erstelle zur Logik der Passwortanmeldung ein vollständig UML Aktivitätsdiagramm.
 
 </br>
 

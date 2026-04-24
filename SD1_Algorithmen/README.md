@@ -24,7 +24,8 @@
   - [2.5. Mit draw.io einen Programmablaufplan (PAP) erstellen](#25-mit-drawio-einen-programmablaufplan-pap-erstellen)
 - [3. Aufgaben](#3-aufgaben)
   - [3.1. Zahl auswerten](#31-zahl-auswerten)
-  - [3.2. Wiederholungen](#32-wiederholungen)
+  - [3.2. Passwortprüfung mit begrenzter Anzahl an Fehlversuchen (PAP)](#32-passwortprüfung-mit-begrenzter-anzahl-an-fehlversuchen-pap)
+  - [3.3. Passwortprüfung mit begrenzter Anzahl an Fehlversuchen (Flowgorithm)](#33-passwortprüfung-mit-begrenzter-anzahl-an-fehlversuchen-flowgorithm)
 
 ---
 
@@ -195,7 +196,7 @@ Von dort aus folgt man den Pfeilen von oben nach unten bzw. von Entscheidungspun
 | **Sozialform**      | Partnerarbeit                                      |
 | **Auftrag**         | siehe unten                                        |
 | **Hilfsmittel**     |                                                    |
-| **Zeitbedarf**      | 20min                                              |
+| **Zeitbedarf**      | 20 min                                             |
 | **Lösungselemente** | Vollständiges Flussdiagramm                        |
 
 Zeichne ein Flussdiagramm für folgendes Programm:
@@ -206,23 +207,63 @@ Zeichne ein Flussdiagramm für folgendes Programm:
 
 ---
 
-## 3.2. Wiederholungen
+## 3.2. Passwortprüfung mit begrenzter Anzahl an Fehlversuchen (PAP)
 
-| **Vorgabe**         | **Beschreibung**                                                     |
-| :------------------ | :------------------------------------------------------------------- |
-| **Lernziele**       | Kennt die Grundelemente von Struktogramm, PAP und Aktivitätsdiagramm |
-|                     | Kann Algorithmen in einem Diagramm darstellen                        |
-| **Sozialform**      | Partnerarbeit                                                        |
-| **Auftrag**         | siehe unten                                                          |
-| **Hilfsmittel**     |                                                                      |
-| **Zeitbedarf**      | 20min                                                                |
-| **Lösungselemente** | Vollständiges Diagramm                                               |
+| **Vorgabe**             | **Beschreibung**                                      |
+| :---------------------- | :---------------------------------------------------- |
+| **Lernziele**           | komplexe Abläufe nachvollziehbar grafisch darstellen. |
+|                         | Ablaufdiagramm erstellen (Text und PAP)               |
+| **Sozialform**          | Einzelarbeit                                          |
+| **Hilfsmittel**         |                                                       |
+| **Erwartete Resultate** |                                                       |
+| **Zeitbedarf**          | 30 min                                                |
+| **Lösungselemente**     | Vollständiger Programmablaufplan (PAP) in draw.io     |
 
-Zeichne mit einem Diagramm eurer Wahl folgendes Programm:
+**Situation:**
 
-- Einlesen einer Zahl vom User (Console)
-- Einlesen von **n-Zahlen** in einer Schleife bis der User nichts mehr eingibt.
-- Ausgabe der des Mittelwertes der **n-Zahlen**
+Ein Programm soll eine Passworteingabe eines Benutzers überprüfen.
+
+Beim Start des Programms wird der Benutzer aufgefordert, ein Passwort einzugeben.
+Das eingegebene Passwort wird mit einem vorgegebenen (korrekten) Passwort verglichen.
+
+- Ist das Passwort korrekt, wird eine Willkommensmeldung ausgegeben und das Programm endet.
+- Ist das Passwort falsch, wird der Benutzer erneut zur Eingabe aufgefordert.
+- Es sind maximal drei Fehlversuche erlaubt.
+- Nach dem dritten falschen Versuch wird eine entsprechende Meldung ausgegeben und das Programm wird beendet.
+
+**Auftrag:**
+
+1. Stellen Sie den beschriebenen Ablauf als Programmablaufplan (PAP) dar.
+2. Verwenden Sie ausschliesslich die korrekten Grundelemente des PAP:
+   - Start / Ende
+   - Verarbeitung
+   - Ein- / Ausgabe
+   - Entscheidung
+   - Verbindungspfeile
+3. Achten Sie auf:
+   - eine korrekte Zählvariable für die Fehlversuche
+   - logisch richtige Verzweigungen
+   - eine saubere und übersichtliche Darstellung
+   - eindeutige Beschriftung der Entscheidungszweige (z.B. "ja" / "nein")
+
+---
+
+## 3.3. Passwortprüfung mit begrenzter Anzahl an Fehlversuchen (Flowgorithm)
+
+| **Vorgabe**             | **Beschreibung**                                                                |
+| :---------------------- | :------------------------------------------------------------------------------ |
+| **Lernziele**           | komplexe Abläufe mit Verzweigungen und Schleifen in einem Flowgorithm umsetzen. |
+|                         | Ablauf und Logik prüfen                                                         |
+| **Sozialform**          | Einzelarbeit                                                                    |
+| **Hilfsmittel**         |                                                                                 |
+| **Erwartete Resultate** |                                                                                 |
+| **Zeitbedarf**          | 30 min                                                                          |
+| **Lösungselemente**     | Vollständiges Flowgorithm Programm                                              |
+
+Nach dem die Logik der Passwortanmeldung grafisch als PAP (siehe vorherige Aufgabe) entwickelt wurde, soll nun diese in einem Flowgorithm implementiert und getestet werden.
+Erstelle zur Logik der Passwortanmeldung ein vollständig und funktionierendes Flowgorithm Programm.
+
+</br>
 
 © 2026 Lukas Müller – Licensed under CC BY-NC-ND 4.0
 See [LICENSE](..\license.md) file for details.
