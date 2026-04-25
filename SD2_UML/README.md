@@ -5,30 +5,31 @@
 - [1. UML-Aktivitätsdiagramm](#1-uml-aktivitätsdiagramm)
   - [1.1. Lernziele](#11-lernziele)
   - [1.2. Was ist UML?](#12-was-ist-uml)
-    - [1.2.1. 2.1 Definition und Geschichte](#121-21-definition-und-geschichte)
-    - [1.2.2. 2.2 Warum UML in der Praxis?](#122-22-warum-uml-in-der-praxis)
-    - [1.2.3. 2.3 UML-Diagrammtypen](#123-23-uml-diagrammtypen)
-  - [1.3. Definition und Einsatzgebiete](#13-definition-und-einsatzgebiete)
-  - [1.4. Grundelemente \& Notation eines Aktivitätsdiagramms](#14-grundelemente--notation-eines-aktivitätsdiagramms)
-    - [1.4.1. Startknoten (Initial Node)](#141-startknoten-initial-node)
-    - [1.4.2. Endknoten (Activity Final Node)](#142-endknoten-activity-final-node)
-  - [1.5. Aktion (Action / Activity Node)](#15-aktion-action--activity-node)
-  - [1.6. Entscheidungsknoten (Decision Node)](#16-entscheidungsknoten-decision-node)
-    - [1.6.1. 3.3 Guards – Wächterbedingungen](#161-33-guards--wächterbedingungen)
-    - [1.6.2. 3.4 Verzweigungen: Decision und Merge](#162-34-verzweigungen-decision-und-merge)
-  - [1.7. Kontrollfluss (Control Flow)](#17-kontrollfluss-control-flow)
-  - [1.8. Fork-Knoten (Parallelisierung)](#18-fork-knoten-parallelisierung)
-  - [1.9. Join-Knoten (Synchronisation)](#19-join-knoten-synchronisation)
-  - [1.10. Objektknoten (Object Node)](#110-objektknoten-object-node)
-  - [1.11. Swimlanes (Aktivitätsbereiche / Zuständigkeiten)](#111-swimlanes-aktivitätsbereiche--zuständigkeiten)
-  - [1.12. Ablauf-Elemente - Iteration](#112-ablauf-elemente---iteration)
-  - [1.13. Aktivität](#113-aktivität)
-  - [1.14. Beispiel Aktivitätsdiagramm](#114-beispiel-aktivitätsdiagramm)
-  - [1.15. Kurzreferenz (Spickzettel)](#115-kurzreferenz-spickzettel)
-    - [1.15.1. Alle Elemente auf einen Blick](#1151-alle-elemente-auf-einen-blick)
-    - [1.15.2. Checkliste – Fertig ist das Diagramm, wenn](#1152-checkliste--fertig-ist-das-diagramm-wenn)
-    - [1.15.3. Häufige Fehler](#1153-häufige-fehler)
-  - [1.16. Mit draw.io ein UML-Aktivitätsdiagramm erstellen](#116-mit-drawio-ein-uml-aktivitätsdiagramm-erstellen)
+    - [1.2.1. Definition und Geschichte](#121-definition-und-geschichte)
+  - [1.3. Konstruktionspläne für Software](#13-konstruktionspläne-für-software)
+    - [1.3.1. Warum UML in der Praxis?](#131-warum-uml-in-der-praxis)
+    - [1.3.2. UML-Diagrammtypen](#132-uml-diagrammtypen)
+  - [1.4. Definition und Einsatzgebiete](#14-definition-und-einsatzgebiete)
+  - [1.5. Grundelemente \& Notation eines Aktivitätsdiagramms](#15-grundelemente--notation-eines-aktivitätsdiagramms)
+    - [1.5.1. Startknoten (Initial Node)](#151-startknoten-initial-node)
+    - [1.5.2. Endknoten (Activity Final Node)](#152-endknoten-activity-final-node)
+  - [1.6. Aktion (Action / Activity Node)](#16-aktion-action--activity-node)
+  - [1.7. Entscheidungsknoten (Decision Node)](#17-entscheidungsknoten-decision-node)
+    - [1.7.1. Guards – Wächterbedingungen](#171-guards--wächterbedingungen)
+    - [1.7.2. Verzweigungen: Decision und Merge](#172-verzweigungen-decision-und-merge)
+  - [1.8. Kontrollfluss (Control Flow)](#18-kontrollfluss-control-flow)
+  - [1.9. Fork-Knoten (Parallelisierung)](#19-fork-knoten-parallelisierung)
+  - [1.10. Join-Knoten (Synchronisation)](#110-join-knoten-synchronisation)
+  - [1.11. Objektknoten (Object Node)](#111-objektknoten-object-node)
+  - [1.12. Swimlanes (Aktivitätsbereiche / Zuständigkeiten)](#112-swimlanes-aktivitätsbereiche--zuständigkeiten)
+  - [1.13. Ablauf-Elemente - Iteration](#113-ablauf-elemente---iteration)
+  - [1.14. Aktivität](#114-aktivität)
+  - [1.15. Beispiel Aktivitätsdiagramm](#115-beispiel-aktivitätsdiagramm)
+  - [1.16. Kurzreferenz (Spickzettel)](#116-kurzreferenz-spickzettel)
+    - [1.16.1. Alle Elemente auf einen Blick](#1161-alle-elemente-auf-einen-blick)
+    - [1.16.2. Checkliste – Fertig ist das Diagramm, wenn](#1162-checkliste--fertig-ist-das-diagramm-wenn)
+    - [1.16.3. Häufige Fehler](#1163-häufige-fehler)
+  - [1.17. Mit draw.io ein UML-Aktivitätsdiagramm erstellen](#117-mit-drawio-ein-uml-aktivitätsdiagramm-erstellen)
 - [2. Aufgaben](#2-aufgaben)
   - [2.1. Kurzrecherche UML (Unified Modeling Language)](#21-kurzrecherche-uml-unified-modeling-language)
   - [2.2. Aktivitätsdiagramm für Geldautomat entwickeln](#22-aktivitätsdiagramm-für-geldautomat-entwickeln)
@@ -53,13 +54,31 @@ Nach dieser Lektion können die Studierenden:
 
 ## 1.2. Was ist UML?
 
-### 1.2.1. 2.1 Definition und Geschichte
+### 1.2.1. Definition und Geschichte
 
 **UML** steht für **Unified Modeling Language** und ist eine grafische Modellierungssprache zur Beschreibung, Visualisierung und Dokumentation von Software-Systemen. Sie wurde von der Object Management Group (OMG) 1997 als Standard verabschiedet und liegt heute in **Version 2.5** vor.
 
-Vor UML existierten zahlreiche konkurrierende Notationen (Booch, Rumbaugh/OMT, Jacobson/OOSE), was zu Kommunikationsproblemen in interdisziplinären Teams führte. UML vereinheitlichte diese Ansätze zu einer einzigen, standardisierten Sprache.
+Vor **UML** existierten zahlreiche konkurrierende Notationen (Booch, Rumbaugh/OMT, Jacobson/OOSE), was zu Kommunikationsproblemen in interdisziplinären Teams führte. **UML** vereinheitlichte diese Ansätze zu einer einzigen, standardisierten Sprache.
 
-### 1.2.2. 2.2 Warum UML in der Praxis?
+## 1.3. Konstruktionspläne für Software
+
+Ein Plan beschreibt ein System
+Zweck:
+
+- Bauanleitung (Fabrikation)
+- Dokumentation
+- Modelldarstellung
+
+Verbreitet in Ingenieur-Disziplinen:
+
+- Maschinenindustrie
+- Baugewerbe
+- Elektronik
+- **Informatik?**
+
+[Konstruktionsplan](./x_gitres/konstruktionsplan.png)
+
+### 1.3.1. Warum UML in der Praxis?
 
 - **Gemeinsame Sprache:** Entwickler, Architekten, Business-Analysten und Kunden verwenden dieselbe Notation – unabhängig von Programmiersprache oder Technologie.
 - **Frühe Fehlererkennung:** Logikfehler werden im Modell sichtbar, bevor teurer Code geschrieben wird.
@@ -67,9 +86,9 @@ Vor UML existierten zahlreiche konkurrierende Notationen (Booch, Rumbaugh/OMT, J
 - **Abstraktion:** Technologie- und sprachunabhängige Kommunikation über Systemgrenzen hinweg.
 - **Testbasis:** Aus Aktivitätsdiagrammen lassen sich systematisch Testfälle und Testpfade ableiten.
 
-### 1.2.3. 2.3 UML-Diagrammtypen
+### 1.3.2. UML-Diagrammtypen
 
-UML 2.5 definiert 14 Diagrammtypen, eingeteilt in zwei Kategorien:
+UML 2.5 definiert **14 Diagrammtypen**, eingeteilt in zwei Kategorien:
 
 | **Strukturdiagramme (statisch)** | **Verhaltensdiagramme (dynamisch)** |
 | -------------------------------- | ----------------------------------- |
@@ -79,7 +98,7 @@ UML 2.5 definiert 14 Diagrammtypen, eingeteilt in zwei Kategorien:
 | Paketdiagramm                    | Zustandsdiagramm                    |
 | Verteilungsdiagramm              | Kommunikationsdiagramm              |
 
-## 1.3. Definition und Einsatzgebiete
+## 1.4. Definition und Einsatzgebiete
 
 > **Definition:** Ein Aktivitätsdiagramm beschreibt den Ablauf von Aktivitäten (Aktionen) innerhalb eines Systems. Es zeigt, **WIE** etwas abläuft – mit Verzweigungen, Schleifen und parallelen Pfaden.
 
@@ -101,7 +120,7 @@ Es wird vor allem zur Modellierung von Geschäftsprozessen, Arbeitsabläufen ode
 
 ---
 
-## 1.4. Grundelemente & Notation eines Aktivitätsdiagramms
+## 1.5. Grundelemente & Notation eines Aktivitätsdiagramms
 
 | Symbol                         | Element                     | Beschreibung                                     |
 | ------------------------------ | --------------------------- | ------------------------------------------------ |
@@ -118,7 +137,7 @@ Es wird vor allem zur Modellierung von Geschäftsprozessen, Arbeitsabläufen ode
 
 ![Grundelemente](./x_gitres/aktivitätsdiagram-elemente.png)
 
-### 1.4.1. Startknoten (Initial Node)
+### 1.5.1. Startknoten (Initial Node)
 
 - **Schwarzer ausgefüllter Kreis** (●)
 - Der Startpunkt eines Prozesses.
@@ -126,7 +145,7 @@ Es wird vor allem zur Modellierung von Geschäftsprozessen, Arbeitsabläufen ode
 
 > Beispiel: Beim Anmeldeprozess: Der Nutzer öffnet das Login-Formular.
 
-### 1.4.2. Endknoten (Activity Final Node)
+### 1.5.2. Endknoten (Activity Final Node)
 
 - **Schwarzer Kreis** mit Umrandung (◯)
 - Beendet den Ablauf vollständig.
@@ -134,7 +153,7 @@ Es wird vor allem zur Modellierung von Geschäftsprozessen, Arbeitsabläufen ode
 
 > Beispiel: Nach erfolgreichem Login wird die Startseite angezeigt → Prozess endet.
 
-## 1.5. Aktion (Action / Activity Node)
+## 1.6. Aktion (Action / Activity Node)
 
 Eine Aktion ist ein einzelner, **atomarer Schritt** innerhalb einer **Aktivität** – also eine konkrete Handlung, wie z.B. "Zähne putzen", "Tasse aus dem Schrank holen" oder "Passwort eingeben".
 **Sie ist nicht weiter unterteilt**.
@@ -147,7 +166,7 @@ Eine Aktion ist ein einzelner, **atomarer Schritt** innerhalb einer **Aktivität
 
 ![Aktion](./x_gitres/aktivitätsdiagram-aktion.png)
 
-## 1.6. Entscheidungsknoten (Decision Node)
+## 1.7. Entscheidungsknoten (Decision Node)
 
 - Raute (◆)
 - Dient der Verzweigung mit Bedingungen.
@@ -157,7 +176,7 @@ Eine Aktion ist ein einzelner, **atomarer Schritt** innerhalb einer **Aktivität
 
 ![Selektion](./x_gitres/aktivitätsdiagram-selektion.png)
 
-### 1.6.1. 3.3 Guards – Wächterbedingungen
+### 1.7.1. Guards – Wächterbedingungen
 
 An jedem Entscheidungsknoten (`◆`) werden die ausgehenden Pfeile mit **Guards** beschriftet. Guards stehen in eckigen Klammern und beschreiben die Bedingung, unter der dieser Pfad gewählt wird.
 
@@ -174,7 +193,7 @@ An jedem Entscheidungsknoten (`◆`) werden die ausgehenden Pfeile mit **Guards*
 - `[Lagerbestand > 0]` / `[else]`
 - `[korrekt]` / `[falsch & Versuche < 3]` / `[falsch & Versuche = 3]`
 
-### 1.6.2. 3.4 Verzweigungen: Decision und Merge
+### 1.7.2. Verzweigungen: Decision und Merge
 
 Beide Knoten verwenden das **gleiche Symbol `◆`** – der Unterschied liegt in der Anzahl der Pfeile:
 
@@ -185,7 +204,7 @@ Beide Knoten verwenden das **gleiche Symbol `◆`** – der Unterschied liegt in
 | **Guards**            | Pflicht an allen Ausgängen   | Nicht nötig                  |
 | **Entspricht**        | `if / else if / else`        | Zusammenführung von Pfaden   |
 
-## 1.7. Kontrollfluss (Control Flow)
+## 1.8. Kontrollfluss (Control Flow)
 
 - **Pfeile** zwischen den Knoten
 - Zeigt die logische Reihenfolge der Aktivitäten.
@@ -193,7 +212,7 @@ Beide Knoten verwenden das **gleiche Symbol `◆`** – der Unterschied liegt in
 
 ![Sequenz](./x_gitres/aktivitätsdiagram-sequenz.png)
 
-## 1.8. Fork-Knoten (Parallelisierung)
+## 1.9. Fork-Knoten (Parallelisierung)
 
 - Schwarzer horizontaler oder vertikaler **Balken**
 - Spaltet den Ablauf in mehrere parallele Prozesse auf.
@@ -201,7 +220,7 @@ Beide Knoten verwenden das **gleiche Symbol `◆`** – der Unterschied liegt in
 
 > Beim Online-Kauf werden gleichzeitig E-Mail gesendet und Rechnung erstellt.
 
-## 1.9. Join-Knoten (Synchronisation)
+## 1.10. Join-Knoten (Synchronisation)
 
 - Gleiches Symbol wie Fork (**Balken**)
 - Führt mehrere parallele Abläufe wieder zusammen.
@@ -209,7 +228,7 @@ Beide Knoten verwenden das **gleiche Symbol `◆`** – der Unterschied liegt in
 
 > Beispiel: Nach "E-Mail gesendet" und "Rechnung erstellt" folgt "Bestellung abgeschlossen".
 
-## 1.10. Objektknoten (Object Node)
+## 1.11. Objektknoten (Object Node)
 
 - **Rechteck** mit Objektname (optional mit Typ)
 - Zeigt den Datenfluss (welches Objekt oder welche Information zwischen Aktivitäten übergeben wird).
@@ -217,7 +236,7 @@ Beide Knoten verwenden das **gleiche Symbol `◆`** – der Unterschied liegt in
 
 > Beispiel: Ein "Benutzerobjekt" wird in der Aktivität "Authentifizieren" verwendet.
 
-## 1.11. Swimlanes (Aktivitätsbereiche / Zuständigkeiten)
+## 1.12. Swimlanes (Aktivitätsbereiche / Zuständigkeiten)
 
 - Unterteilung des Diagramms in vertikale oder horizontale Bahnen
 - Zeigen, welcher Akteur (z. B. System, Benutzer, Admin) welche Aktivität durchführt.
@@ -260,23 +279,23 @@ Swim Lanes zeigen, **WER** für welche Aktion zuständig ist.
 └────────────────┴────────────────┴────────────────┘
 ```
 
-## 1.12. Ablauf-Elemente - Iteration
+## 1.13. Ablauf-Elemente - Iteration
 
 Schleifen entstehen durch einen **Rückwärtspfeil** – ein Entscheidungsknoten leitet einen Pfad zurück zu einer früheren Stelle.
 
 ![Iteration](./x_gitres/aktivitätsdiagram-iteration.png)
 
-## 1.13. Aktivität
+## 1.14. Aktivität
 
 Eine **Aktivität** ist ein **komplexer Ablauf oder ein gesamter Prozess**, der sich aus mehreren Teilschritten zusammensetzt. Sie kann mehrere Aktionen enthalten und wird oft als **gesamtes Aktivitätsdiagramm** dargestellt.
 
-## 1.14. Beispiel Aktivitätsdiagramm
+## 1.15. Beispiel Aktivitätsdiagramm
 
 ![Beispiel](./x_gitres/aktivitätsdiagram-beispiel.png)
 
-## 1.15. Kurzreferenz (Spickzettel)
+## 1.16. Kurzreferenz (Spickzettel)
 
-### 1.15.1. Alle Elemente auf einen Blick
+### 1.16.1. Alle Elemente auf einen Blick
 
 | Symbol                   | Element             | Schlüsselregel                                            |
 | ------------------------ | ------------------- | --------------------------------------------------------- |
@@ -291,7 +310,7 @@ Eine **Aktivität** ist ein **komplexer Ablauf oder ein gesamter Prozess**, der 
 | `→`                      | Kontrollfluss       | Verbindet Elemente; Guard in `[...]` bei Decision         |
 | Swim Lane                | Partition           | `«partition»` als Bezeichnung; zeigt Verantwortlichkeit   |
 
-### 1.15.2. Checkliste – Fertig ist das Diagramm, wenn
+### 1.16.2. Checkliste – Fertig ist das Diagramm, wenn
 
 - [ ] Genau 1 Startknoten vorhanden
 - [ ] Mindestens 1 Endknoten vorhanden (Typ beachten!)
@@ -301,7 +320,7 @@ Eine **Aktivität** ist ein **komplexer Ablauf oder ein gesamter Prozess**, der 
 - [ ] Decision- und Merge-Knoten korrekt unterschieden (Anzahl der Pfeile!)
 - [ ] Schleifen haben einen Rückwärtspfeil mit Guard für den Abbruch
 
-### 1.15.3. Häufige Fehler
+### 1.16.3. Häufige Fehler
 
 | **Fehler**                                   | **Korrekte Lösung**                                          |
 | -------------------------------------------- | ------------------------------------------------------------ |
@@ -314,7 +333,7 @@ Eine **Aktivität** ist ein **komplexer Ablauf oder ein gesamter Prozess**, der 
 
 ---
 
-## 1.16. Mit draw.io ein UML-Aktivitätsdiagramm erstellen
+## 1.17. Mit draw.io ein UML-Aktivitätsdiagramm erstellen
 
 [Kleines Tutorial](https://www.youtube.com/watch?v=IKq-wBDfU7s)
 
