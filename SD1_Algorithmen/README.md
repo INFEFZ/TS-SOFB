@@ -193,10 +193,10 @@ Von dort aus folgt man den Pfeilen von oben nach unten bzw. von Entscheidungspun
 | **Lernziele**       | Kennt die Grundelemente eines Flussdiagramms       |
 |                     | Kann ein Flussdiagramm entwickeln                  |
 |                     | Kann Algorithmen in einem Flussdiagramm darstellen |
-| **Sozialform**      | Partnerarbeit                                      |
+| **Sozialform**      | Einzelarbeit                                       |
 | **Auftrag**         | siehe unten                                        |
 | **Hilfsmittel**     |                                                    |
-| **Zeitbedarf**      | 20 min                                             |
+| **Zeitbedarf**      | 15 min                                             |
 | **Lösungselemente** | Vollständiges Flussdiagramm                        |
 
 Zeichne ein Flussdiagramm für folgendes Programm:
@@ -216,7 +216,7 @@ Zeichne ein Flussdiagramm für folgendes Programm:
 | **Sozialform**          | Einzelarbeit                                          |
 | **Hilfsmittel**         |                                                       |
 | **Erwartete Resultate** |                                                       |
-| **Zeitbedarf**          | 30 min                                                |
+| **Zeitbedarf**          | 20 min                                                |
 | **Lösungselemente**     | Vollständiger Programmablaufplan (PAP) in draw.io     |
 
 **Situation:**

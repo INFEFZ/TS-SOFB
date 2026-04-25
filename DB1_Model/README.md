@@ -422,9 +422,9 @@ Eine Relation befindet sich in der **3NF**, wenn sie in der 2NF ist und keine tr
 | **Hilfsmittel**         |                                                               |
 | **Erwartete Resultate** |                                                               |
 | **Zeitbedarf**          | 30 min                                                        |
-| **Lösungselemente**     | ERM und Relationen Modell auf Papier oder DIA                 |
+| **Lösungselemente**     | ERM und Relationen Modell auf Papier oder Draw.io             |
 
-Ein ERM und relationales Datenmodell aus vorgegebenen Regeln ableiten und vollständig mit korrekten Konstruktionselementen (Entität, Beziehung, Attribut) modellieren.
+Ein **ERM** und relationales Datenmodell aus vorgegebenen Regeln ableiten und vollständig mit korrekten Konstruktionselementen (Entität, Beziehung, Attribut) modellieren.
 
 **Die Regeln:**
 
@@ -457,7 +457,7 @@ Ein ERM und relationales Datenmodell aus vorgegebenen Regeln ableiten und vollst
 | **Hilfsmittel**         |                                                               |
 | **Erwartete Resultate** |                                                               |
 | **Zeitbedarf**          | 50 min                                                        |
-| **Lösungselemente**     | ERM und Relationen Modell auf Papier oder DIA                 |
+| **Lösungselemente**     | ERM und Relationen Modell auf Papier oder Draw.io             |
 
 Erstelle zu den nachfolgenden Aufgaben ein ERM und relationales Datenmodell.
 

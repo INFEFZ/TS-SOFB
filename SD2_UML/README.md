@@ -76,7 +76,7 @@ Verbreitet in Ingenieur-Disziplinen:
 - Elektronik
 - **Informatik?**
 
-[Konstruktionsplan](./x_gitres/konstruktionsplan.png)
+![Konstruktionsplan](./x_gitres/konstruktionsplan.png)
 
 ### 1.3.1. Warum UML in der Praxis?
 
