@@ -27,6 +27,7 @@
 - [Precompiled Binaries for Windows](https://sqlite.org/download.html)
   - > **"Command-line tools for Windows x64"** wählen
 - [DB Browser for SQLite](https://sqlitebrowser.org) (grafisches Tool) verwenden.
+- [SQLite Studio](https://sqlitestudio.pl/)
 
 ---
 
@@ -62,7 +63,7 @@ Dies ist das wichtigste **Werkzeugpaket** von Microsoft, das zum Erstellen, Komp
 
 Dieses Kit installiert automatisch alle nötigen Abhängigkeiten wie die **Basis-C#-Unterstützung**, **IntelliCode** und das **.NET Install Tool**.
 
-![vsc extension c#](./x_gitres/vc-extension-c#.png)
+![vsc extension c#](./x_gitres/vc-extension-c.png)
 
 ---
 
