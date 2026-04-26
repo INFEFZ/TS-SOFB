@@ -24,12 +24,12 @@
 
 ## 1.1. SQLite
 
-- [SQLite Studio](https://sqlitestudio.pl/)
-  - ![SQLite Studio](./x_gitres/sqlite-studio.png)
-- [DB Browser for SQLite](https://sqlitebrowser.org) (grafisches Tool) verwenden.
-  - ![SQLite DB Browser](./x_gitres/sqlite-db-browser.png)
+- [How to Download & Install SQLite Tools](https://www.sqlitetutorial.net/download-install-sqlite/)
 - [Precompiled Binaries for Windows](https://sqlite.org/download.html)
   - > **"Command-line tools for Windows x64"** wählen
+- [SQLite Studio](https://sqlitestudio.pl/)
+  - ![SQLite Studio](./x_gitres/sqlite-studio.png)
+
 
 ---
 
