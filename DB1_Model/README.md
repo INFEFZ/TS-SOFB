@@ -19,33 +19,37 @@
       - [1.3.4.1. Definition](#1341-definition)
       - [1.3.4.2. Beispiel](#1342-beispiel)
     - [1.3.5. ERM - Notationsformen](#135-erm---notationsformen)
-    - [1.4. ERM - Beispiel](#14-erm---beispiel)
-  - [1.5. Relationales Datenbank Modell](#15-relationales-datenbank-modell)
-    - [1.5.1. Vom ERM zum Relationen Modell](#151-vom-erm-zum-relationen-modell)
-    - [1.5.2. Primary Key](#152-primary-key)
-    - [1.5.3. Foreign Key](#153-foreign-key)
-      - [1.5.3.1. Referentielle Integrität](#1531-referentielle-integrität)
-  - [1.6. Vom ERM zum Relationen Modell - Vorgehen](#16-vom-erm-zum-relationen-modell---vorgehen)
-    - [1.6.1. Schritt 1](#161-schritt-1)
-    - [1.6.2. Schritt 2](#162-schritt-2)
-    - [1.6.3. Schritt 3](#163-schritt-3)
-    - [1.6.4. Kreuztabellen](#164-kreuztabellen)
-    - [1.6.5. Regeln und Ablauf](#165-regeln-und-ablauf)
-  - [1.7. Datennormalisierung](#17-datennormalisierung)
-    - [1.7.1. Normalisieren von Relationen](#171-normalisieren-von-relationen)
-    - [1.7.2. Wissenswertes](#172-wissenswertes)
-    - [1.7.3. Definition: Unnormalisierte Relation](#173-definition-unnormalisierte-relation)
-    - [1.7.4. Normalform (1NF)](#174-normalform-1nf)
-    - [1.7.5. Definition 1.NF](#175-definition-1nf)
-    - [1.7.6. Vorgehen](#176-vorgehen)
-    - [1.7.7. Normalform](#177-normalform)
-    - [1.7.8. Definition 2.NF](#178-definition-2nf)
-    - [1.7.9. Normalform 3.NF](#179-normalform-3nf)
-    - [1.7.10. Definition 3.NF](#1710-definition-3nf)
+    - [1.3.6. ERM - Beispiel](#136-erm---beispiel)
+  - [1.4. Relationales Datenbank Modell](#14-relationales-datenbank-modell)
+    - [1.4.1. Vom ERM zum Relationen Modell](#141-vom-erm-zum-relationen-modell)
+    - [1.4.2. Primary Key](#142-primary-key)
+    - [1.4.3. Foreign Key](#143-foreign-key)
+      - [1.4.3.1. Referentielle Integrität](#1431-referentielle-integrität)
+  - [1.5. Vom ERM zum Relationen Modell - Vorgehen](#15-vom-erm-zum-relationen-modell---vorgehen)
+    - [1.5.1. Schritt 1](#151-schritt-1)
+    - [1.5.2. Schritt 2](#152-schritt-2)
+    - [1.5.3. Schritt 3](#153-schritt-3)
+    - [1.5.4. Kreuztabellen](#154-kreuztabellen)
+    - [1.5.5. Regeln und Ablauf](#155-regeln-und-ablauf)
+  - [1.6. Datennormalisierung](#16-datennormalisierung)
+    - [1.6.1. Normalisieren von Relationen](#161-normalisieren-von-relationen)
+    - [1.6.2. Wissenswertes](#162-wissenswertes)
+    - [1.6.3. Definition: Unnormalisierte Relation](#163-definition-unnormalisierte-relation)
+    - [1.6.4. Normalform (1NF)](#164-normalform-1nf)
+    - [1.6.5. Definition 1.NF](#165-definition-1nf)
+    - [1.6.6. Vorgehen](#166-vorgehen)
+    - [1.6.7. Normalform](#167-normalform)
+    - [1.6.8. Definition 2.NF](#168-definition-2nf)
+    - [1.6.9. Normalform 3.NF](#169-normalform-3nf)
+    - [1.6.10. Definition 3.NF](#1610-definition-3nf)
 - [2. Aufgaben](#2-aufgaben)
-  - [2.1. Beziehungen ermitteln und modellieren](#21-beziehungen-ermitteln-und-modellieren)
-  - [2.2. ERM/RM erstellen (Herstellung)](#22-ermrm-erstellen-herstellung)
-  - [2.3. Datenmodelle erstellen (Aufgabensammlung)](#23-datenmodelle-erstellen-aufgabensammlung)
+  - [2.1. Daten speichern und analysieren](#21-daten-speichern-und-analysieren)
+  - [2.2. Beziehungen ermitteln und modellieren](#22-beziehungen-ermitteln-und-modellieren)
+  - [2.3. ERM/RM erstellen (Herstellung)](#23-ermrm-erstellen-herstellung)
+  - [2.4. Datenmodelle erstellen (Aufgabensammlung)](#24-datenmodelle-erstellen-aufgabensammlung)
+  - [2.5. Schulverwaltung (Normalisierung)](#25-schulverwaltung-normalisierung)
+
+---
 
 </br>
 
@@ -206,13 +210,13 @@ Jede Assoziation (Tabelle A zu Tabelle B) besitzt auch eine Gegenassoziation (Ta
 
 ![Notation](./x_gitres/erm-notation.png)
 
-### 1.4. ERM - Beispiel
+### 1.3.6. ERM - Beispiel
 
 ![UNI](./x_gitres/erm-uni.png)
 
 ---
 
-## 1.5. Relationales Datenbank Modell
+## 1.4. Relationales Datenbank Modell
 
 ![Relationen Modell](./x_gitres/relation-model.png)
 
@@ -224,7 +228,7 @@ Man möchte **Personen** mit folgenden Eigenschaften darstellen: `Personalauswei
 
 Die Tabelle heisst folglich "`Person`" und hat die **5 Spalten:** `Personalausweisnummer, Vorname, Nachname, Geburtsdatum und Adresse`.
 
-### 1.5.1. Vom ERM zum Relationen Modell
+### 1.4.1. Vom ERM zum Relationen Modell
 
 ![ERM nach RM](./x_gitres/erm-rm.png)
 
@@ -232,7 +236,7 @@ Die Tabelle heisst folglich "`Person`" und hat die **5 Spalten:** `Personalauswe
 - Das **ERM** eignet sich vor allem zur Bildung eines Datenmodells aus der Realität.
 - Mit den **Methoden** des relationalen Datenbankmodells können die aus dem ERM gewonnenen Strukturen auf Redundanz untersucht werden.
 
-### 1.5.2. Primary Key
+### 1.4.2. Primary Key
 
 ![Primärschlüssel](./x_gitres/primary-key.png)
 
@@ -250,7 +254,7 @@ Zum Verarbeiten und zur Erstellung der Beziehungen zwischen den Daten muss siche
 
 > Im Datenbanksystem muss der **PK** explizit definiert sein, damit das DBS sicherstellen kann, dass nur eineindeutige Werte für diese Schlüsselattribut zugewiesen werden (Sicherstellung der Entitätsintegrität).
 
-### 1.5.3. Foreign Key
+### 1.4.3. Foreign Key
 
 ![Foreign Key](./x_gitres/foreign-key.png)
 
@@ -260,39 +264,39 @@ Im **ERM** erfolgt die **Verknüpfung** zwischen Entitätsmengen über Werte. Es
 - Der **Fremdschlüssel** verbindet seine Entitätsmenge mit einer andern Entitätsmenge über dessen **Primary Key**.
 - Diejenigen Datensätze mit exakt identischen Werten in **Foreign Key** und **Primary Key** gehören logisch zusammen. Im obigen Beispiel gehört `Meier` zu den `Datenbanken`  und `Schulze/Ibsen` gehören zu `Unix X`.
 
-#### 1.5.3.1. Referentielle Integrität
+#### 1.4.3.1. Referentielle Integrität
 
 Für jeden von `NULL` verschiedenen **Fremdschlüsselwert** muss ein entsprechender Entitätenschlüsselwert der **referenzierten Tabelle** existieren. Das DBS überwacht diese Integrität.
 
 ---
 
-## 1.6. Vom ERM zum Relationen Modell - Vorgehen
+## 1.5. Vom ERM zum Relationen Modell - Vorgehen
 
 ![ERM nach RM](./x_gitres/erm-to-rm.png)
 
-### 1.6.1. Schritt 1
+### 1.5.1. Schritt 1
 
 ![Schritt 1](./x_gitres/rm-step1.png)
 
 Jede Entitätsmenge muss als eigenständige Tabelle mit einem eindeutigen Primärschlüssel definiert werden.
 
-### 1.6.2. Schritt 2
+### 1.5.2. Schritt 2
 
 ![Schritt 2](./x_gitres/rm-step2.png)
 
 Eine einfach-komplexe Beziehungsmenge kann ohne eigenständige Tabelle ausgedrückt werden.
 
-### 1.6.3. Schritt 3
+### 1.5.3. Schritt 3
 
 ![Schritt 3](./x_gitres/rm-step3.png)
 
 Jede komplex-komplexe (viele zu viele) Beziehungsmenge muss als eigenständige Tabelle definiert werden.
 
-### 1.6.4. Kreuztabellen
+### 1.5.4. Kreuztabellen
 
 ![Kreuztabelle](./x_gitres/kreuztabelle.png)
 
-### 1.6.5. Regeln und Ablauf
+### 1.5.5. Regeln und Ablauf
 
 1. Der Name der Entitätsmenge wird zum Namen der Relation.
 2. Attribute der Entitätsmenge werden zu Attributen der Relation.
@@ -303,18 +307,18 @@ Jede komplex-komplexe (viele zu viele) Beziehungsmenge muss als eigenständige T
 
 ---
 
-## 1.7. Datennormalisierung
+## 1.6. Datennormalisierung
 
 ![Unnormalisierte Form](./x_gitres/nf-unnormalisiert.png)
 
-### 1.7.1. Normalisieren von Relationen
+### 1.6.1. Normalisieren von Relationen
 
 Unter der **Normalisierung** versteht man ein **systematisches Untersuchen** einer Relation mit dem Zweck, **eine qualitativ hochwertige Relation** zu erhalten. Eine Relation ist dann normalisiert, wenn sie folgende Eigenschaften aufweist:
 
 - **Redundanzfreiheit, "One Fact one Place» Prinzip"**
 - **keine Inkonsistenzen bei Einfüge-, Veränderungs- und Löschoperationen**
 
-### 1.7.2. Wissenswertes
+### 1.6.2. Wissenswertes
 
 - Beim **Normalisieren** steigt gleichzeitig die Verständlichkeit der Datenstruktur.
 - Die **Normalisierung** findet auf der konzeptionellen Ebene statt.
@@ -322,7 +326,7 @@ Unter der **Normalisierung** versteht man ein **systematisches Untersuchen** ein
 - In der Regel treten beim Erstellen des konzeptionellen Modells durch einen erfahrenen Modellierer gar keine **Redundanzen** auf.
 - Verletzungen der Normalformen treten nur auf, falls inhaltlich unabhängige Entitäten in eine gemeinsame Entitätsmenge gepackt werden.
 
-### 1.7.3. Definition: Unnormalisierte Relation
+### 1.6.3. Definition: Unnormalisierte Relation
 
 - Eine Relation ist dann **unnormalisiert**, wenn am Kreuzungspunkt einer Spalte und einer Zeile **kein einzelner Wert** steht, sondern eine Gruppe oder Liste mehrerer Werte.
 - Diese Form ist schlecht zu handhaben und in den meisten DBS gar nicht verarbeitbar. Da solch eine Relation Redundanz enthält, ist sie auch anfällig auf Anomalien beim Verändern von Datensätzen.
@@ -330,15 +334,15 @@ Unter der **Normalisierung** versteht man ein **systematisches Untersuchen** ein
 **Beispiel:**
 Eine **unnormalisierte Form** ist nicht a priori schlecht, sie ist einfach in relationalen DBS nicht verarbeitbar. Aber der Mensch kann sie in geeigneter Darstellung recht gut lesen, das beste Beispiel dafür ist das Telefonbuch.
 
-### 1.7.4. Normalform (1NF)
+### 1.6.4. Normalform (1NF)
 
 ![1.NF](./x_gitres/nf-1nf.png)
 
-### 1.7.5. Definition 1.NF
+### 1.6.5. Definition 1.NF
 
 Eine Relation ist dann in der **ersten Normalform (1NF)**, wenn sie an den Kreuzungspunkten der Tupel und der Attribute jederzeit höchstens einen Wert aufweist.
 
-### 1.7.6. Vorgehen
+### 1.6.6. Vorgehen
 
 1. Eine Relation wird in die **1NF** gebracht, indem jedes Tupel, das in einem Attribut eine Werteliste hat, auf mehrere Tupel verteilt wird.
 2. Nach dieser Mehrfacheintragung ist allerdings der bisherige **Primary Key** in aller Regel nicht mehr eindeutig, daher muss dieser um geeignete Attribute erweitert werden:
@@ -347,11 +351,11 @@ Eine Relation ist dann in der **ersten Normalform (1NF)**, wenn sie an den Kreuz
 
 > Eine Relation in der **1NF** ist immer noch für **Defekte** anfällig, weil sie Redundanzen aufweisen kann
 
-### 1.7.7. Normalform
+### 1.6.7. Normalform
 
 ![2.NF](./x_gitres/nf-2nf.png)
 
-### 1.7.8. Definition 2.NF
+### 1.6.8. Definition 2.NF
 
 Eine Relation befindet sich dann in der **2NF** , wenn sie in der **1NF** ist  und zudem jedes Nichtschlüsselattribut vom gesamten Primärschlüssel abhängig ist, nicht aber von Schlüsselteilen.
 
@@ -364,11 +368,11 @@ Sind **Nichtschlüsselattribute** vorhanden, die nur **von einem Teil** des zusa
 > Diese Art der Abhängigkeit nennt man **transitive Abhängigkeit**.
 > Daher ist es notwendig eine weitere Normalform einzuführen, die **3NF**.
 
-### 1.7.9. Normalform 3.NF
+### 1.6.9. Normalform 3.NF
 
 ![3.NF](./x_gitres/nf-3nf.png)
 
-### 1.7.10. Definition 3.NF
+### 1.6.10. Definition 3.NF
 
 Eine Relation befindet sich in der **3NF**, wenn sie in der 2NF ist und keine transitiven Abhängigkeiten aufweist (keine Abhängigkeiten zwischen Nichtschlüsselattributen).
 
@@ -378,7 +382,38 @@ Eine Relation befindet sich in der **3NF**, wenn sie in der 2NF ist und keine tr
 
 # 2. Aufgaben
 
-## 2.1. Beziehungen ermitteln und modellieren
+## 2.1. Daten speichern und analysieren
+
+| **Vorgabe**             | **Beschreibung**                                  |
+| :---------------------- | :------------------------------------------------ |
+| **Lernziele**           | Eine Datenbasis in Excel darstellen               |
+|                         | Probleme (Anomalien) bei Datenmutationen erkennen |
+| **Sozialform**          | Gruppenarbeit                                     |
+| **Auftrag**             | siehe unten                                       |
+| **Hilfsmittel**         |                                                   |
+| **Erwartete Resultate** |                                                   |
+| **Zeitbedarf**          | 30 min                                            |
+| **Lösungselemente**     | Excel Datei mit Beispieldaten                     |
+
+**Aufgabe 1 - Daten tabellarisch darstellen:**
+Sie erhalten den Auftrag in einer relationalen Datenbank die Kunden mit deren Einkäufe bzw. die Rechnungsdaten zu speichern:
+
+- Kunde mit:
+  - Name, Anschrift
+  - Wohnort mit Strasse, PLZ und Ortschaft
+- Einkauf mit:
+  - Rechnungsnummer mit Datum
+  - Eingekaufte Artikel mit Preis
+  - Rechnungsbetrag (Total)
+
+Erstelle in Excel einen Vorschlag (Entwurf) wie diese Datenbasis gespeichert werden kann (min. 3 Beispiel Datensätze).
+
+**Aufgabe 2 – Problemanalyse:**
+Überlege welche Probleme bei der Verarbeitung (Einfüge-, Änderung- und Löschoperationen) der Daten entstehen können und fasse diese kurz zusammen.
+
+---
+
+## 2.2. Beziehungen ermitteln und modellieren
 
 | **Vorgabe**             | **Beschreibung**                                                              |
 | :---------------------- | :---------------------------------------------------------------------------- |
@@ -411,7 +446,7 @@ Eine Relation befindet sich in der **3NF**, wenn sie in der 2NF ist und keine tr
   
 ---
 
-## 2.2. ERM/RM erstellen (Herstellung)
+## 2.3. ERM/RM erstellen (Herstellung)
 
 | **Vorgabe**             | **Beschreibung**                                              |
 | :---------------------- | :------------------------------------------------------------ |
@@ -446,7 +481,7 @@ Ein **ERM** und relationales Datenmodell aus vorgegebenen Regeln ableiten und vo
 
 ---
 
-## 2.3. Datenmodelle erstellen (Aufgabensammlung)
+## 2.4. Datenmodelle erstellen (Aufgabensammlung)
 
 | **Vorgabe**             | **Beschreibung**                                              |
 | :---------------------- | :------------------------------------------------------------ |
@@ -481,6 +516,44 @@ Erstelle zu den nachfolgenden Aufgaben ein ERM und relationales Datenmodell.
 - Jeder Gegenstand gehört zu genau einer Kategorie (z.B. Bild, Holzgegenstand, Metallgegenstand usw.).
 - Für jeden Raum ist genau ein Mitarbeiter zuständig.
 - Auch für jede Kategorie ist genau in Mitarbeiter zuständig.
+
+---
+
+## 2.5. Schulverwaltung (Normalisierung)
+
+| **Vorgabe**             | **Beschreibung**                                                                          |
+| :---------------------- | :---------------------------------------------------------------------------------------- |
+| **Lernziele**           | Die Teilnehmer können unnormalisierte Daten in eine normalisierte Struktur transformieren |
+| **Sozialform**          | Einzelarbeit                                                                              |
+| **Auftrag**             | siehe unten                                                                               |
+| **Hilfsmittel**         |                                                                                           |
+| **Erwartete Resultate** |                                                                                           |
+| **Zeitbedarf**          | 60 min                                                                                    |
+| **Lösungselemente**     | Excel                                                                                     |
+
+**Ausgangssituation:**
+
+- In Datenbanken gilt das **«on fact one place»** Prinzip.
+- Folglich müssen sämtliche redundante Information beseitigt werden sodass sämtliche Widersprüche und Anomalien beseitigt sind.
+
+**Auftrag:**
+
+- Sie erhalten sie unten abgebildete Tabelle.
+- Diese sollen nun in eine stark strukturierte Form (normalisierte Struktur) übertragen werden
+
+| **StudentNr** | **Name** | **Vorname** | **Geburtsdatum** | **Fachrichtung** | **AnzahlSemester** | **KursNr** | **Bezeichnung** |
+| ------------- | -------- | ----------- | ---------------- | ---------------- | ------------------ | ---------- | --------------- |
+| 1             | Müller   | Hans        | 01.03.1990       | BWL              | 6                  | 1, 2, 3    | VWL, Mathe, EDV |
+| 2             | Maier    | Lieschen    | 24.02.1991       | Maschinenbau     | 7                  | 2          | Mathe           |
+| 3             | Schulz   | Klaus       | 11.03.1989       | BWL              | 6                  | 2, 3       | Mathe, EDV      |
+| 4             | Bayer    | Ina         | 08.08.1988       | Maschinenbau     | 7                  | 2          | Mathe           |
+| 5             | Schmidt  | Egon        | 12.02.1984       | Biologie         | 8                  | 4          | Vererbungslehre |
+
+- Modellieren Sie diesen Sachverhalt mit einem geeigneten Relationen Modell (mit Attributen, Beziehungen und Kardinalitäten dar).
+- Erfassen Sie die normalisierten Daten in Excel.
+- Kennzeichnen Sie Primary Key und Foreign Key.
+
+![Excel-Datei](./x_gitres/Schulverwaltung-Aufgabe.xlsx)
 
 ---
 

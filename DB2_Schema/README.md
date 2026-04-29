@@ -21,13 +21,13 @@
     - [1.5.1. Domänen-Integrität](#151-domänen-integrität)
     - [1.5.2. Entitätsintegrität](#152-entitätsintegrität)
     - [1.5.3. Referentielle Integrität](#153-referentielle-integrität)
-- [2. Aufgaben](#2-aufgaben)
-  - [2.1. Schulverwaltung (Datenmodell)](#21-schulverwaltung-datenmodell)
-  - [2.2. Schulverwaltung (Implementierung)](#22-schulverwaltung-implementierung)
-  - [2.3. Lernangebot (Normalisierung u. Implementierung)](#23-lernangebot-normalisierung-u-implementierung)
-  - [2.4. SQL DDL- u. DML-Befehle](#24-sql-ddl--u-dml-befehle)
+- [2. Übungsaufgaben](#2-übungsaufgaben)
+  - [2.1. Schulverwaltung (Implementierung)](#21-schulverwaltung-implementierung)
+  - [2.2. Lernangebot (Normalisierung u. Implementierung)](#22-lernangebot-normalisierung-u-implementierung)
 
 ---
+
+</br>
 
 # 1. Schema implementieren (Data Definition Language DDL)
 
@@ -336,66 +336,28 @@ Ein DBS kann auf eine Integritätsverletzung auf drei Arten reagieren:
 
 </br>
 
-# 2. Aufgaben
+# 2. Übungsaufgaben
 
-## 2.1. Schulverwaltung (Datenmodell)
+## 2.1. Schulverwaltung (Implementierung)
 
-| **Vorgabe**             | **Beschreibung**                                                                          |
-| :---------------------- | :---------------------------------------------------------------------------------------- |
-| **Lernziele**           | Die Teilnehmer können unnormalisierte Daten in eine normalisierte Struktur transformieren |
-| **Sozialform**          | Einzelarbeit                                                                              |
-| **Auftrag**             | siehe unten                                                                               |
-| **Hilfsmittel**         |                                                                                           |
-| **Erwartete Resultate** |                                                                                           |
-| **Zeitbedarf**          | 60 min                                                                                    |
-| **Lösungselemente**     | Excel                                                                                     |
-
-**Ausgangssituation:**
-
-- In Datenbanken gilt das **«on fact one place»** Prinzip.
-- Folglich müssen sämtliche redundante Information beseitigt werden sodass sämtliche Widersprüche und Anomalien beseitigt sind.
-
-**Auftrag:**
-
-- Sie erhalten sie unten abgebildete Tabelle.
-- Diese sollen nun in eine stark strukturierte Form (normalisierte Struktur) übertragen werden
-
-| **StudentNr** | **Name** | **Vorname** | **Geburtsdatum** | **Fachrichtung** | **AnzahlSemester** | **KursNr** | **Bezeichnung** |
-| ------------- | -------- | ----------- | ---------------- | ---------------- | ------------------ | ---------- | --------------- |
-| 1             | Müller   | Hans        | 01.03.1990       | BWL              | 6                  | 1, 2, 3    | VWL, Mathe, EDV |
-| 2             | Maier    | Lieschen    | 24.02.1991       | Maschinenbau     | 7                  | 2          | Mathe           |
-| 3             | Schulz   | Klaus       | 11.03.1989       | BWL              | 6                  | 2, 3       | Mathe, EDV      |
-| 4             | Bayer    | Ina         | 08.08.1988       | Maschinenbau     | 7                  | 2          | Mathe           |
-| 5             | Schmidt  | Egon        | 12.02.1984       | Biologie         | 8                  | 4          | Vererbungslehre |
-
-- Modellieren Sie diesen Sachverhalt mit einem geeigneten Relationen Modell (mit Attributen, Beziehungen und Kardinalitäten dar).
-- Erfassen Sie die normalisierten Daten in Excel.
-- Kennzeichnen Sie Primary Key und Foreign Key.
-
----
-
-## 2.2. Schulverwaltung (Implementierung)
-
-| **Vorgabe**             | **Beschreibung**                                                                   |
-| :---------------------- | :--------------------------------------------------------------------------------- |
-| **Lernziele**           | Kann ein relationales Datenbankmodell mit SQL implementieren und Dateien einfügen. |
-| **Sozialform**          | Einzelarbeit                                                                       |
-| **Auftrag**             | siehe unten                                                                        |
-| **Hilfsmittel**         |                                                                                    |
-| **Erwartete Resultate** |                                                                                    |
-| **Zeitbedarf**          | 80 min                                                                             |
-| **Lösungselemente**     | Fehlerfreie SQL-Skriptdateien                                                      |
-|                         | `sv_create_schema.sql`                                                             |
-|                         | `sv_drop_schema.sql`                                                               |
-|                         | `sv_insert_data.sql`                                                               |
+| **Vorgabe**             | **Beschreibung**                                              |
+| :---------------------- | :------------------------------------------------------------ |
+| **Lernziele**           | Kann ein relationales Datenbankmodell mit SQL implementieren. |
+| **Sozialform**          | Einzelarbeit                                                  |
+| **Auftrag**             | siehe unten                                                   |
+| **Hilfsmittel**         |                                                               |
+| **Erwartete Resultate** |                                                               |
+| **Zeitbedarf**          | 50 min                                                        |
+| **Lösungselemente**     | Fehlerfreie SQL-Skriptdateien                                 |
+|                         | `sv_create_schema.sql`                                        |
+|                         | `sv_drop_schema.sql`                                          |
 
 **Ausgangssituation:**
 
 - Sie verwenden das Datenbank Modell vorangegangener Aufgabe.
 - Implementieren Sie dieses Modell und fügen Sie die aufgelisteten Daten ein.
-- Schreiben Sie die notwendigen SQL-Skriptdateien (sv_...sql).
 
-**A1:**
+**Aufgabe:**
 
 - Schreiben Sie die SQL-Befehle (create table …) um alle Tabellen in Ihrer Schulverwaltungsdatenbank anzulegen.
 - Verwenden Sie hierzu das „SQL Server Management Studio“.
@@ -418,18 +380,9 @@ CREATE TABLE MITGLIED (
     CONSTRAINT [PK_MITGLIED] PRIMARY KEY (ID)
 ```
 
-**A2:**
-
-Fügen Sie per SQL Befehl (insert into …) alle Datenzeilen aus der Tabelle unten in Ihre Datenbank ein.
-
-```sql
-INSERT INTO [user.]tabelle [ (column [,column] ...) ]
-VALUES (value [,value] ...)
-```
-
 ---
 
-## 2.3. Lernangebot (Normalisierung u. Implementierung)
+## 2.2. Lernangebot (Normalisierung u. Implementierung)
 
 | **Vorgabe**             | **Beschreibung**                                                          |
 | :---------------------- | :------------------------------------------------------------------------ |
@@ -448,56 +401,6 @@ VALUES (value [,value] ...)
 - Überlegen Sie, wie redundante Daten ohne Informationsverlust eliminiert werden kann.
 
 ![Lernangebot](./x_gitres/lernangebot.png)
-
----
-
-## 2.4. SQL DDL- u. DML-Befehle
-
-| **Vorgabe**             | **Beschreibung**                                         |
-| :---------------------- | :------------------------------------------------------- |
-| **Lernziele**           | Kann SQL DDL und DML-Befehle ausführen                   |
-|                         | Kann Daten in eine Tabelle einfügen, ändern und löschen. |
-|                         | Kann Daten in einer Tabelle abfragen                     |
-| **Sozialform**          | Einzelarbeit                                             |
-| **Auftrag**             | siehe unten                                              |
-| **Hilfsmittel**         | Kursunterlagen, SQL-Management Studio                    |
-| **Erwartete Resultate** |                                                          |
-| **Zeitbedarf**          | 40 min                                                   |
-| **Lösungselemente**     | Vollständige SQL-Skript-Datei                            |
-
-Erstelle zu den nachfolgenden Aufgaben die korrekten und vollständigen SQL-Befehle. Die
-Lösungen müssen mit Aufgabentext in einer SQL-Skriptdatei abgespeichert werden.
-
-**A1:** Kreiere mit SQL-Statements eine Tabelle BLUME mit den Attributen:
-
-```sql
-ID    INT NOT       NULL ➔ PK 
-Name  VARCHAR(50)   NOT NULL 
-Preis DECIMAL(8,2)  NOT NULL 
-```
-
-**A2:** Füge zwei Datensätze zu mit den Werten:
-
-```sql
-10,   Nelke,  2.35 
-11,   Rose,   4.50
-```
-
-**A3:** Überprüfe diese Einträge mit einem `SELECT`-Statement.
-
-**A4:** Erhöhe den Preis der Rose um 10%.
-
-**A5:** Überprüfe das Update in 4) mit einem `SELECT`-Statement.
-
-**A6:** Lösche den Datensatz mit der **Nelke**
-
-**A7:** Erweitere die `BLUME` Tabelle mit Spalte SORTE (VARCHAR(20)).
-
-**A8:** Stelle sicher, dass nicht zweimal derselbe Blumenname eingetragen werden kann.
-
-**A9:** Stelle sicher, dass der Blumenpreis immer > 0 sein muss.
-
-**A10:** Entferne die gesamte Tabelle `BLUME`, inklusive Metadaten.
 
 ---
 

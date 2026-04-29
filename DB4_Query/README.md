@@ -38,14 +38,17 @@
     - [1.8.3. JOIN-Typen](#183-join-typen)
     - [1.8.4. Weiterführende Ressourcen](#184-weiterführende-ressourcen)
 - [2. Aufgaben](#2-aufgaben)
-  - [2.1. Einfache Abfragen mit Spaltenselektion](#21-einfache-abfragen-mit-spaltenselektion)
-  - [2.2. Abfragen mit Zeilenrestriktionen (WHERE Klausel)](#22-abfragen-mit-zeilenrestriktionen-where-klausel)
-  - [2.3. Abfragen mit Aggregatfunktionen und Gruppierungen](#23-abfragen-mit-aggregatfunktionen-und-gruppierungen)
-  - [2.4. Abfragen mit mehreren Tabellen (JOIN)](#24-abfragen-mit-mehreren-tabellen-join)
-  - [2.5. Komplexe Abfragen mit Unterabfragen (Herausforderungsaufgaben)](#25-komplexe-abfragen-mit-unterabfragen-herausforderungsaufgaben)
-  - [2.6. Praxisprojekt: Bibliotheksauswertung](#26-praxisprojekt-bibliotheksauswertung)
+  - [2.1. Datenbank Bibliothek erstellen](#21-datenbank-bibliothek-erstellen)
+  - [2.2. Einfache Abfragen mit Spaltenselektion](#22-einfache-abfragen-mit-spaltenselektion)
+  - [2.3. Abfragen mit Zeilenrestriktionen (WHERE Klausel)](#23-abfragen-mit-zeilenrestriktionen-where-klausel)
+  - [2.4. Abfragen mit Aggregatfunktionen und Gruppierungen](#24-abfragen-mit-aggregatfunktionen-und-gruppierungen)
+  - [2.5. Abfragen mit mehreren Tabellen (JOIN)](#25-abfragen-mit-mehreren-tabellen-join)
+  - [2.6. Komplexe Abfragen mit Unterabfragen (Herausforderungsaufgaben)](#26-komplexe-abfragen-mit-unterabfragen-herausforderungsaufgaben)
+  - [2.7. Praxisprojekt: Bibliotheksauswertung](#27-praxisprojekt-bibliotheksauswertung)
 
 ---
+
+</br>
 
 # 1. SQL - Abfragen (SQLite)
 
@@ -103,11 +106,6 @@ CREATE TABLE ausleihen (
     rueckgabe    TEXT
 );
 ```
-
-> **Setup**
-> Erstellt die Datenbank lokal: `sqlite3 bibliothek.db < schema.sql`
-> Alternativ: [DB Browser for SQLite](https://sqlitebrowser.org) (grafisches Tool) verwenden.
-> Das vollständige INSERT-Skript mit Beispieldaten erhaltet ihr als Beilage.
 
 ---
 
@@ -630,20 +628,20 @@ WHERE EXISTS (
 
 ### 1.8.1. Klausel-Reihenfolge
 
-| Reihenfolge | Klausel          | Zweck                              |
-| ----------- | ---------------- | ---------------------------------- |
-| 1           | `SELECT`         | Spalten / Ausdrücke wählen         |
-| 2           | `FROM`           | Quelltabelle definieren            |
-| 3           | `JOIN ... ON`    | Tabellen verknüpfen                |
-| 4           | `WHERE`          | Zeilen filtern (vor Gruppierung)   |
-| 5           | `GROUP BY`       | Zeilen gruppieren                  |
-| 6           | `HAVING`         | Gruppen filtern (nach Gruppierung) |
-| 7           | `ORDER BY`       | Ergebnis sortieren                 |
-| 8           | `LIMIT / OFFSET` | Anzahl Zeilen begrenzen            |
+| **Reihenfolge** | **Klausel**      | **Zweck**                          |
+| --------------- | ---------------- | ---------------------------------- |
+| 1               | `SELECT`         | Spalten / Ausdrücke wählen         |
+| 2               | `FROM`           | Quelltabelle definieren            |
+| 3               | `JOIN ... ON`    | Tabellen verknüpfen                |
+| 4               | `WHERE`          | Zeilen filtern (vor Gruppierung)   |
+| 5               | `GROUP BY`       | Zeilen gruppieren                  |
+| 6               | `HAVING`         | Gruppen filtern (nach Gruppierung) |
+| 7               | `ORDER BY`       | Ergebnis sortieren                 |
+| 8               | `LIMIT / OFFSET` | Anzahl Zeilen begrenzen            |
 
 ### 1.8.2. Prädikate Übersicht
 
-| Prädikat     | Syntax                      | Bedeutung               |
+| **Prädikat** | **Syntax**                  | **Bedeutung**           |
 | ------------ | --------------------------- | ----------------------- |
 | Vergleich    | `=, <>, <, >, <=, >=`       | Direkter Wertvergleich  |
 | `BETWEEN`    | `spalte BETWEEN x AND y`    | Wertebereich (inklusiv) |
@@ -655,7 +653,7 @@ WHERE EXISTS (
 
 ### 1.8.3. JOIN-Typen
 
-| JOIN         | Ergebnis                                                      |
+| **JOIN**     | **Ergebnis**                                                  |
 | ------------ | ------------------------------------------------------------- |
 | `INNER JOIN` | Nur Zeilen mit Treffer in **beiden** Tabellen                 |
 | `LEFT JOIN`  | Alle linken Zeilen + passende rechte (NULL wenn kein Treffer) |
@@ -676,7 +674,30 @@ WHERE EXISTS (
 
 # 2. Aufgaben
 
-## 2.1. Einfache Abfragen mit Spaltenselektion
+## 2.1. Datenbank Bibliothek erstellen
+
+| **Vorgabe**             | **Beschreibung**                                    |
+| :---------------------- | :-------------------------------------------------- |
+| **Lernziele**           | Datenbank Schema implementieren und Datein einfügen |
+| **Sozialform**          | Einzelarbeit                                        |
+| **Auftrag**             | siehe unten                                         |
+| **Hilfsmittel**         |                                                     |
+| **Erwartete Resultate** |                                                     |
+| **Zeitbedarf**          | 15 min                                              |
+| **Lösungselemente**     | Beispieldatenbank `bibliothek.db`                   |
+
+**Datenbank und Initial Daten wie folgt erstellen:**
+
+- Erstelle mit **[SQLiteStudio](https://sqlitestudio.pl)** oder **[DB Browser for SQLite](https://sqlitebrowser.org)** eine neue Datenbank (`bibliothek.db`)
+- Führe die SQL-Befehle der Datei ![Bibliothek.sql](./x_gitres/bibliothek_daten.sql) aus.
+- Prüfe ob alle vier Tabellen angelegt und mit Daten befüllt wurden.
+
+> **Setup**
+> Erstellt die Datenbank lokal: `sqlite3 bibliothek.db < schema.sql`
+
+---
+
+## 2.2. Einfache Abfragen mit Spaltenselektion
 
 | **Vorgabe**             | **Beschreibung**                                                     |
 | :---------------------- | :------------------------------------------------------------------- |
@@ -697,7 +718,7 @@ WHERE EXISTS (
 
 ---
 
-## 2.2. Abfragen mit Zeilenrestriktionen (WHERE Klausel)
+## 2.3. Abfragen mit Zeilenrestriktionen (WHERE Klausel)
 
 | **Vorgabe**             | **Beschreibung**                                      |
 | :---------------------- | :---------------------------------------------------- |
@@ -719,7 +740,7 @@ WHERE EXISTS (
 
 ---
 
-## 2.3. Abfragen mit Aggregatfunktionen und Gruppierungen
+## 2.4. Abfragen mit Aggregatfunktionen und Gruppierungen
 
 | **Vorgabe**             | **Beschreibung**                                           |
 | :---------------------- | :--------------------------------------------------------- |
@@ -740,7 +761,7 @@ WHERE EXISTS (
 
 ---
 
-## 2.4. Abfragen mit mehreren Tabellen (JOIN)
+## 2.5. Abfragen mit mehreren Tabellen (JOIN)
 
 | **Vorgabe**             | **Beschreibung**                                   |
 | :---------------------- | :------------------------------------------------- |
@@ -761,7 +782,7 @@ WHERE EXISTS (
 
 ---
 
-## 2.5. Komplexe Abfragen mit Unterabfragen (Herausforderungsaufgaben)
+## 2.6. Komplexe Abfragen mit Unterabfragen (Herausforderungsaufgaben)
 
 | **Vorgabe**             | **Beschreibung**                                                            |
 | :---------------------- | :-------------------------------------------------------------------------- |
@@ -781,7 +802,7 @@ WHERE EXISTS (
 
 ---
 
-## 2.6. Praxisprojekt: Bibliotheksauswertung
+## 2.7. Praxisprojekt: Bibliotheksauswertung
 
 | **Vorgabe**             | **Beschreibung**                                    |
 | :---------------------- | :-------------------------------------------------- |
