@@ -3,6 +3,7 @@
 | **HF Systemtechnik** | **Softwareentwicklung B** | ![logo](../x_gitres/logo.png) |
 
 - [1. Schema implementieren (Data Definition Language DDL)](#1-schema-implementieren-data-definition-language-ddl)
+<<<<<<< HEAD
   - [Lernziele](#lernziele)
   - [1. Datentypen in SQLite](#1-datentypen-in-sqlite)
     - [1.1 Das Type-Affinity-System](#11-das-type-affinity-system)
@@ -33,6 +34,38 @@
     - [7.1 Schema inspizieren](#71-schema-inspizieren)
     - [7.2 Indizes](#72-indizes)
     - [7.3 Views – Virtuelle Tabellen](#73-views--virtuelle-tabellen)
+=======
+  - [1.1. Lernziele](#11-lernziele)
+  - [1.2. Datentypen in SQLite](#12-datentypen-in-sqlite)
+    - [1.2.1. Das Type-Affinity-System](#121-das-type-affinity-system)
+    - [1.2.2. Empfohlene Datentypen für SQLite](#122-empfohlene-datentypen-für-sqlite)
+    - [1.2.3. Datumstypen – die wichtigste SQLite-Besonderheit](#123-datumstypen--die-wichtigste-sqlite-besonderheit)
+  - [1.3. CREATE TABLE – Tabellen erstellen](#13-create-table--tabellen-erstellen)
+    - [1.3.1. Grundsyntax](#131-grundsyntax)
+    - [1.3.2. Erste Tabelle: `abteilungen`](#132-erste-tabelle-abteilungen)
+    - [1.3.3. IF NOT EXISTS – Sicheres Erstellen](#133-if-not-exists--sicheres-erstellen)
+    - [1.3.4. Die vollständige `mitglieder`-Tabelle](#134-die-vollständige-mitglieder-tabelle)
+  - [1.4. Constraints im Detail](#14-constraints-im-detail)
+    - [1.4.1. NOT NULL](#141-not-null)
+    - [1.4.2. UNIQUE](#142-unique)
+    - [1.4.3. PRIMARY KEY](#143-primary-key)
+    - [1.4.4. DEFAULT](#144-default)
+    - [1.4.5. CHECK](#145-check)
+    - [1.4.6. Constraints auf Tabellenebene – Übersicht](#146-constraints-auf-tabellenebene--übersicht)
+  - [1.5. FOREIGN KEY – Fremdschlüssel und referentielle Integrität](#15-foreign-key--fremdschlüssel-und-referentielle-integrität)
+    - [1.5.1. Grundkonzept](#151-grundkonzept)
+    - [1.5.2. FK-Enforcement in SQLite aktivieren](#152-fk-enforcement-in-sqlite-aktivieren)
+    - [1.5.3. ON DELETE und ON UPDATE – Referentielle Aktionen](#153-on-delete-und-on-update--referentielle-aktionen)
+    - [1.5.4. Zirkuläre Referenzen](#154-zirkuläre-referenzen)
+  - [1.6. DROP TABLE – Tabellen löschen](#16-drop-table--tabellen-löschen)
+  - [1.7. ALTER TABLE – Tabellen anpassen](#17-alter-table--tabellen-anpassen)
+    - [1.7.1. 6.1 Was geht in SQLite](#171-61-was-geht-in-sqlite)
+    - [1.7.2. Was geht NICHT – und der Workaround](#172-was-geht-nicht--und-der-workaround)
+  - [1.8. Weitere nützliche Schema-Befehle](#18-weitere-nützliche-schema-befehle)
+    - [1.8.1. Schema inspizieren](#181-schema-inspizieren)
+    - [1.8.2. Indizes](#182-indizes)
+    - [1.8.3. Views – Virtuelle Tabellen](#183-views--virtuelle-tabellen)
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 - [2. Übungsaufgaben](#2-übungsaufgaben)
   - [2.1. Produktherstellung (Implementierung)](#21-produktherstellung-implementierung)
   - [2.2. Schulverwaltung (Implementierung)](#22-schulverwaltung-implementierung)
@@ -46,7 +79,11 @@
 
 [SQLite Tutorial](https://www.sqlitetutorial.net/)
 
+<<<<<<< HEAD
 ## Lernziele
+=======
+## 1.1. Lernziele
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Nach dieser Lektion könnt ihr:
 
@@ -57,9 +94,15 @@ Nach dieser Lektion könnt ihr:
 - Bestehende Tabellen mit `ALTER TABLE` anpassen
 - Ein vollständiges Datenbankschema von Grund auf implementieren
 
+<<<<<<< HEAD
 ## 1. Datentypen in SQLite
 
 ### 1.1 Das Type-Affinity-System
+=======
+## 1.2. Datentypen in SQLite
+
+### 1.2.1. Das Type-Affinity-System
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 SQLite ist anders als die meisten Datenbanken: Es verwendet **Type Affinity** statt
 strenger Typisierung. Das bedeutet, jede Spalte hat eine *bevorzugte* Speicherklasse –
@@ -75,7 +118,11 @@ SQLite kennt fünf **Storage Classes** (interne Speicherformate):
 | `TEXT`            | UTF-8 Zeichenkette                 |
 | `BLOB`            | Rohdaten (Binary Large Object)     |
 
+<<<<<<< HEAD
 ### 1.2 Empfohlene Datentypen für SQLite
+=======
+### 1.2.2. Empfohlene Datentypen für SQLite
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 In der Praxis verwendet ihr diese Typen – SQLite mappt sie intern auf die
 Storage Classes oben:
@@ -88,7 +135,11 @@ Storage Classes oben:
 | `BLOB`     | BLOB     | Bilder, Dateien (selten in SQLite)      |
 | `NUMERIC`  | NUMERIC  | Geldbeträge mit definierter Genauigkeit |
 
+<<<<<<< HEAD
 ### 1.3 Datumstypen – die wichtigste SQLite-Besonderheit
+=======
+### 1.2.3. Datumstypen – die wichtigste SQLite-Besonderheit
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 SQLite hat **keinen eingebauten Datumstyp**. Datum und Zeit werden als `TEXT`,
 `INTEGER` oder `REAL` gespeichert. Die empfohlene Convention:
@@ -113,9 +164,15 @@ SELECT strftime('%d.%m.%Y', geburtsdatum);   -- '15.11.1990'
 
 ---
 
+<<<<<<< HEAD
 ## 2. CREATE TABLE – Tabellen erstellen
 
 ### 2.1 Grundsyntax
+=======
+## 1.3. CREATE TABLE – Tabellen erstellen
+
+### 1.3.1. Grundsyntax
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ![SQL CREATE TABLE](./x_gitres/create-table.png)
 
@@ -128,7 +185,11 @@ CREATE TABLE tabellenname (
 );
 ```
 
+<<<<<<< HEAD
 ### 2.2 Erste Tabelle: `abteilungen`
+=======
+### 1.3.2. Erste Tabelle: `abteilungen`
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ```sql
 CREATE TABLE abteilungen (
@@ -140,12 +201,22 @@ CREATE TABLE abteilungen (
 
 **Was passiert hier Zeile für Zeile:**
 
+<<<<<<< HEAD
 - `id INTEGER PRIMARY KEY AUTOINCREMENT` – Eindeutiger Schlüssel, automatisch hochgezählt (1, 2, 3, …). 
 - In SQLite ist `INTEGER PRIMARY KEY` ein Alias für die interne `rowid` – `AUTOINCREMENT` verhindert die Wiederverwendung gelöschter IDs.
 - `name TEXT NOT NULL` – Pflichtfeld, darf nicht leer sein.
 - `gruendungsjahr INTEGER` – Optionales Feld (darf `NULL` sein).
 
 ### 2.3 IF NOT EXISTS – Sicheres Erstellen
+=======
+- `id INTEGER PRIMARY KEY AUTOINCREMENT` – Eindeutiger Schlüssel, automatisch
+  hochgezählt (1, 2, 3, …). In SQLite ist `INTEGER PRIMARY KEY` ein Alias für
+  die interne `rowid` – `AUTOINCREMENT` verhindert die Wiederverwendung gelöschter IDs.
+- `name TEXT NOT NULL` – Pflichtfeld, darf nicht leer sein.
+- `gruendungsjahr INTEGER` – Optionales Feld (darf `NULL` sein).
+
+### 1.3.3. IF NOT EXISTS – Sicheres Erstellen
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ```sql
 -- Ohne IF NOT EXISTS: Fehler, wenn Tabelle bereits existiert
@@ -158,7 +229,11 @@ CREATE TABLE IF NOT EXISTS abteilungen ( ... );
 > **Best Practice:** In Setup-Skripten immer `IF NOT EXISTS` verwenden –
 > so kann das Skript mehrfach ausgeführt werden, ohne Fehler zu werfen.
 
+<<<<<<< HEAD
 ### 2.4 Die vollständige `mitglieder`-Tabelle
+=======
+### 1.3.4. Die vollständige `mitglieder`-Tabelle
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ```sql
 CREATE TABLE IF NOT EXISTS mitglieder (
@@ -179,7 +254,11 @@ CREATE TABLE IF NOT EXISTS mitglieder (
 
 ---
 
+<<<<<<< HEAD
 ## 3. Constraints im Detail
+=======
+## 1.4. Constraints im Detail
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ![SQL-Constraints](./x_gitres/constraints.png)
 
@@ -188,7 +267,11 @@ jedem `INSERT` und `UPDATE` prüft. Sie sichern die Datenintegrität.
 
 ![Daten-Integrität](./x_gitres/data-integrity.png)
 
+<<<<<<< HEAD
 ### 3.1 NOT NULL
+=======
+### 1.4.1. NOT NULL
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Verhindert leere Werte. Felder ohne `NOT NULL` akzeptieren automatisch `NULL`.
 
@@ -214,7 +297,11 @@ VALUES ('Anna', 'anna@example.com', '2024-01-15');
 -- Fehler: NOT NULL constraint failed: mitglieder.nachname
 ```
 
+<<<<<<< HEAD
 ### 3.2 UNIQUE
+=======
+### 1.4.2. UNIQUE
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Garantiert, dass kein Wert in dieser Spalte doppelt vorkommt.
 `NULL`-Werte sind von `UNIQUE` ausgenommen – mehrere `NULL`-Werte sind erlaubt.
@@ -233,7 +320,11 @@ CREATE TABLE mitglied_event (
 );
 ```
 
+<<<<<<< HEAD
 ### 3.3 PRIMARY KEY
+=======
+### 1.4.3. PRIMARY KEY
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Kombination aus `NOT NULL` und `UNIQUE`. Jede Tabelle sollte einen
 Primärschlüssel haben.
@@ -258,7 +349,11 @@ CREATE TABLE mitglied_event (
 > wiederverwendet. Braucht etwas mehr Overhead – für die meisten Anwendungen
 > empfehlenswert, wenn IDs auch als Referenz nach aussen dienen.
 
+<<<<<<< HEAD
 ### 3.4 DEFAULT
+=======
+### 1.4.4. DEFAULT
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Definiert einen Standardwert, der verwendet wird, wenn beim `INSERT` kein
 Wert angegeben wird.
@@ -280,7 +375,11 @@ VALUES ('Beat', 'Müller', 'beat@example.com', '2024-03-01');
 -- eintrittsdatum DEFAULT greift NICHT, weil wir einen Wert angegeben haben
 ```
 
+<<<<<<< HEAD
 ### 3.5 CHECK
+=======
+### 1.4.5. CHECK
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Prüft einen beliebigen booleschen Ausdruck. `INSERT` und `UPDATE` schlagen
 fehl, wenn die Bedingung `FALSE` ergibt. `NULL` besteht den CHECK
@@ -317,7 +416,11 @@ CREATE TABLE IF NOT EXISTS events (
 > benannt werden. Das ergibt bessere Fehlermeldungen und erleichtert das
 > spätere Löschen (bei ALTER TABLE).
 
+<<<<<<< HEAD
 ### 3.6 Constraints auf Tabellenebene – Übersicht
+=======
+### 1.4.6. Constraints auf Tabellenebene – Übersicht
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Constraints können an der Spalte (Spaltenebene) oder am Ende der
 Tabellendefinition (Tabellenebene) stehen. Tabellenebene ist zwingend
@@ -339,9 +442,15 @@ CREATE TABLE beispiel (
 
 ---
 
+<<<<<<< HEAD
 ## 4. FOREIGN KEY – Fremdschlüssel und referentielle Integrität
 
 ### 4.1 Grundkonzept
+=======
+## 1.5. FOREIGN KEY – Fremdschlüssel und referentielle Integrität
+
+### 1.5.1. Grundkonzept
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Fremdschlüssel stellen sicher, dass referenzierte Datensätze wirklich
 existieren. Ein Mitglied kann nur einer Abteilung zugeordnet werden, die
@@ -358,7 +467,11 @@ abteilung_id INTEGER,
 FOREIGN KEY (abteilung_id) REFERENCES abteilungen(id)
 ```
 
+<<<<<<< HEAD
 ### 4.2 FK-Enforcement in SQLite aktivieren
+=======
+### 1.5.2. FK-Enforcement in SQLite aktivieren
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 > **Kritisch:** SQLite prüft Fremdschlüssel standardmässig **NICHT**!
 > Ihr müsst die Prüfung bei jeder Verbindung explizit aktivieren:
@@ -378,7 +491,11 @@ In Anwendungscode (z.B. C# mit Microsoft.Data.Sqlite):
 connection.Execute("PRAGMA foreign_keys = ON;");
 ```
 
+<<<<<<< HEAD
 ### 4.3 ON DELETE und ON UPDATE – Referentielle Aktionen
+=======
+### 1.5.3. ON DELETE und ON UPDATE – Referentielle Aktionen
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Was passiert, wenn ein referenzierter Datensatz gelöscht oder geändert wird?
 
@@ -428,7 +545,11 @@ kunden_id INTEGER NOT NULL
     ON DELETE RESTRICT
 ```
 
+<<<<<<< HEAD
 ### 4.4 Zirkuläre Referenzen
+=======
+### 1.5.4. Zirkuläre Referenzen
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Abteilungen haben einen Leiter (ein Mitglied), Mitglieder gehören einer
 Abteilung – das ist eine zirkuläre Abhängigkeit. Lösung: `DEFERRABLE`:
@@ -461,7 +582,11 @@ COMMIT;
 
 ---
 
+<<<<<<< HEAD
 ## 5. DROP TABLE – Tabellen löschen
+=======
+## 1.6. DROP TABLE – Tabellen löschen
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ```sql
 -- Tabelle löschen (Fehler, wenn nicht vorhanden)
@@ -492,12 +617,20 @@ DROP TABLE IF EXISTS abteilungen;     -- keine FK nach aussen
 
 ---
 
+<<<<<<< HEAD
 ## 6. ALTER TABLE – Tabellen anpassen
+=======
+## 1.7. ALTER TABLE – Tabellen anpassen
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 SQLite unterstützt nur einen eingeschränkten Satz von `ALTER TABLE`-Befehlen
 im Vergleich zu anderen Datenbanken.
 
+<<<<<<< HEAD
 ### 6.1 Was geht in SQLite
+=======
+### 1.7.1. 6.1 Was geht in SQLite
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ```sql
 -- Tabelle umbenennen
@@ -515,7 +648,11 @@ ALTER TABLE mitglieder ADD COLUMN newsletter INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE mitglieder DROP COLUMN notizen;
 ```
 
+<<<<<<< HEAD
 ### 6.2 Was geht NICHT – und der Workaround
+=======
+### 1.7.2. Was geht NICHT – und der Workaround
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 SQLite erlaubt kein nachträgliches Hinzufügen von Constraints (z.B. `UNIQUE`,
 `CHECK`, `FOREIGN KEY`) zu bestehenden Spalten. Dafür gibt es den
@@ -555,9 +692,15 @@ ALTER TABLE mitglieder_neu RENAME TO mitglieder;
 
 ---
 
+<<<<<<< HEAD
 ## 7. Weitere nützliche Schema-Befehle
 
 ### 7.1 Schema inspizieren
+=======
+## 1.8. Weitere nützliche Schema-Befehle
+
+### 1.8.1. Schema inspizieren
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 ```sql
 -- Alle Tabellen anzeigen
@@ -577,7 +720,11 @@ PRAGMA foreign_key_list(mitglieder);
 PRAGMA index_list(mitglieder);
 ```
 
+<<<<<<< HEAD
 ### 7.2 Indizes
+=======
+### 1.8.2. Indizes
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Indizes beschleunigen Abfragen auf Kosten von Speicher und Schreibperformance.
 Primary Keys und UNIQUE-Constraints erstellen automatisch einen Index.
@@ -600,7 +747,11 @@ CREATE INDEX IF NOT EXISTS idx_mitglieder_aktiv_email
 DROP INDEX IF EXISTS idx_mitglieder_nachname;
 ```
 
+<<<<<<< HEAD
 ### 7.3 Views – Virtuelle Tabellen
+=======
+### 1.8.3. Views – Virtuelle Tabellen
+>>>>>>> d0a075d34870b80930722cb04d25515622b2bc1f
 
 Views sind gespeicherte SELECT-Abfragen, die wie Tabellen abgefragt werden
 können. Sie speichern keine Daten, sondern nur die Abfrage.
