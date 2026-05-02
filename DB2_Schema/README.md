@@ -3,24 +3,36 @@
 | **HF Systemtechnik** | **Softwareentwicklung B** | ![logo](../x_gitres/logo.png) |
 
 - [1. Schema implementieren (Data Definition Language DDL)](#1-schema-implementieren-data-definition-language-ddl)
-  - [1.1. Tabelle erstellen](#11-tabelle-erstellen)
-    - [1.1.1. Syntax](#111-syntax)
-    - [1.1.2. ANSI SQL Datentypen](#112-ansi-sql-datentypen)
-    - [1.1.3. SQL Server 2025 (Version 17.x)](#113-sql-server-2025-version-17x)
-  - [1.2. Tabelle ändern](#12-tabelle-ändern)
-  - [1.3. Tabelle löschen](#13-tabelle-löschen)
-  - [1.4. SQL-Constraints](#14-sql-constraints)
-    - [1.4.1. Zweck von Constraints](#141-zweck-von-constraints)
-    - [1.4.2. Prinzip](#142-prinzip)
-    - [1.4.3. Primary Key](#143-primary-key)
-    - [1.4.4. Foreign Key](#144-foreign-key)
-    - [1.4.5. Unique](#145-unique)
-    - [1.4.6. Check](#146-check)
-    - [1.4.7. Default](#147-default)
-  - [1.5. Daten-Integrität](#15-daten-integrität)
-    - [1.5.1. Domänen-Integrität](#151-domänen-integrität)
-    - [1.5.2. Entitätsintegrität](#152-entitätsintegrität)
-    - [1.5.3. Referentielle Integrität](#153-referentielle-integrität)
+  - [Lernziele](#lernziele)
+  - [1. Datentypen in SQLite](#1-datentypen-in-sqlite)
+    - [1.1 Das Type-Affinity-System](#11-das-type-affinity-system)
+    - [1.2 Empfohlene Datentypen für SQLite](#12-empfohlene-datentypen-für-sqlite)
+    - [1.3 Datumstypen – die wichtigste SQLite-Besonderheit](#13-datumstypen--die-wichtigste-sqlite-besonderheit)
+  - [2. CREATE TABLE – Tabellen erstellen](#2-create-table--tabellen-erstellen)
+    - [2.1 Grundsyntax](#21-grundsyntax)
+    - [2.2 Erste Tabelle: `abteilungen`](#22-erste-tabelle-abteilungen)
+    - [2.3 IF NOT EXISTS – Sicheres Erstellen](#23-if-not-exists--sicheres-erstellen)
+    - [2.4 Die vollständige `mitglieder`-Tabelle](#24-die-vollständige-mitglieder-tabelle)
+  - [3. Constraints im Detail](#3-constraints-im-detail)
+    - [3.1 NOT NULL](#31-not-null)
+    - [3.2 UNIQUE](#32-unique)
+    - [3.3 PRIMARY KEY](#33-primary-key)
+    - [3.4 DEFAULT](#34-default)
+    - [3.5 CHECK](#35-check)
+    - [3.6 Constraints auf Tabellenebene – Übersicht](#36-constraints-auf-tabellenebene--übersicht)
+  - [4. FOREIGN KEY – Fremdschlüssel und referentielle Integrität](#4-foreign-key--fremdschlüssel-und-referentielle-integrität)
+    - [4.1 Grundkonzept](#41-grundkonzept)
+    - [4.2 FK-Enforcement in SQLite aktivieren](#42-fk-enforcement-in-sqlite-aktivieren)
+    - [4.3 ON DELETE und ON UPDATE – Referentielle Aktionen](#43-on-delete-und-on-update--referentielle-aktionen)
+    - [4.4 Zirkuläre Referenzen](#44-zirkuläre-referenzen)
+  - [5. DROP TABLE – Tabellen löschen](#5-drop-table--tabellen-löschen)
+  - [6. ALTER TABLE – Tabellen anpassen](#6-alter-table--tabellen-anpassen)
+    - [6.1 Was geht in SQLite](#61-was-geht-in-sqlite)
+    - [6.2 Was geht NICHT – und der Workaround](#62-was-geht-nicht--und-der-workaround)
+  - [7. Weitere nützliche Schema-Befehle](#7-weitere-nützliche-schema-befehle)
+    - [7.1 Schema inspizieren](#71-schema-inspizieren)
+    - [7.2 Indizes](#72-indizes)
+    - [7.3 Views – Virtuelle Tabellen](#73-views--virtuelle-tabellen)
 - [2. Übungsaufgaben](#2-übungsaufgaben)
   - [2.1. Produktherstellung (Implementierung)](#21-produktherstellung-implementierung)
   - [2.2. Schulverwaltung (Implementierung)](#22-schulverwaltung-implementierung)
@@ -34,353 +46,584 @@
 
 [SQLite Tutorial](https://www.sqlitetutorial.net/)
 
-## 1.1. Tabelle erstellen
+## Lernziele
+
+Nach dieser Lektion könnt ihr:
+
+- Tabellen in SQLite mit `CREATE TABLE` erstellen und mit `DROP TABLE` löschen
+- Sinnvolle Datentypen für Spalten wählen und die Besonderheiten von SQLite dabei kennen
+- Primärschlüssel (`PRIMARY KEY`) und Fremdschlüssel (`FOREIGN KEY`) korrekt definieren
+- Constraints (`NOT NULL`, `UNIQUE`, `CHECK`, `DEFAULT`) gezielt einsetzen
+- Bestehende Tabellen mit `ALTER TABLE` anpassen
+- Ein vollständiges Datenbankschema von Grund auf implementieren
+
+## 1. Datentypen in SQLite
+
+### 1.1 Das Type-Affinity-System
+
+SQLite ist anders als die meisten Datenbanken: Es verwendet **Type Affinity** statt
+strenger Typisierung. Das bedeutet, jede Spalte hat eine *bevorzugte* Speicherklasse –
+SQLite erzwingt den Typ aber nicht dogmatisch.
+
+SQLite kennt fünf **Storage Classes** (interne Speicherformate):
+
+| **Storage Class** | **Inhalt**                         |
+| ----------------- | ---------------------------------- |
+| `NULL`            | Fehlender / unbekannter Wert       |
+| `INTEGER`         | Ganzzahl, 1–8 Bytes je nach Grösse |
+| `REAL`            | 64-Bit Gleitkommazahl (IEEE 754)   |
+| `TEXT`            | UTF-8 Zeichenkette                 |
+| `BLOB`            | Rohdaten (Binary Large Object)     |
+
+### 1.2 Empfohlene Datentypen für SQLite
+
+In der Praxis verwendet ihr diese Typen – SQLite mappt sie intern auf die
+Storage Classes oben:
+
+| SQLite-Typ | Affinity | Typischer Einsatz                       |
+| ---------- | -------- | --------------------------------------- |
+| `INTEGER`  | INTEGER  | IDs, Anzahlen, Flags (0/1)              |
+| `REAL`     | REAL     | Preise, Koordinaten, Messwerte          |
+| `TEXT`     | TEXT     | Namen, E-Mails, Beschreibungen          |
+| `BLOB`     | BLOB     | Bilder, Dateien (selten in SQLite)      |
+| `NUMERIC`  | NUMERIC  | Geldbeträge mit definierter Genauigkeit |
+
+### 1.3 Datumstypen – die wichtigste SQLite-Besonderheit
+
+SQLite hat **keinen eingebauten Datumstyp**. Datum und Zeit werden als `TEXT`,
+`INTEGER` oder `REAL` gespeichert. Die empfohlene Convention:
+
+```sql
+-- Option 1: ISO 8601 Text (empfohlen für Lesbarkeit)
+geburtsdatum TEXT   -- Format: 'YYYY-MM-DD'
+erstellt_am  TEXT   -- Format: 'YYYY-MM-DD HH:MM:SS'
+
+-- Option 2: Unix-Timestamp (für Berechnungen)
+erstellt_am  INTEGER  -- Sekunden seit 1970-01-01
+
+-- SQLite-Datumsfunktionen funktionieren mit beiden Varianten:
+SELECT date('now');                          -- '2024-11-15'
+SELECT datetime('now', 'localtime');         -- '2024-11-15 14:32:10'
+SELECT strftime('%d.%m.%Y', geburtsdatum);   -- '15.11.1990'
+```
+
+> **Convention im Team festlegen:** Wählt eine Variante und haltet euch
+> konsequent daran. `TEXT` mit ISO 8601 ist am lesbarsten und am einfachsten
+> zu debuggen.
+
+---
+
+## 2. CREATE TABLE – Tabellen erstellen
+
+### 2.1 Grundsyntax
 
 ![SQL CREATE TABLE](./x_gitres/create-table.png)
 
-### 1.1.1. Syntax
-
 ```sql
-CREATE TABLE Mitarbeiter
-(
-   MitarbeiterID     INT            NOT NULL,
-   MitarbeiterName   VARCHAR(20)    NULL,
-   Eintritt          DATE           NULL
-)
-```
-
-### 1.1.2. ANSI SQL Datentypen
-
-Bezeichnung und Syntax von **Datentypen** variieren von DBS zu DBS recht stark. Aber alle haben folgende **skalare** Typen auf mindestens eine Art implementiert:
-
-**Zeichenketten (Character String Types):**
-
-| **Datentyp**         | **Beschreibung**                                       | **Beispiel**           |
-| -------------------- | ------------------------------------------------------ | ---------------------- |
-| CHAR(n)              | Feste Länge von n Zeichen (mit Leerzeichen aufgefüllt) | CHAR(10)               |
-| VARCHAR(n)           | Variable Länge bis maximal n Zeichen                   | VARCHAR(255)           |
-| CHARACTER(n)         | Synonym für CHAR(n)                                    | CHARACTER(20)          |
-| CHARACTER VARYING(n) | Synonym für VARCHAR(n)                                 | CHARACTER VARYING(100) |
-
----
-
-</br>
-
-**Numerische Datentypen (Exact Numeric Types):**
-
-| **Datentyp** | **Beschreibung**                                   | **Beispiel**  |
-| ------------ | -------------------------------------------------- | ------------- |
-| INTEGER      | Ganze Zahl                                         | INTEGER       |
-| INT          | Synonym für INTEGER                                | INT           |
-| SMALLINT     | Kleine ganze Zahl                                  | SMALLINT      |
-| BIGINT       | Große ganze Zahl                                   | BIGINT        |
-| DECIMAL(p,s) | Festkommazahl mit p Stellen und s Nachkommastellen | DECIMAL(10,2) |
-| NUMERIC(p,s) | Synonym zu DECIMAL                                 | NUMERIC(8,3)  |
-
----
-
-</br>
-
-**Approximate Numeric Types (Gleitkommazahlen):**
-
-| **Datentyp**     | **Beschreibung**                 | **Beispiel**     |
-| ---------------- | -------------------------------- | ---------------- |
-| FLOAT(p)         | Gleitkommazahl mit Präzision p   | FLOAT(24)        |
-| REAL             | Einfachpräzisions-Gleitkommazahl | REAL             |
-| DOUBLE PRECISION | Doppelte Genauigkeit             | DOUBLE PRECISION |
-
----
-
-</br>
-
-**Boolean:**
-
-| **Datentyp** | **Beschreibung**                     | **Beispiel** |
-| ------------ | ------------------------------------ | ------------ |
-| BOOLEAN      | Wahrheitswert (TRUE, FALSE, UNKNOWN) | BOOLEAN      |
-
----
-
-</br>
-
-**Datums- und Zeittypen (Datetime Types):**
-
-| **Datentyp**             | **Beschreibung**         | **Beispiel**             |
-| ------------------------ | ------------------------ | ------------------------ |
-| DATE                     | Datum (Jahr, Monat, Tag) | DATE                     |
-| TIME[(p)]                | Uhrzeit                  | TIME                     |
-| TIMESTAMP[(p)]           | Datum und Uhrzeit        | TIMESTAMP                |
-| TIME WITH TIME ZONE      | Uhrzeit mit Zeitzone     | TIME WITH TIME ZONE      |
-| TIMESTAMP WITH TIME ZONE | Zeitstempel mit Zeitzone | TIMESTAMP WITH TIME ZONE |
-
----
-
-</br>
-
-**Binary String Types:**
-
-| **Datentyp** | **Beschreibung**           | **Beispiel**   |
-| ------------ | -------------------------- | -------------- |
-| BINARY(n)    | Binärdaten fester Länge    | BINARY(16)     |
-| VARBINARY(n) | Binärdaten variabler Länge | VARBINARY(255) |
-
----
-
-**Hinweis:**
-Die ANSI-SQL-Norm definiert diese Grundtypen. Datenbanksysteme wie Oracle, MySQL, PostgreSQL oder SQL Server erweitern diese Liste um systemspezifische Typen (z.B. TEXT, MONEY, UUID, etc.).
-
-### 1.1.3. SQL Server 2025 (Version 17.x)
-
-Die Kapazität hängt stark von der verwendeten Edition ab. Während die Enterprise Edition technisch nur durch das Betriebssystem begrenzt wird, gab es für die kleineren Editionen wichtige Upgrades
-
-| **Feature**          | **Express Edition**  | **Standard Edition** | **Enterprise Edition** |
-| -------------------- | :------------------: | :------------------: | :--------------------: |
-| Max. Datenbankgrösse | 50 GB (vorher 10 GB) |        524 PB        |         524 PB         |
-| Max. Dateigrösse     |        16 TB         |        16 TB         |         16 TB          |
-| Max. Dateien pro DB  |        32.767        |        32.767        |         32.767         |
-
-- Max. Spalten pro Tabelle: **1.024 für Standard-Tabellen**.
-  - 30.000 bei Verwendung von "Sparse Columns" (Wide Tables).
-- Max. Bytes pro Datensatz (In-Row): **8.060 Bytes**.
-  - Hinweis: SQL Server nutzt das sogenannte "Row-Overflow Storage".
-  - Wenn Datensätze mit variabler Länge (z.B. varchar(8000)) diese Grenze überschreiten, werden die Daten auf zusätzliche Seiten ausgelagert.
-  - Nur der 24-Byte-Pointer verbleibt im Hauptdatensatz.
-- Max. Bytes pro Datensatz (LOB-Daten)
-  - Spalten wie `varchar(max)`, `varbinary(max)` oder `xml` können bis zu **2 GB pro Feld** speichern.
-
----
-
-</br>
-
-## 1.2. Tabelle ändern
-
-Mit **`ALTER TABLE tabellenname ...`** können
-
-- Spalten einer Tabelle entfernt oder
-- neue Spalten zu einer Tabelle hinzugefügt
-
-```sql
--- Spalte hinzufügen
-ALTER TABLE Kunde
-   ADD Email VARCHAR(100);
-
--- Spalte ändern (Datentyp anpassen)
-ALTER TABLE Kunde
-   ALTER COLUMN Email VARCHAR(150);
-
--- Spalte löschen
-ALTER TABLE Kunde
-   DROP COLUMN Vorname;
-
--- Fremdschlüssel hinzufügen (Referenzielle Integrität)
-ALTER TABLE Kunde
-   ADD CONSTRAINT fk_kunde_ort
-   FOREIGN KEY (OrtID)
-   REFERENCES Ort(OrtID);   
-```
-
----
-
-</br>
-
-## 1.3. Tabelle löschen
-
-- Um eine Tabelle wieder zu löschen, verwendet man **`DROP TABLE`** Tabellenname.
-- Mit **`DROP TABLE`** werden nicht nur die Daten, sondern auch die Tabellendefinitionen und die zugehörigen Berechtigungen gelöscht.
-- Sind Abhängigkeiten auf die zu löschenden Tabellen vorhanden, kann die Tabelle nicht gelöscht werden.
-
-```sql
--- Tabelle löschen
-DROP TABLE Lieferant;
-
--- Löschen mit Sicherheitsprüfung
-DROP TABLE IF EXISTS Lieferant;
-```
-
-> **Wichtig: Dieser Befehl kann nicht rückgängig gemacht werden (ohne Backup).**
-
----
-
-</br>
-
-## 1.4. SQL-Constraints
-
-**SQL Constraints** sind Regeln auf Tabellen- oder Spaltenebene, die die Datenintegrität einer Datenbank sicherstellen.
-Sie **verhindern**, dass ungültige, widersprüchliche oder unvollständige Daten gespeichert werden.
-
-![SQL-Constraints](./x_gitres/constraints.png)
-
-### 1.4.1. Zweck von Constraints
-
-- **Sicherstellung der Datenqualität**
-  - Nur erlaubte Werte dürfen gespeichert werden (z. B. keine negativen Preise).
-- **Durchsetzung fachlicher Regeln**
-  - Geschäftsregeln werden direkt in der Datenbank definiert – nicht nur im Programmcode.
-- **Wahrung der Datenkonsistenz**
-  - Beziehungen zwischen Tabellen bleiben korrekt (z. B. keine Bestellung ohne Kunde).
-- **Fehlervermeidung auf Datenbankebene**
-  - Schutz vor fehlerhaften Eingaben – unabhängig von der Anwendung.
-
-### 1.4.2. Prinzip
-
-- Nicht nur Programmierer machen Fehler, sondern vor allem auch Benutzer.
-- Mit Constraints kann man sie vor sich selber schützen.
-- Constraints sind Einschränkungen, die vom Programmierer definiert werden und deren Einhaltung von der DB erzwungen wird.
-
-| **Constraint**  | **Zweck**                                               |
-| --------------- | ------------------------------------------------------- |
-| **NOT NULL**    | Verhindert leere Werte                                  |
-| **PRIMARY KEY** | Eindeutige Identifikation eines Datensatzes             |
-| **FOREIGN KEY** | Sicherstellt referenzielle Integrität zwischen Tabellen |
-| **UNIQUE**      | Verhindert doppelte Werte                               |
-| **CHECK**       | Definiert zulässige Wertebereiche                       |
-| **DEFAULT**     | Setzt Standardwerte                                     |
-
-### 1.4.3. Primary Key
-
-- Erzwingt Entitäts-Integrität (Einmaligkeit des Datensatzes)
-- Spalte muss als **`NOT NULL`** definiert sein
-- Kreiert automatisch einen Index
-- Wird von **`REFERENCES`** Constraint als Referenzpunkt angesprochen
-- Hat die gleiche Charakteristik wie Unique Constraint, ausser, dass er **`NULL`** nicht zulässt und pro Tabelle nur einmal vorkommen darf.
-- Beispiel:
-  - `CREATE TABLE Lieferant ( ..., CONSTRAINT PK_Id PRIMARY KEY (id))`
-
-```sql
-CREATE TABLE languages (
-   language_id INTEGER,
-   name TEXT NOT NULL,
-   PRIMARY KEY (language_id)
+CREATE TABLE tabellenname (
+    spalte1  datentyp  [constraints],
+    spalte2  datentyp  [constraints],
+    ...
+    [tabellen-constraints]
 );
 ```
 
-### 1.4.4. Foreign Key
+### 2.2 Erste Tabelle: `abteilungen`
 
-- Foreign Keys Constraints garantieren, dass nur Werte eingefügt werden können, die sich bereits in der anderen Tabelle befinden.
-- Umgekehrt verhindern sie die Löschung von Datensätzen in der referenzierten Tabelle, wenn noch entsprechende Bezüge in der referenzierten Tabelle existieren.
-- Beispiel
-  - `CREATE TABLE Artikel ( ..., CONSTRAINT FK_Lieferant FOREIGN KEY (LieferantId) REFERENCES lieferant(id))`
+```sql
+CREATE TABLE abteilungen (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    name        TEXT    NOT NULL,
+    gruendungsjahr INTEGER
+);
+```
+
+**Was passiert hier Zeile für Zeile:**
+
+- `id INTEGER PRIMARY KEY AUTOINCREMENT` – Eindeutiger Schlüssel, automatisch hochgezählt (1, 2, 3, …). 
+- In SQLite ist `INTEGER PRIMARY KEY` ein Alias für die interne `rowid` – `AUTOINCREMENT` verhindert die Wiederverwendung gelöschter IDs.
+- `name TEXT NOT NULL` – Pflichtfeld, darf nicht leer sein.
+- `gruendungsjahr INTEGER` – Optionales Feld (darf `NULL` sein).
+
+### 2.3 IF NOT EXISTS – Sicheres Erstellen
+
+```sql
+-- Ohne IF NOT EXISTS: Fehler, wenn Tabelle bereits existiert
+CREATE TABLE abteilungen ( ... );   -- Fehler bei Wiederholung
+
+-- Mit IF NOT EXISTS: Kein Fehler, Tabelle bleibt unverändert
+CREATE TABLE IF NOT EXISTS abteilungen ( ... );
+```
+
+> **Best Practice:** In Setup-Skripten immer `IF NOT EXISTS` verwenden –
+> so kann das Skript mehrfach ausgeführt werden, ohne Fehler zu werfen.
+
+### 2.4 Die vollständige `mitglieder`-Tabelle
+
+```sql
+CREATE TABLE IF NOT EXISTS mitglieder (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    vorname      TEXT    NOT NULL,
+    nachname     TEXT    NOT NULL,
+    email        TEXT    NOT NULL UNIQUE,
+    telefon      TEXT,
+    geburtsdatum TEXT,                          -- ISO 8601: 'YYYY-MM-DD'
+    eintrittsdatum TEXT NOT NULL
+                    DEFAULT (date('now')),       -- Heute als Standardwert
+    aktiv        INTEGER NOT NULL DEFAULT 1,    -- 1 = aktiv, 0 = inaktiv (Boolean)
+    abteilung_id INTEGER REFERENCES abteilungen(id)
+                    ON DELETE SET NULL
+                    ON UPDATE CASCADE
+);
+```
+
+---
+
+## 3. Constraints im Detail
+
+![SQL-Constraints](./x_gitres/constraints.png)
+
+Constraints sind **Regeln auf Spalten- oder Tabellenebene**, die SQLite bei
+jedem `INSERT` und `UPDATE` prüft. Sie sichern die Datenintegrität.
+
+![Daten-Integrität](./x_gitres/data-integrity.png)
+
+### 3.1 NOT NULL
+
+Verhindert leere Werte. Felder ohne `NOT NULL` akzeptieren automatisch `NULL`.
+
+```sql
+-- Spalte mit NOT NULL
+name TEXT NOT NULL
+
+-- Spalte ohne NOT NULL (NULL erlaubt)
+beschreibung TEXT        -- entspricht: beschreibung TEXT NULL
+```
+
+**Wann `NOT NULL` verwenden?**
+
+- Pflichtfelder, die für die Identität des Datensatzes wesentlich sind
+- Fremdschlüssel, wenn die Beziehung obligatorisch ist
+- Felder, die in Berechnungen oder Joins vorkommen (NULL in Berechnungen
+  ergibt immer NULL)
+
+```sql
+-- Typischer Fehler:
+INSERT INTO mitglieder (vorname, email, eintrittsdatum)
+VALUES ('Anna', 'anna@example.com', '2024-01-15');
+-- Fehler: NOT NULL constraint failed: mitglieder.nachname
+```
+
+### 3.2 UNIQUE
+
+Garantiert, dass kein Wert in dieser Spalte doppelt vorkommt.
+`NULL`-Werte sind von `UNIQUE` ausgenommen – mehrere `NULL`-Werte sind erlaubt.
+
+```sql
+-- Einfach-UNIQUE auf Spaltenebene
+email TEXT NOT NULL UNIQUE
+
+-- Zusammengesetztes UNIQUE auf Tabellenebene
+-- (Kombination muss eindeutig sein, nicht jede Spalte einzeln)
+CREATE TABLE mitglied_event (
+    mitglied_id INTEGER NOT NULL,
+    event_id    INTEGER NOT NULL,
+    anmeldedatum TEXT,
+    UNIQUE (mitglied_id, event_id)   -- ein Mitglied kann sich nur einmal anmelden
+);
+```
+
+### 3.3 PRIMARY KEY
+
+Kombination aus `NOT NULL` und `UNIQUE`. Jede Tabelle sollte einen
+Primärschlüssel haben.
+
+```sql
+-- Einfacher PK (häufigster Fall)
+id INTEGER PRIMARY KEY AUTOINCREMENT
+
+-- Zusammengesetzter PK (auf Tabellenebene)
+CREATE TABLE mitglied_event (
+    mitglied_id INTEGER NOT NULL,
+    event_id    INTEGER NOT NULL,
+    anmeldedatum TEXT,
+    PRIMARY KEY (mitglied_id, event_id)
+);
+```
+
+> **AUTOINCREMENT – wann nötig?**
+> Ohne `AUTOINCREMENT`: SQLite wählt `MAX(id) + 1`. Gelöschte IDs können
+> wiederverwendet werden.
+> Mit `AUTOINCREMENT`: IDs steigen immer strikt an, gelöschte IDs werden nie
+> wiederverwendet. Braucht etwas mehr Overhead – für die meisten Anwendungen
+> empfehlenswert, wenn IDs auch als Referenz nach aussen dienen.
+
+### 3.4 DEFAULT
+
+Definiert einen Standardwert, der verwendet wird, wenn beim `INSERT` kein
+Wert angegeben wird.
+
+```sql
+-- Statischer Standardwert
+status  TEXT    NOT NULL DEFAULT 'aktiv'
+aktiv   INTEGER NOT NULL DEFAULT 1
+land    TEXT             DEFAULT 'Schweiz'
+
+-- Dynamischer Standardwert (Funktion)
+erstellt_am TEXT NOT NULL DEFAULT (datetime('now'))
+token       TEXT NOT NULL DEFAULT (hex(randomblob(16)))
+
+-- Verwendung:
+INSERT INTO mitglieder (vorname, nachname, email, eintrittsdatum)
+VALUES ('Beat', 'Müller', 'beat@example.com', '2024-03-01');
+-- aktiv wird automatisch auf 1 gesetzt
+-- eintrittsdatum DEFAULT greift NICHT, weil wir einen Wert angegeben haben
+```
+
+### 3.5 CHECK
+
+Prüft einen beliebigen booleschen Ausdruck. `INSERT` und `UPDATE` schlagen
+fehl, wenn die Bedingung `FALSE` ergibt. `NULL` besteht den CHECK
+(da `NULL` in SQLite als "unbekannt" gilt, nicht als falsch).
+
+```sql
+-- Einfache CHECK-Constraints
+ALTER TABLE mitglieder ADD COLUMN jahrgang INTEGER
+    CHECK (jahrgang >= 1900 AND jahrgang <= 2020);
+
+-- Typische CHECKs in der Praxis
+preis       REAL    NOT NULL CHECK (preis >= 0),
+prioritaet  INTEGER NOT NULL CHECK (prioritaet IN (1, 2, 3)),
+status      TEXT    NOT NULL CHECK (status IN ('aktiv', 'inaktiv', 'gesperrt')),
+bis_datum   TEXT             CHECK (bis_datum >= von_datum),  -- spaltenübergreifend
+
+-- Events-Tabelle mit mehreren Checks
+CREATE TABLE IF NOT EXISTS events (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    titel           TEXT    NOT NULL,
+    von_datum       TEXT    NOT NULL,
+    bis_datum       TEXT    NOT NULL,
+    max_teilnehmer  INTEGER CHECK (max_teilnehmer > 0),
+    kosten          REAL    NOT NULL DEFAULT 0.0
+                    CHECK (kosten >= 0),
+    status          TEXT    NOT NULL DEFAULT 'geplant'
+                    CHECK (status IN ('geplant', 'aktiv', 'abgesagt', 'abgeschlossen')),
+    verantwortlich_id INTEGER REFERENCES mitglieder(id),
+    CONSTRAINT valid_zeitraum CHECK (bis_datum >= von_datum)
+);
+```
+
+> **Benannte Constraints:** Mit `CONSTRAINT name` können Constraints
+> benannt werden. Das ergibt bessere Fehlermeldungen und erleichtert das
+> spätere Löschen (bei ALTER TABLE).
+
+### 3.6 Constraints auf Tabellenebene – Übersicht
+
+Constraints können an der Spalte (Spaltenebene) oder am Ende der
+Tabellendefinition (Tabellenebene) stehen. Tabellenebene ist zwingend
+für zusammengesetzte Constraints:
+
+```sql
+CREATE TABLE beispiel (
+    col_a INTEGER,
+    col_b INTEGER,
+    col_c TEXT,
+
+    -- Tabellenebene: zusammengesetzte Constraints
+    PRIMARY KEY (col_a, col_b),
+    UNIQUE (col_b, col_c),
+    CHECK (col_a > 0 AND col_b > col_a),
+    CONSTRAINT fk_beispiel FOREIGN KEY (col_a) REFERENCES andere_tabelle(id)
+);
+```
+
+---
+
+## 4. FOREIGN KEY – Fremdschlüssel und referentielle Integrität
+
+### 4.1 Grundkonzept
+
+Fremdschlüssel stellen sicher, dass referenzierte Datensätze wirklich
+existieren. Ein Mitglied kann nur einer Abteilung zugeordnet werden, die
+tatsächlich in der `abteilungen`-Tabelle vorhanden ist.
 
 ![Foreign Key](./x_gitres/people-addresses.png)
 
 ```sql
-CREATE TABLE supplier_groups (
-  group_id integer PRIMARY KEY,
- group_name text NOT NULL
-);
+-- In der Child-Tabelle (mitglieder):
+abteilung_id INTEGER REFERENCES abteilungen(id)
 
-CREATE TABLE suppliers (
-    supplier_id   INTEGER PRIMARY KEY,
-    supplier_name TEXT    NOT NULL,
-    group_id      INTEGER NOT NULL,
-    FOREIGN KEY (group_id)
-       REFERENCES supplier_groups (group_id) 
-);
+-- Vollständige Syntax (explizit):
+abteilung_id INTEGER,
+FOREIGN KEY (abteilung_id) REFERENCES abteilungen(id)
 ```
 
-### 1.4.5. Unique
+### 4.2 FK-Enforcement in SQLite aktivieren
 
-- Unique Constraints spezifizieren, dass zwei Zeilen nicht den gleichen Wert in der gleichen Spalte haben können.
-- Erlaubt `NULL`
-- Mehrere Unique Constraints können in einer Tabelle vorkommen.
-- Beispiel
-  - `CREATE TABLE Angebot (..., CONSTRAINT U_code UNIQUE (lfr_code, art_code))`
+> **Kritisch:** SQLite prüft Fremdschlüssel standardmässig **NICHT**!
+> Ihr müsst die Prüfung bei jeder Verbindung explizit aktivieren:
 
 ```sql
-CREATE TABLE contacts(
-    contact_id INTEGER PRIMARY KEY,
-    first_name TEXT,
-    last_name TEXT,
-    email TEXT NOT NULL UNIQUE
-);
+-- Am Anfang jeder Session / jedes Skripts:
+PRAGMA foreign_keys = ON;
+
+-- Prüfen ob aktiv:
+PRAGMA foreign_keys;   -- 1 = aktiv, 0 = inaktiv
 ```
 
-### 1.4.6. Check
+In Anwendungscode (z.B. C# mit Microsoft.Data.Sqlite):
 
-- Ein **Check Constraint** bestimmt den **Wertebereich**, der eingegeben werden darf.
-- **Verstärkt** die Integrität des Datentyps durch Limitierung der möglichen Werte.
-- Wird jedes Mal kontrolliert, wenn ein `INSERT` oder `UPDATE` gemacht wird.
-- Beispiel
-  - `CREATE TABLE Adult( ..., CONSTRAINT c_alter CHECK (alter between 1 and 120)`
+```csharp
+// Beim Öffnen der Verbindung:
+connection.Execute("PRAGMA foreign_keys = ON;");
+```
+
+### 4.3 ON DELETE und ON UPDATE – Referentielle Aktionen
+
+Was passiert, wenn ein referenzierter Datensatz gelöscht oder geändert wird?
+
+| **Aktion**    | **Verhalten**                                                     |
+| ------------- | ----------------------------------------------------------------- |
+| `RESTRICT`    | Löschen/Ändern verboten, solange Referenzen existieren (Standard) |
+| `NO ACTION`   | Wie RESTRICT, aber Prüfung erfolgt erst am Ende der Transaktion   |
+| `CASCADE`     | Abhängige Datensätze werden automatisch mitgelöscht/-geändert     |
+| `SET NULL`    | Fremdschlüssel-Spalte wird auf `NULL` gesetzt                     |
+| `SET DEFAULT` | Fremdschlüssel-Spalte wird auf den DEFAULT-Wert gesetzt           |
 
 ```sql
-CREATE TABLE products (
-    product_id   INTEGER         PRIMARY KEY,
-    product_name TEXT            NOT NULL,
-    list_price   DECIMAL (10, 2) NOT NULL,
-    discount     DECIMAL (10, 2) NOT NULL
-                                DEFAULT 0,
-    CHECK (list_price >= discount AND 
-        discount >= 0 AND 
-        list_price >= 0) 
+CREATE TABLE IF NOT EXISTS mitglieder (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    vorname      TEXT    NOT NULL,
+    nachname     TEXT    NOT NULL,
+    email        TEXT    NOT NULL UNIQUE,
+    telefon      TEXT,
+    geburtsdatum TEXT,
+    eintrittsdatum TEXT  NOT NULL DEFAULT (date('now')),
+    aktiv        INTEGER NOT NULL DEFAULT 1,
+
+    -- Abteilung: optional. Wird Abteilung gelöscht → NULL setzen
+    abteilung_id INTEGER
+        REFERENCES abteilungen(id)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
 );
 ```
 
-### 1.4.7. Default
+**Praxisbeispiele für die Aktionswahl:**
 
-- Der Default Constraint füllt einen Wert in ein Feld ein, wenn das Feld im INSERT-Befehl ausgelassen wird.
-- Beispiel
-  - `CREATE TABLE Adult( ..., CONSTRAINT D_state, DEFAULT 'CA' FOR  state`
-- Zusätzlich zu Konstanten kann `DEFAULT` auch DBS-spezifische Funktionen beinhalten: `current_user()`, `current_timestamp()`.
+```sql
+-- Bestellpositionen: Wenn Bestellung gelöscht → Positionen mitlöschen
+bestellung_id INTEGER NOT NULL
+    REFERENCES bestellungen(id)
+    ON DELETE CASCADE
+
+-- Mitglied: Wenn Abteilung gelöscht → Mitglied bleibt, Zuweisung wird NULL
+abteilung_id INTEGER
+    REFERENCES abteilungen(id)
+    ON DELETE SET NULL
+
+-- Kritische Referenz: Löschen verhindern (z.B. Rechnungen)
+kunden_id INTEGER NOT NULL
+    REFERENCES kunden(id)
+    ON DELETE RESTRICT
+```
+
+### 4.4 Zirkuläre Referenzen
+
+Abteilungen haben einen Leiter (ein Mitglied), Mitglieder gehören einer
+Abteilung – das ist eine zirkuläre Abhängigkeit. Lösung: `DEFERRABLE`:
+
+```sql
+CREATE TABLE IF NOT EXISTS abteilungen (
+    id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    name    TEXT    NOT NULL UNIQUE,
+    leiter_id INTEGER
+        REFERENCES mitglieder(id)
+        ON DELETE SET NULL
+        DEFERRABLE INITIALLY DEFERRED  -- FK-Prüfung erst am Transaktionsende
+);
+```
+
+```sql
+-- Einfügen ohne DEFERRABLE wäre unmöglich:
+BEGIN TRANSACTION;
+    -- Zuerst Abteilung ohne Leiter (Leiter existiert noch nicht)
+    INSERT INTO abteilungen (name) VALUES ('Vorstand');
+
+    -- Dann Mitglied mit Abteilung
+    INSERT INTO mitglieder (vorname, nachname, email, eintrittsdatum, abteilung_id)
+    VALUES ('Sandra', 'Graf', 'sandra@verein.ch', '2020-01-01', 1);
+
+    -- Jetzt Leiter setzen
+    UPDATE abteilungen SET leiter_id = 1 WHERE id = 1;
+COMMIT;
+```
 
 ---
 
-</br>
-
-## 1.5. Daten-Integrität
-
-- **Datenintegrität** stellt sicher, dass die in einer Datenbank gespeicherten Daten **korrekt**, **konsistent** und **widerspruchsfrei** sind.
-- Sie wird durch verschiedene Integritätsregeln im relationalen Modell garantiert.
-
-![Daten-Integrität](./x_gitres/data-integrity.png)
-
-Die verschiedenen Constraints lassen sich gruppieren in 3 Typen:
-
-- Domänen-Integrität
-- Entitäts-Integrität
-- Referentielle-Integrität
-
-### 1.5.1. Domänen-Integrität
-
-Die Domain-Integrität (Wertebereichsintegrität) stellt sicher, dass alle Daten in einer bestimmten Spalte einer Tabelle gültig, konsistent und innerhalb der vordefinierten Grenzen liegen.
-
-Sie wird durch verschiedene Mechanismen erzwungen:
-
-- Datentypen (Data Types)
-- Nullwert-Zulässigkeit (Nullability)
-- Check-Constraints (Prüfeinschränkungen)
-- Standardwerte (Default Constraints)
+## 5. DROP TABLE – Tabellen löschen
 
 ```sql
-CREATE TABLE Mitarbeiter (
-    ID INT PRIMARY KEY,
-    Name NVARCHAR(100) NOT NULL,              -- Nullability
-    Einstiegsdatum DATE DEFAULT GETDATE(),    -- Default Constraint
-    Gehalt DECIMAL(10,2) CHECK (Gehalt > 0),  -- Check Constraint
-    Status VARCHAR(10) CHECK (Status IN ('Aktiv', 'Inaktiv', 'Austritt')) -- Wertebereich
-);
+-- Tabelle löschen (Fehler, wenn nicht vorhanden)
+DROP TABLE mitglieder;
+
+-- Sicheres Löschen (kein Fehler, wenn nicht vorhanden)
+DROP TABLE IF EXISTS mitglieder;
 ```
 
-### 1.5.2. Entitätsintegrität
+> **`DROP TABLE` löscht alle Daten unwiderruflich!** In SQLite gibt es
+> kein automatisches Backup. Immer zuerst mit `SELECT` prüfen, ob das die
+> richtige Tabelle ist.
 
-Die Entitätsintegrität besagt:
+**Reihenfolge beim Löschen mit Fremdschlüsseln:**
 
-- Jede Tabelle besitzt einen Primärschlüssel, und dieser darf nicht NULL sein.
-- Jeder Datensatz (Tupel) muss eindeutig identifizierbar sein.
-- Es darf keinen Datensatz ohne gültigen Primärschlüssel geben.
-- Der **Primärschlüsselwert** muss eindeutig sein.
+Child-Tabellen (die FKs enthalten) müssen **vor** Parent-Tabellen gelöscht
+werden – sonst verletzt ihr die referentielle Integrität:
 
-### 1.5.3. Referentielle Integrität
+```sql
+PRAGMA foreign_keys = ON;
 
-- Die referenzielle Integrität regelt die Beziehungen **zwischen Tabellen**.
-- Ein **Fremdschlüsselwert** muss entweder auf einen existierenden **Primärschlüssel** verweisen oder `NULL` sein (falls erlaubt).
+-- Reihenfolge: erst Child, dann Parent
+DROP TABLE IF EXISTS mitglied_event;  -- referenziert mitglieder + events
+DROP TABLE IF EXISTS events;          -- referenziert mitglieder
+DROP TABLE IF EXISTS mitglieder;      -- referenziert abteilungen
+DROP TABLE IF EXISTS abteilungen;     -- keine FK nach aussen
+```
 
-Die referentielle Integrität ist in einer DB erfüllt, wenn jeder **Fremdschlüssel* ungleich NULL eine Entsprechung beim zugehörigen *Primärschlüssel** hat.
-Ein DBS kann auf eine Integritätsverletzung auf drei Arten reagieren:
+---
 
-- `RESTRICT`   - Bei einer **restriktiven** Lösung wird die Löschaktion abgewiesen, die eine Verletzung der ref. Integrität zur Folge hätte.
-- `CASCADE`    - Beim **kaskadierenden** Löschen werden **alle Datensätze gelöscht**, die den Schlüssel des gelöschten Datensatzes als Fremdschlüssel enthalten.
-- `SET NULL`   - Als dritte Variante besteht die Möglichkeit, den Inhalt des Fremdschlüsselattributes auf **NULL** zu setzen.
+## 6. ALTER TABLE – Tabellen anpassen
+
+SQLite unterstützt nur einen eingeschränkten Satz von `ALTER TABLE`-Befehlen
+im Vergleich zu anderen Datenbanken.
+
+### 6.1 Was geht in SQLite
+
+```sql
+-- Tabelle umbenennen
+ALTER TABLE mitglieder RENAME TO vereinsmitglieder;
+
+-- Spalte umbenennen (ab SQLite 3.25.0)
+ALTER TABLE mitglieder RENAME COLUMN telefon TO mobile;
+
+-- Spalte hinzufügen (nur am Ende, keine Constraints ausser DEFAULT und NOT NULL
+-- wenn DEFAULT angegeben oder NOT NULL mit DEFAULT)
+ALTER TABLE mitglieder ADD COLUMN notizen TEXT;
+ALTER TABLE mitglieder ADD COLUMN newsletter INTEGER NOT NULL DEFAULT 0;
+
+-- Spalte löschen (ab SQLite 3.35.0)
+ALTER TABLE mitglieder DROP COLUMN notizen;
+```
+
+### 6.2 Was geht NICHT – und der Workaround
+
+SQLite erlaubt kein nachträgliches Hinzufügen von Constraints (z.B. `UNIQUE`,
+`CHECK`, `FOREIGN KEY`) zu bestehenden Spalten. Dafür gibt es den
+**Table-Rebuild-Workaround**:
+
+```sql
+-- Schritt 1: Neue Tabelle mit gewünschtem Schema erstellen
+CREATE TABLE mitglieder_neu (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    vorname      TEXT    NOT NULL,
+    nachname     TEXT    NOT NULL,
+    email        TEXT    NOT NULL UNIQUE,  -- neu: UNIQUE
+    telefon      TEXT,
+    geburtsdatum TEXT    CHECK (geburtsdatum GLOB '????-??-??'),  -- neu: CHECK
+    eintrittsdatum TEXT  NOT NULL DEFAULT (date('now')),
+    aktiv        INTEGER NOT NULL DEFAULT 1,
+    abteilung_id INTEGER REFERENCES abteilungen(id) ON DELETE SET NULL
+);
+
+-- Schritt 2: Daten übertragen
+INSERT INTO mitglieder_neu
+SELECT id, vorname, nachname, email, telefon, geburtsdatum,
+       eintrittsdatum, aktiv, abteilung_id
+FROM mitglieder;
+
+-- Schritt 3: Alte Tabelle löschen
+DROP TABLE mitglieder;
+
+-- Schritt 4: Neue Tabelle umbenennen
+ALTER TABLE mitglieder_neu RENAME TO mitglieder;
+```
+
+> **Tipp:** In der Entwicklung (vor Produktivdaten) ist es einfacher,
+> das Schema zu löschen und neu aufzubauen. Für produktive Datenbanken:
+> SQLite-Migrations-Bibliotheken (z.B. FluentMigrator, EF Core Migrations)
+> übernehmen diesen Prozess automatisch.
+
+---
+
+## 7. Weitere nützliche Schema-Befehle
+
+### 7.1 Schema inspizieren
+
+```sql
+-- Alle Tabellen anzeigen
+SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY name;
+
+-- CREATE-Statement einer Tabelle anzeigen
+SELECT sql FROM sqlite_master WHERE name = 'mitglieder';
+
+-- Spalten einer Tabelle anzeigen
+PRAGMA table_info(mitglieder);
+-- Gibt zurück: cid, name, type, notnull, dflt_value, pk
+
+-- Fremdschlüssel einer Tabelle
+PRAGMA foreign_key_list(mitglieder);
+
+-- Alle Indizes
+PRAGMA index_list(mitglieder);
+```
+
+### 7.2 Indizes
+
+Indizes beschleunigen Abfragen auf Kosten von Speicher und Schreibperformance.
+Primary Keys und UNIQUE-Constraints erstellen automatisch einen Index.
+
+```sql
+-- Einfacher Index (beschleunigt WHERE nachname = '...')
+CREATE INDEX IF NOT EXISTS idx_mitglieder_nachname
+    ON mitglieder (nachname);
+
+-- Zusammengesetzter Index (beschleunigt WHERE nachname = '...' AND vorname = '...')
+CREATE INDEX IF NOT EXISTS idx_mitglieder_name
+    ON mitglieder (nachname, vorname);
+
+-- Partieller Index (nur aktive Mitglieder indizieren)
+CREATE INDEX IF NOT EXISTS idx_mitglieder_aktiv_email
+    ON mitglieder (email)
+    WHERE aktiv = 1;
+
+-- Index löschen
+DROP INDEX IF EXISTS idx_mitglieder_nachname;
+```
+
+### 7.3 Views – Virtuelle Tabellen
+
+Views sind gespeicherte SELECT-Abfragen, die wie Tabellen abgefragt werden
+können. Sie speichern keine Daten, sondern nur die Abfrage.
+
+```sql
+-- View: Aktive Mitglieder mit Abteilungsname
+CREATE VIEW IF NOT EXISTS v_aktive_mitglieder AS
+SELECT
+    m.id,
+    m.vorname || ' ' || m.nachname AS vollname,
+    m.email,
+    m.eintrittsdatum,
+    COALESCE(a.name, 'Keine Abteilung') AS abteilung
+FROM mitglieder m
+LEFT JOIN abteilungen a ON m.abteilung_id = a.id
+WHERE m.aktiv = 1;
+
+-- Verwendung wie eine normale Tabelle:
+SELECT * FROM v_aktive_mitglieder WHERE abteilung = 'Vorstand';
+
+-- View löschen
+DROP VIEW IF EXISTS v_aktive_mitglieder;
+```
 
 ---
 
