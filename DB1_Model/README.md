@@ -45,7 +45,7 @@
 - [2. Aufgaben](#2-aufgaben)
   - [2.1. Daten speichern und analysieren](#21-daten-speichern-und-analysieren)
   - [2.2. Beziehungen ermitteln und modellieren](#22-beziehungen-ermitteln-und-modellieren)
-  - [2.3. ERM/RM erstellen (Herstellung)](#23-ermrm-erstellen-herstellung)
+  - [2.3. ERM/RM erstellen (Produktherstellung)](#23-ermrm-erstellen-produktherstellung)
   - [2.4. Datenmodelle erstellen (Aufgabensammlung)](#24-datenmodelle-erstellen-aufgabensammlung)
   - [2.5. Schulverwaltung (Normalisierung)](#25-schulverwaltung-normalisierung)
 
@@ -61,22 +61,22 @@
 
 ![ERM](./x_gitres/erm.png)
 
-Die Datenmodellierung legt fest, wie die Daten einer Anwendung konzeptionell strukturiert sind. In diesem Vorgang müssen verschiedene, zum Teil widersprüchliche Zielsetzungen und Bedürfnisse befriedigt werden , z.B.
+Die **Datenmodellierung** legt fest, wie die Daten einer Anwendung konzeptionell strukturiert sind. In diesem Vorgang müssen verschiedene, zum Teil widersprüchliche Zielsetzungen und Bedürfnisse befriedigt werden, z.B.
 
 - Das Datenmodell muss die notwendigen Informationen der Anwendung vollständig darstellen können, dabei ist die Bestimmung der Systemgrenze wichtig.
-- Mit den gespeicherten Informationen im Datenmodell müssen sämtliche Geschäftsprozesse der Anwendung ausführbar sein. Eine Modellierung ohne jegliche Kenntnis der grundsätzlich gewünschten Funktionalität der Anwendung kann daher kein zweckmässiges Datenmodell liefern.
+- Mit den gespeicherten Informationen im Datenmodell müssen sämtliche **Geschäftsprozesse** der Anwendung ausführbar sein. Eine Modellierung ohne jegliche Kenntnis der grundsätzlich gewünschten Funktionalität der Anwendung kann daher kein zweckmässiges Datenmodell liefern.
 - Das Modell soll derart gebildet werden, dass auch zukünftige Bedürfnisse befriedigt werden können.
 
-Das Erstellen eines Datenmodells kann daher kein fest vorgegebener, streng mathematischer Ablauf sein. Es ist vielmehr ein kreativer Prozess, in welchem die Abstraktion eine wichtige Rolle spielt, in welchem immer und immer wieder die Vor– und Nachteile unterschiedlicher Lösungsansätze verglichen werden. Der Datenmodellierer muss daher über Kreativität, Abstraktionsvermögen, Ausdauer und Erfahrung verfügen.
+Das Erstellen eines Datenmodells kann daher kein fest vorgegebener, streng mathematischer Ablauf sein. Es ist vielmehr ein **kreativer Prozess**, in welchem die Abstraktion eine wichtige Rolle spielt, in welchem immer und immer wieder die Vor– und Nachteile unterschiedlicher Lösungsansätze verglichen werden. Der Datenmodellierer muss daher über **Kreativität**, **Abstraktionsvermögen**, **Ausdauer** und **Erfahrung** verfügen.
 
 > **Aus den vorhergehenden Erläuterungen geht auch hervor, dass es kein Standardmodell geben kann, welches die Bedürfnisse einer bestimmten Branche unternehmensspezifisch abdeckt.**
 
 Entity-Relationship-Model (dt. Entitäten-Beziehungs-Modell)
 
 - Das ERM ist speziell gut geeignet um Sachverhalte für Datenbankanwendungen zu modellieren.
-- Das ERM gehört zum konzeptionellen Schema.
+- Das ERM gehört zum **konzeptionellen Schema**.
 - Der Begriff ERD wird auch häufig verwendet. D steht für Diagramm. Gemeint ist dasselbe wie ERM.
-- Das ERM wird oft auch als semantischen Modell bezeichnet.
+- Das ERM wird oft auch als **semantischen Modell** bezeichnet.
 
 **Das ERM besteht auf folgenden Komponenten:**
 
@@ -100,9 +100,9 @@ Entity-Relationship-Model (dt. Entitäten-Beziehungs-Modell)
 
 ### 1.2.2. Definitionen Entität
 
-- Eine Entität ist ein individuelles und identifizierbares Exemplar einer Sache, einer Person oder eines Begriffs aus der realen oder gedachten Vorstellungswelt.
-- Eine Entität ist eine eigenständige Einheit, die im Rahmen des zu betrachteten Modells eindeutig identifiziert werden kann. Dieses Idenitifizierungsmerkmal wird als Schlüssel ( engl. Key ) bezeichnet.
-- Eine Entität ist ein Objekt der realen oder der Vorstellungswelt, über das Informationen zu speichern sind
+- Eine **Entität** ist ein individuelles und **identifizierbares Exemplar einer Sache**, einer **Person** oder eines **Begriffs** aus der realen oder gedachten Vorstellungswelt.
+- Eine **Entität** ist eine eigenständige Einheit, die im Rahmen des zu betrachteten Modells eindeutig identifiziert werden kann. Dieses Idenitifizierungsmerkmal wird als Schlüssel (engl. Key) bezeichnet.
+- Eine **Entität** ist ein Objekt der realen oder der Vorstellungswelt, über das Informationen zu speichern sind
 
 Eine Entität kann folgendes sein:
 
@@ -113,19 +113,19 @@ Eine Entität kann folgendes sein:
 
 **Merke:**
 
-- Eine Entität wird durch eine Menge von Eigenschaften ( Attributen ) beschrieben.
-- Eine Eigenschaft hat einen Bezeichner und einen Wert.
-- Die Eigenschaften einer Entität können geändert werden.
+>- Eine Entität wird durch eine Menge von Eigenschaften (Attributen) beschrieben.
+>- Eine Eigenschaft hat einen Bezeichner und einen Wert.
+>- Die Eigenschaften einer Entität können geändert werden.
 
 ### 1.2.3. Entitätsmenge
 
 ![Entitätsmenge](./x_gitres/entityset.png)
 
-Bei der Modellierung werden nicht die einzelnen Entitäten selbst dargestellt, sondern es werden Mengen aus Entitäten gleicher Art gebildet, sogenannte Entitätsmengen ( engl. entity set ).
+Bei der Modellierung werden nicht die einzelnen Entitäten selbst dargestellt, sondern es werden **Mengen aus Entitäten** gleicher Art gebildet, sogenannte Entitätsmengen ( engl. entity set ).
 
 ### 1.2.4. Definitionen Entitätsmenge
 
-- Eine Entitätsmenge ist eine eindeutig benannte Kollektion von Entitäten gleichen Typs.
+- Eine Entitätsmenge ist eine eindeutig benannte **Kollektion** von Entitäten gleichen Typs.
 - Eine Entitätsmenge entspricht einer zweidimensionalen Tabelle mit einem Primary Key.
 
 **Beispiele:**
@@ -135,10 +135,10 @@ Bei der Modellierung werden nicht die einzelnen Entitäten selbst dargestellt, s
 
 **Merke:**
 
-- Die Anzahl der Elemente einer Entitätsmenge ist zu jedem Zeitpunkt durch die tatsächlich vorhandenen Entitäten gegeben – diese Menge kann sich zu jedem Zeitpunkt ändern.
-- Die Reihenfolge der Entitäten innerhalb der Entitätsmenge ist irrelevant.
-- Als Symbol für eine Entitätsmenge wird in den meisten Notationen ein Rechteck verwendet.
-- Eine Entitätsmenge ist eine Kernentitätsmenge, wenn es möglich ist, Entitäten hinzuzufügen, ohne dass auf andere Entitätsmengen geachtet werden muss, d.h. die Entitätsmenge darf keinen Fremdschlüssel enthalten.
+>- Die Anzahl der Elemente einer Entitätsmenge ist zu jedem Zeitpunkt durch die tatsächlich vorhandenen Entitäten gegeben – diese Menge kann sich zu jedem Zeitpunkt ändern.
+>- Die Reihenfolge der Entitäten innerhalb der Entitätsmenge ist irrelevant.
+>- Als Symbol für eine Entitätsmenge wird in den meisten Notationen ein Rechteck verwendet.
+>- Eine Entitätsmenge ist eine Kernentitätsmenge, wenn es möglich ist, Entitäten hinzuzufügen, ohne dass auf andere Entitätsmengen geachtet werden muss, d.h. die Entitätsmenge darf keinen Fremdschlüssel enthalten.
 
 ---
 
@@ -171,8 +171,8 @@ Die einzelnen Entitätsmengen einer Datenbasis dürfen nicht isoliert betrachtet
 
 **Merke:**
 
-- Eine Beziehung wird durch eine Linie dargestellt.
-- Auf der Linie ist die Bezeichnung der Beziehung enthalten. Auf diese Benennung der Beziehung kann verzichtet werden, falls sie aus dem Zusammenhang eindeutig ersichtlich ist, muss aber immer dann erfolgen, wenn diese nicht a priori klar ist.
+> - Eine Beziehung wird durch eine Linie dargestellt.
+> - Auf der Linie ist die Bezeichnung der Beziehung enthalten. Auf diese Benennung der Beziehung kann verzichtet werden, falls sie aus dem Zusammenhang eindeutig ersichtlich ist, muss aber immer dann erfolgen, wenn diese nicht a priori klar ist.
 
 #### 1.3.2.1. Assoziation
 
@@ -246,11 +246,11 @@ Zum Verarbeiten und zur Erstellung der Beziehungen zwischen den Daten muss siche
 
 **Merkmale:**
 
-- einfach, kurz, möglichst nur ein Attribut
-- eindeutig
-- Wert darf nie NULL sein
-- Integer ist besser als Zeichenfolge
-- unveränderbar
+>- einfach, kurz, möglichst nur ein Attribut
+>- eindeutig
+>- Wert darf nie NULL sein
+>- Integer ist besser als Zeichenfolge
+>- unveränderbar
 
 > Im Datenbanksystem muss der **PK** explizit definiert sein, damit das DBS sicherstellen kann, dass nur eineindeutige Werte für diese Schlüsselattribut zugewiesen werden (Sicherstellung der Entitätsintegrität).
 
@@ -446,7 +446,7 @@ Erstelle in Excel einen Vorschlag (Entwurf) wie diese Datenbasis gespeichert wer
   
 ---
 
-## 2.3. ERM/RM erstellen (Herstellung)
+## 2.3. ERM/RM erstellen (Produktherstellung)
 
 | **Vorgabe**             | **Beschreibung**                                              |
 | :---------------------- | :------------------------------------------------------------ |

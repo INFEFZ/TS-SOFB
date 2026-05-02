@@ -22,14 +22,17 @@
     - [1.5.2. Entitätsintegrität](#152-entitätsintegrität)
     - [1.5.3. Referentielle Integrität](#153-referentielle-integrität)
 - [2. Übungsaufgaben](#2-übungsaufgaben)
-  - [2.1. Schulverwaltung (Implementierung)](#21-schulverwaltung-implementierung)
-  - [2.2. Lernangebot (Normalisierung u. Implementierung)](#22-lernangebot-normalisierung-u-implementierung)
+  - [2.1. Produktherstellung (Implementierung)](#21-produktherstellung-implementierung)
+  - [2.2. Schulverwaltung (Implementierung)](#22-schulverwaltung-implementierung)
+  - [2.3. Lernangebot (Normalisierung u. Implementierung)](#23-lernangebot-normalisierung-u-implementierung)
 
 ---
 
 </br>
 
 # 1. Schema implementieren (Data Definition Language DDL)
+
+[SQLite Tutorial](https://www.sqlitetutorial.net/)
 
 ## 1.1. Tabelle erstellen
 
@@ -52,7 +55,7 @@ Bezeichnung und Syntax von **Datentypen** variieren von DBS zu DBS recht stark. 
 
 **Zeichenketten (Character String Types):**
 
-| Datentyp             | Beschreibung                                           | Beispiel               |
+| **Datentyp**         | **Beschreibung**                                       | **Beispiel**           |
 | -------------------- | ------------------------------------------------------ | ---------------------- |
 | CHAR(n)              | Feste Länge von n Zeichen (mit Leerzeichen aufgefüllt) | CHAR(10)               |
 | VARCHAR(n)           | Variable Länge bis maximal n Zeichen                   | VARCHAR(255)           |
@@ -65,7 +68,7 @@ Bezeichnung und Syntax von **Datentypen** variieren von DBS zu DBS recht stark. 
 
 **Numerische Datentypen (Exact Numeric Types):**
 
-| Datentyp     | Beschreibung                                       | Beispiel      |
+| **Datentyp** | **Beschreibung**                                   | **Beispiel**  |
 | ------------ | -------------------------------------------------- | ------------- |
 | INTEGER      | Ganze Zahl                                         | INTEGER       |
 | INT          | Synonym für INTEGER                                | INT           |
@@ -80,7 +83,7 @@ Bezeichnung und Syntax von **Datentypen** variieren von DBS zu DBS recht stark. 
 
 **Approximate Numeric Types (Gleitkommazahlen):**
 
-| Datentyp         | Beschreibung                     | Beispiel         |
+| **Datentyp**     | **Beschreibung**                 | **Beispiel**     |
 | ---------------- | -------------------------------- | ---------------- |
 | FLOAT(p)         | Gleitkommazahl mit Präzision p   | FLOAT(24)        |
 | REAL             | Einfachpräzisions-Gleitkommazahl | REAL             |
@@ -92,9 +95,9 @@ Bezeichnung und Syntax von **Datentypen** variieren von DBS zu DBS recht stark. 
 
 **Boolean:**
 
-| Datentyp | Beschreibung                         | Beispiel |
-| -------- | ------------------------------------ | -------- |
-| BOOLEAN  | Wahrheitswert (TRUE, FALSE, UNKNOWN) | BOOLEAN  |
+| **Datentyp** | **Beschreibung**                     | **Beispiel** |
+| ------------ | ------------------------------------ | ------------ |
+| BOOLEAN      | Wahrheitswert (TRUE, FALSE, UNKNOWN) | BOOLEAN      |
 
 ---
 
@@ -102,7 +105,7 @@ Bezeichnung und Syntax von **Datentypen** variieren von DBS zu DBS recht stark. 
 
 **Datums- und Zeittypen (Datetime Types):**
 
-| Datentyp                 | Beschreibung             | Beispiel                 |
+| **Datentyp**             | **Beschreibung**         | **Beispiel**             |
 | ------------------------ | ------------------------ | ------------------------ |
 | DATE                     | Datum (Jahr, Monat, Tag) | DATE                     |
 | TIME[(p)]                | Uhrzeit                  | TIME                     |
@@ -116,7 +119,7 @@ Bezeichnung und Syntax von **Datentypen** variieren von DBS zu DBS recht stark. 
 
 **Binary String Types:**
 
-| Datentyp     | Beschreibung               | Beispiel       |
+| **Datentyp** | **Beschreibung**           | **Beispiel**   |
 | ------------ | -------------------------- | -------------- |
 | BINARY(n)    | Binärdaten fester Länge    | BINARY(16)     |
 | VARBINARY(n) | Binärdaten variabler Länge | VARBINARY(255) |
@@ -243,12 +246,37 @@ Sie **verhindern**, dass ungültige, widersprüchliche oder unvollständige Date
 - Beispiel:
   - `CREATE TABLE Lieferant ( ..., CONSTRAINT PK_Id PRIMARY KEY (id))`
 
+```sql
+CREATE TABLE languages (
+   language_id INTEGER,
+   name TEXT NOT NULL,
+   PRIMARY KEY (language_id)
+);
+```
+
 ### 1.4.4. Foreign Key
 
 - Foreign Keys Constraints garantieren, dass nur Werte eingefügt werden können, die sich bereits in der anderen Tabelle befinden.
 - Umgekehrt verhindern sie die Löschung von Datensätzen in der referenzierten Tabelle, wenn noch entsprechende Bezüge in der referenzierten Tabelle existieren.
 - Beispiel
   - `CREATE TABLE Artikel ( ..., CONSTRAINT FK_Lieferant FOREIGN KEY (LieferantId) REFERENCES lieferant(id))`
+
+![Foreign Key](./x_gitres/people-addresses.png)
+
+```sql
+CREATE TABLE supplier_groups (
+  group_id integer PRIMARY KEY,
+ group_name text NOT NULL
+);
+
+CREATE TABLE suppliers (
+    supplier_id   INTEGER PRIMARY KEY,
+    supplier_name TEXT    NOT NULL,
+    group_id      INTEGER NOT NULL,
+    FOREIGN KEY (group_id)
+       REFERENCES supplier_groups (group_id) 
+);
+```
 
 ### 1.4.5. Unique
 
@@ -258,6 +286,15 @@ Sie **verhindern**, dass ungültige, widersprüchliche oder unvollständige Date
 - Beispiel
   - `CREATE TABLE Angebot (..., CONSTRAINT U_code UNIQUE (lfr_code, art_code))`
 
+```sql
+CREATE TABLE contacts(
+    contact_id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT NOT NULL UNIQUE
+);
+```
+
 ### 1.4.6. Check
 
 - Ein **Check Constraint** bestimmt den **Wertebereich**, der eingegeben werden darf.
@@ -265,6 +302,19 @@ Sie **verhindern**, dass ungültige, widersprüchliche oder unvollständige Date
 - Wird jedes Mal kontrolliert, wenn ein `INSERT` oder `UPDATE` gemacht wird.
 - Beispiel
   - `CREATE TABLE Adult( ..., CONSTRAINT c_alter CHECK (alter between 1 and 120)`
+
+```sql
+CREATE TABLE products (
+    product_id   INTEGER         PRIMARY KEY,
+    product_name TEXT            NOT NULL,
+    list_price   DECIMAL (10, 2) NOT NULL,
+    discount     DECIMAL (10, 2) NOT NULL
+                                DEFAULT 0,
+    CHECK (list_price >= discount AND 
+        discount >= 0 AND 
+        list_price >= 0) 
+);
+```
 
 ### 1.4.7. Default
 
@@ -338,7 +388,43 @@ Ein DBS kann auf eine Integritätsverletzung auf drei Arten reagieren:
 
 # 2. Übungsaufgaben
 
-## 2.1. Schulverwaltung (Implementierung)
+## 2.1. Produktherstellung (Implementierung)
+
+| **Vorgabe**             | **Beschreibung**                                              |
+| :---------------------- | :------------------------------------------------------------ |
+| **Lernziele**           | Kann ein relationales Datenbankmodell mit SQL implementieren. |
+| **Sozialform**          | Einzelarbeit                                                  |
+| **Auftrag**             | siehe unten                                                   |
+| **Hilfsmittel**         |                                                               |
+| **Erwartete Resultate** |                                                               |
+| **Zeitbedarf**          | 30 min                                                        |
+| **Lösungselemente**     | Fehlerfreie SQL-Skriptdateien                                 |
+|                         | `herstellung_create_schema.sql`                               |
+
+**Ausgangssituation:**
+
+- Sie verwenden das Datenbank Modell vorangegangener Aufgabe.
+- Implementieren Sie dieses Modell und fügen Sie die aufgelisteten Daten ein.
+
+**Aufgabe:**
+
+- Schreiben Sie die SQL-Befehle (create table …) um alle Tabellen in Ihrer Produktherstellung anzulegen.
+- Verwenden Sie hierzu das "SQLite Studio" oder "DB Browser".
+
+Beispiel:
+
+```sql
+CREATE TABLE Ort (
+    OrtID INTEGER,
+    PLZ INTEGER,
+    Ortschaft TEXT NOT NULL,
+    constraint PK_Ort PRIMARY KEY (OrtID)
+);
+```
+
+---
+
+## 2.2. Schulverwaltung (Implementierung)
 
 | **Vorgabe**             | **Beschreibung**                                              |
 | :---------------------- | :------------------------------------------------------------ |
@@ -360,16 +446,7 @@ Ein DBS kann auf eine Integritätsverletzung auf drei Arten reagieren:
 **Aufgabe:**
 
 - Schreiben Sie die SQL-Befehle (create table …) um alle Tabellen in Ihrer Schulverwaltungsdatenbank anzulegen.
-- Verwenden Sie hierzu das „SQL Server Management Studio“.
-
-```sql
-CREATE TABLE [user.]table ({column_element ¦ table_constraint} 
-[,{column_element ¦ table_constraint} ] ...)
-
-column_element         = column datatype [column constraint]
-column constraint     = column [NULL] | [NOT NULL]
-table constraint        = [{UNIQUE | PRIMARY KEY}]
-```
+- Verwenden Sie hierzu das "SQLite Studio" oder "DB Browser".
 
 Beispiel:
 
@@ -382,7 +459,7 @@ CREATE TABLE MITGLIED (
 
 ---
 
-## 2.2. Lernangebot (Normalisierung u. Implementierung)
+## 2.3. Lernangebot (Normalisierung u. Implementierung)
 
 | **Vorgabe**             | **Beschreibung**                                                          |
 | :---------------------- | :------------------------------------------------------------------------ |
