@@ -679,8 +679,7 @@ CREATE TABLE Ort (
 | **Erwartete Resultate** |                                                               |
 | **Zeitbedarf**          | 50 min                                                        |
 | **Lösungselemente**     | Fehlerfreie SQL-Skriptdateien                                 |
-|                         | `sv_create_schema.sql`                                        |
-|                         | `sv_drop_schema.sql`                                          |
+|                         | `create_schema.sql`                                           |
 
 **Ausgangssituation:**
 

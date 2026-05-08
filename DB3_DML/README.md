@@ -471,27 +471,30 @@ Lösungen müssen mit Aufgabentext in einer SQL-Skriptdatei abgespeichert werden
 **A1:** Kreiere mit SQL-Statements eine Tabelle BLUME mit den Attributen:
 
 ```sql
-ID    INT NOT       NULL ➔ PK 
-Name  VARCHAR(50)   NOT NULL 
-Preis DECIMAL(8,2)  NOT NULL 
+CREATE TABLE IF NOT EXISTS Blume
+(
+    ID    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    Name  TEXT    NOT NULL,
+    Preis REAL    NOT NULL
+);
 ```
 
 **A2:** Füge zwei Datensätze zu mit den Werten:
 
-```sql
-10,   Nelke,  2.35 
-11,   Rose,   4.50
-```
+| **ID** | **Name** | **Preis** |
+| :----- | :------- | :-------- |
+| 10     | Nelke    | 2.35      |
+| 11     | Rose     | 4.50      |
 
 **A3:** Überprüfe diese Einträge mit einem `SELECT`-Statement.
 
 **A4:** Erhöhe den Preis der Rose um 10%.
 
-**A5:** Überprüfe das Update in 4) mit einem `SELECT`-Statement.
+**A5:** Überprüfe das Update in A4 mit einem `SELECT`-Statement.
 
 **A6:** Lösche den Datensatz mit der **Nelke**
 
-**A7:** Erweitere die `BLUME` Tabelle mit Spalte SORTE (VARCHAR(20)).
+**A7:** Erweitere die `BLUME` Tabelle mit Spalte SORTE (TEXT)).
 
 **A8:** Stelle sicher, dass nicht zweimal derselbe Blumenname eingetragen werden kann.
 
@@ -514,7 +517,7 @@ Preis DECIMAL(8,2)  NOT NULL
 | **Erwartete Resultate** |                                                          |
 | **Zeitbedarf**          | 30 min                                                   |
 | **Lösungselemente**     | Fehlerfreie SQL-Skriptdateien                            |
-|                         | `sv_insert_data.sql`                                     |
+|                         | `insert_data.sql`                                        |
 
 **Ausgangssituation:**
 

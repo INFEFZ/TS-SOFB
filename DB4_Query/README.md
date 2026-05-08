@@ -39,12 +39,9 @@
     - [1.8.4. Weiterführende Ressourcen](#184-weiterführende-ressourcen)
 - [2. Aufgaben](#2-aufgaben)
   - [2.1. Datenbank Bibliothek erstellen](#21-datenbank-bibliothek-erstellen)
-  - [2.2. Einfache Abfragen mit Spaltenselektion](#22-einfache-abfragen-mit-spaltenselektion)
-  - [2.3. Abfragen mit Zeilenrestriktionen (WHERE Klausel)](#23-abfragen-mit-zeilenrestriktionen-where-klausel)
-  - [2.4. Abfragen mit Aggregatfunktionen und Gruppierungen](#24-abfragen-mit-aggregatfunktionen-und-gruppierungen)
-  - [2.5. Abfragen mit mehreren Tabellen (JOIN)](#25-abfragen-mit-mehreren-tabellen-join)
-  - [2.6. Komplexe Abfragen mit Unterabfragen (Herausforderungsaufgaben)](#26-komplexe-abfragen-mit-unterabfragen-herausforderungsaufgaben)
+  - [2.2. Abfragen Bibliothek Datenbank](#22-abfragen-bibliothek-datenbank)
   - [2.7. Praxisprojekt: Bibliotheksauswertung](#27-praxisprojekt-bibliotheksauswertung)
+  - [2.7. Abfragen Schulverwaltungsdatenbank](#27-abfragen-schulverwaltungsdatenbank)
 
 ---
 
@@ -315,7 +312,7 @@ SELECT titel, genre, preis FROM buecher
 WHERE genre = 'Roman' OR (genre = 'Krimi' AND preis < 25.00);
 ```
 
-> 💡 **Operator-Priorität:** `NOT` hat höchste Priorität, dann `AND`, dann `OR`.
+> **Operator-Priorität:** `NOT` hat höchste Priorität, dann `AND`, dann `OR`.
 > Im Zweifelsfall immer Klammern setzen – das macht die Absicht klar!
 
 ---
@@ -412,7 +409,7 @@ GROUP BY genre
 ORDER BY Avg_Preis DESC;
 ```
 
-> ⚠️ **Wichtige Regel:** Alle Spalten im `SELECT`, die **nicht** in einer Aggregatfunktion stehen, **müssen** in `GROUP BY` erscheinen!
+> **Wichtige Regel:** Alle Spalten im `SELECT`, die **nicht** in einer Aggregatfunktion stehen, **müssen** in `GROUP BY` erscheinen!
 >
 > ```sql
 > -- Falsch:
@@ -467,7 +464,7 @@ INNER JOIN autoren a ON b.autor_id = a.id
 ORDER BY b.titel;
 ```
 
-> 💡 **Tabellenaliase:** Bei `JOIN`s immer kurze Aliase verwenden (`b`, `a`, `k`...) und Spalten damit qualifizieren (`b.titel` statt `titel`). Das verhindert Fehler bei gleichnamigen Spalten.
+> **Tabellenaliase:** Bei `JOIN`s immer kurze Aliase verwenden (`b`, `a`, `k`...) und Spalten damit qualifizieren (`b.titel` statt `titel`). Das verhindert Fehler bei gleichnamigen Spalten.
 
 ```sql
 -- Ausleihen mit Kunden- und Buchinformationen (3-Table-Join)
@@ -514,7 +511,7 @@ WHERE b.id IS NULL;
 | `RIGHT JOIN` | Alle rechten + passende linke Zeilen      | Nicht in SQLite! → Tabellen umdrehen       |
 | `CROSS JOIN` | Kartesisches Produkt (jede × jede)        | Kombinationstabellen, selten nötig         |
 
-> 💡 **RIGHT JOIN in SQLite:** Erst ab Version 3.39.0 (2022) unterstützt.
+> **RIGHT JOIN in SQLite:** Erst ab Version 3.39.0 (2022) unterstützt.
 > Besser: Tabellen in `LEFT JOIN` einfach umdrehen.
 > `FROM buecher b RIGHT JOIN autoren a` → `FROM autoren a LEFT JOIN buecher b`
 
@@ -616,7 +613,7 @@ WHERE EXISTS (
 );
 ```
 
-> 💡 **EXISTS vs. IN**
+> **EXISTS vs. IN**
 >
 > - `EXISTS` stoppt bei erstem Treffer → oft schneller bei grossen Tabellen
 > - `IN` lädt alle Werte der Unterabfrage → besser bei kleinen Listen
@@ -697,104 +694,54 @@ WHERE EXISTS (
 
 ---
 
-## 2.2. Einfache Abfragen mit Spaltenselektion
+## 2.2. Abfragen Bibliothek Datenbank
 
-| **Vorgabe**             | **Beschreibung**                                                     |
-| :---------------------- | :------------------------------------------------------------------- |
-| **Lernziele**           | Einfache SQL-Abfragen mit Spalten Selektion und Sortierung ausführen |
-| **Sozialform**          | Einzelarbeit                                                         |
-| **Auftrag**             | siehe unten                                                          |
-| **Hilfsmittel**         |                                                                      |
-| **Erwartete Resultate** |                                                                      |
-| **Zeitbedarf**          | 15 min                                                               |
-| **Lösungselemente**     | SQL Abfragebefehle                                                   |
+| **Vorgabe**             | **Beschreibung**                                                            |
+| :---------------------- | :-------------------------------------------------------------------------- |
+| **Lernziele**           | Einfache SQL-Abfragen mit Spalten Selektion und Sortierung ausführen        |
+|                         | Einfache SQL-Abfragen mit WHERE Klause und Prädikaten                       |
+|                         | Einfache SQL-Abfragen Aggregatfunktionen und Gruppierungen                  |
+|                         | Komplexe SQL-Abfragen mit mehreren Tabellen (JOIN)                          |
+|                         | Komplexe SQL-Abfragen mit mehreren Tabellen und Unterabfragen (Sub-Queries) |
+| **Sozialform**          | Einzelarbeit                                                                |
+| **Auftrag**             | siehe unten                                                                 |
+| **Hilfsmittel**         |                                                                             |
+| **Erwartete Resultate** |                                                                             |
+| **Zeitbedarf**          | 60 min                                                                      |
+| **Lösungselemente**     | SQL Abfragebefehle                                                          |
 
 **Schreibe eine Abfrage, die folgendes ausgibt:**
+
+**A1 - Einfache Abfragen mit Spaltenselektion:**
 
 1. Vorname und Nachname aller Autoren als eine Spalte `Autor`
 2. Das Erscheinungsjahr der Bücher
 3. Den Preis erhöht um 10% als `Neuer_Preis`
 4. Sortiert nach Erscheinungsjahr absteigend
 
----
+**A2 - Abfragen mit Zeilenrestriktionen (WHERE Klausel):**
 
-## 2.3. Abfragen mit Zeilenrestriktionen (WHERE Klausel)
-
-| **Vorgabe**             | **Beschreibung**                                      |
-| :---------------------- | :---------------------------------------------------- |
-| **Lernziele**           | Einfache SQL-Abfragen mit WHERE Klause und Prädikaten |
-| **Sozialform**          | Einzelarbeit                                          |
-| **Auftrag**             | siehe unten                                           |
-| **Hilfsmittel**         |                                                       |
-| **Erwartete Resultate** |                                                       |
-| **Zeitbedarf**          | 15 min                                                |
-| **Lösungselemente**     | SQL Abfragebefehle                                    |
-
-**Schreibe SQL-Abfragen für folgende Anforderungen:**
-
-1. Alle Bücher, die zwischen 2010 und 2023 erschienen sind und mehr als 15 CHF kosten
+1. Alle Bücher, die zwischen 2000 und 2010 erschienen sind und mehr als 15 CHF kosten
 2. Alle Kunden aus Zürich oder Bern
 3. Alle Bücher, deren Titel das Wort «Welt» enthält
-4. Alle Autoren, bei denen das Geburtsland nicht bekannt ist
+4. Alle Autoren, bei denen das Geburtsjahr nicht bekannt ist
 5. Alle Bücher mit einem Lagerbestand von 0 (ausverkauft)
 
----
-
-## 2.4. Abfragen mit Aggregatfunktionen und Gruppierungen
-
-| **Vorgabe**             | **Beschreibung**                                           |
-| :---------------------- | :--------------------------------------------------------- |
-| **Lernziele**           | Einfache SQL-Abfragen Aggregatfunktionen und Gruppierungen |
-| **Sozialform**          | Einzelarbeit                                               |
-| **Auftrag**             | siehe unten                                                |
-| **Hilfsmittel**         |                                                            |
-| **Erwartete Resultate** |                                                            |
-| **Zeitbedarf**          | 20 min                                                     |
-| **Lösungselemente**     | SQL Abfragebefehle                                         |
-
-**Beantwortet folgende Fragen mit SQL:**
+**A3 - Abfragen mit Aggregatfunktionen und Gruppierungen:**
 
 1. Wie viele Bücher gibt es pro Erscheinungsjahr? (Sortiert nach Jahr absteigend)
-2. Welche Genres haben einen Durchschnittspreis über 25 CHF?
+2. Welche Genres haben einen Durchschnittspreis über 20 CHF?
 3. Welche Stadt hat die meisten Kunden? (Top 3)
-4. Wie viele Bücher wurden nach 2010 veröffentlicht und kosten unter 20 CHF?
+4. Wie viele Bücher wurden nach 2000 veröffentlicht und kosten unter 20 CHF?
 
----
-
-## 2.5. Abfragen mit mehreren Tabellen (JOIN)
-
-| **Vorgabe**             | **Beschreibung**                                   |
-| :---------------------- | :------------------------------------------------- |
-| **Lernziele**           | Komplexe SQL-Abfragen mit mehreren Tabellen (JOIN) |
-| **Sozialform**          | Einzelarbeit                                       |
-| **Auftrag**             | siehe unten                                        |
-| **Hilfsmittel**         |                                                    |
-| **Erwartete Resultate** |                                                    |
-| **Zeitbedarf**          | 20 min                                             |
-| **Lösungselemente**     | SQL Abfragebefehle                                 |
-
-**Löse folgende Aufgaben mit JOINs:**
+**A4 - Abfragen mit mehreren Tabellen (JOIN):**
 
 1. Listet alle Bücher mit dem vollständigen Autorennamen und dem Land des Autors
 2. Zeigt alle Kunden, die noch **nie** ein Buch ausgeliehen haben
 3. Findet die 5 beliebtesten Bücher (meiste Ausleihen)
 4. Welche Genres werden von Autoren aus der Schweiz geschrieben?
 
----
-
-## 2.6. Komplexe Abfragen mit Unterabfragen (Herausforderungsaufgaben)
-
-| **Vorgabe**             | **Beschreibung**                                                            |
-| :---------------------- | :-------------------------------------------------------------------------- |
-| **Lernziele**           | Komplexe SQL-Abfragen mit mehreren Tabellen und Unterabfragen (Sub-Queries) |
-| **Sozialform**          | Einzelarbeit                                                                |
-| **Auftrag**             | siehe unten                                                                 |
-| **Hilfsmittel**         |                                                                             |
-| **Erwartete Resultate** |                                                                             |
-| **Zeitbedarf**          | 30 min                                                                      |
-| **Lösungselemente**     | SQL Abfragebefehle                                                          |
-
-**Löse folgende Aufgaben mit Unterabfragen:**
+**A5 - Komplexe Abfragen mit Unterabfragen (Herausforderungsaufgaben):**
 
 1. Welche Bücher kosten mehr als das teuerste Buch im Genre «Roman»?
 2. Welche Autoren haben mehr Bücher als der Durchschnitt aller Autoren?
@@ -818,32 +765,204 @@ Setzt das gesamte Wissen ein. Erstellt einen vollständigen Bibliotheksbericht.
 
 **Aufgabe A – Bestandsübersicht:**
 
-```sql
--- Erstellt eine vollständige Bestandsübersicht pro Genre
--- Erwartete Spalten:
---   Genre, Anzahl_Titel, Verfuegbar (Summe Lagerbestand),
---   Avg_Preis, Guenstigstes, Teuerstes
--- Nur Genres mit mindestens 2 Titeln
--- Sortiert nach Anzahl_Titel absteigend
-```
+- Erstellt eine vollständige Bestandsübersicht pro Genre
+- Erwartete Spalten:
+  - Genre, Anzahl_Titel, Verfuegbar (Summe Lagerbestand),
+  - Avg_Preis, Guenstigstes, Teuerstes
+- Nur Genres mit mindestens 2 Titeln
+- Sortiert nach Anzahl_Titel absteigend
+
 
 **Aufgabe B – Top-Ausleiher Report:**
 
-```sql
--- Erstellt einen Kunden-Report:
---   Name, Stadt, Anzahl_Ausleihen, Aktuell_Ausgeliehen (rueckgabe IS NULL)
--- Alle Kunden anzeigen (auch ohne Ausleihe)
--- Sortiert nach Anzahl_Ausleihen DESC
-```
+- Erstellt einen Kunden-Report:
+  - Name, Stadt, Anzahl_Ausleihen, Aktuell_Ausgeliehen (rueckgabe IS NULL)
+  - Alle Kunden anzeigen (auch ohne Ausleihe)
+  - Sortiert nach Anzahl_Ausleihen DESC
 
 **Aufgabe C – Autoren-Performance:**
 
-```sql
--- Für jeden Autor:
---   Vollname, Land, Anzahl_Buecher, Gesamtausleihen (über alle Bücher),
---   Avg_Preis, Beliebtestes_Buch (Titel mit meisten Ausleihen)
--- Nur Autoren mit mindestens einem Buch
-```
+- Für jeden Autor:
+  - Vollname, Land, Anzahl_Buecher, Gesamtausleihen (über alle Bücher),
+  - Avg_Preis, Beliebtestes_Buch (Titel mit meisten Ausleihen)
+  - Nur Autoren mit mindestens einem Buch
+
+---
+
+## 2.7. Abfragen Schulverwaltungsdatenbank
+
+| **Vorgabe**             | **Beschreibung**                                    |
+| :---------------------- | :-------------------------------------------------- |
+| **Lernziele**           | Komplexe SQL-Abfragen für statistische Auswertungen |
+| **Sozialform**          | Einzelarbeit                                        |
+| **Auftrag**             | siehe unten                                         |
+| **Hilfsmittel**         |                                                     |
+| **Erwartete Resultate** |                                                     |
+| **Zeitbedarf**          | 60 min                                              |
+| **Lösungselemente**     | SQL Abfragebefehle                                  |
+
+**Teil 1: Einfache Abfragen:**
+
+**A1.1:**
+
+- Suche alle Studenten mit *Name, Vorname, Geburtsdatum*.
+- Sortiere die Ausgabe nach *Geburtsdatum* aufsteigend.
+
+**A1.2:**
+
+- Suche alle Studenten mit *Name, Vorname, Geburtsdatum*, welche nach dem *01.01.1990* geboren sind.
+- Sortiere die Ausgabe nach *Name, Vorname* aufsteigend.
+
+> Hinweis: SQLite speichert Daten als Text im Format YYYY-MM-DD.
+
+**A1.3:**
+
+- Suche alle Studenten deren Name mit *"M"* beginnt und zeige den *Vornamen, Nachname Geburtsdatum* an.
+
+**A1.4:**
+
+- Suche alle Studenten deren *StudentNr* kleiner *5* ist und vor dem *01.01.1989* geboren sind.
+
+**A1.5:**
+
+- Suche Studenten, deren Name ein *"ll"* enthält.
+
+**A1.6:**
+
+- Suche alle Studenten, die zwischen *01.01.1980 und 13.12.1989* geboren sind.
+- Zeige die Ausgabe sortiert nach Geburtsdatum an.
+
+**A1.7:**
+
+- Suche alle Studenten, deren Name ein *"a"* enthält oder der Vorname mit *"n"* endet.
+
+---
+
+</br>
+
+**Teil 2: Abfragen mit mehreren Tabellen (Join):**
+
+**A2.1:**
+
+- Liste alle Studenten mit den Fachrichtungen
+- Die Liste soll die Spalten *StudentName, StudentVorname, StudentGeburtsdatum, Fachrichtung, AnzahlSemester* enthalten und nach *StudentName u. StudentVorname* aufsteigend sortiert sein.
+
+**A2.2:**
+
+- Liste alle Studenten, die der Fachrichtung *"Maschinenbau"* angehören
+- Die Liste soll die Spalten *StudentName, StudentVorname, StudentGeburtsdatum, Fachrichtung, AnzahlSemester* enthalten und nach *StudentName u. StudentVorname* aufsteigend sortiert sein.
+
+**A2.3:**
+
+- Liste alle Studenten, deren Fachrichtung länger als *6 Semester* dauert und nach dem *1.1.1990* geboren sind.
+- Die Liste soll die Spalten *StudentName, StudentVorname, StudentGeburtsdatum, Fachrichtung, AnzahlSemester* enthalten und nach *AnzahlSemester* absteigend sortiert sein.
+
+**A2.4:**
+
+- Liste alle Studenten, die den Kurs *"Mathe"* besuchen.
+- Die Liste soll die Spalten *StudentName, StudentVorname, StudentGeburtsdatum* aufsteigend sortiert nach *StudentName, StudentVorname* anzeigen.
+
+**A2.5:**
+
+- Liste alle Studenten, die den Kurs *"Mathe" oder "VWL"* besuchen.
+- Die Liste soll die Spalten *StudentName, StudentVorname, StudentGeburtsdatum, Kursbezeichnung* aufsteigend sortiert nach *StudentName, StudentVorname* anzeigen.
+- **Tipp: IN-Operator verwenden!**
+
+**A2.6:**
+
+- Liste alle Studenten, die den Kurs *"Mathe"* besuchen.
+- Die Liste soll die Spalten *StudentName, StudentVorname, StudentGeburtsdatum, FachrichtungBezeichnung* aufsteigend sortiert nach *FachrichtungBezeichnung, StudentName, StudentVorname* anzeigen.
+
+**A2.7:**
+
+- Erstelle eine Gesamtübersicht zu den Studenten, Kursen und den Fachrichtungen.
+- Die Liste soll die Spalten *StudentNr, StudentName, StudentVorname, StudentGeburtsdatum, FachrichtungNr, FachrichtungBezeichnung, AnzahlSemester, KursNr, Kursbezeichnung* aufsteigend sortiert nach *StudentNr* anzeigen.
+
+---
+
+</br>
+
+**Teil 3: Abfragen mit Funktionen:**
+
+**A3.1:**
+
+- Erstelle eine Abfrage, welche die Vornamen und Nachnamen der Studenten kommagetrennt zusammengefügt und als eine Spalte mit Überschrift "*StudentName*"  aufsteigend listet.
+- > Hinweis: SQLite verwendet || für String-Konkatenation; CONCAT() wird ab SQLite 3.44 unterstützt. Die ||-Variante ist universell sicherer.
+
+**A3.2:**
+
+- Ändere die Abfrage aus der A3.1 und zeige Vorname u. Name in Grossschrift an.
+- > Hinweis: UPPER() funktioniert in SQLite nur zuverlässig für ASCII-Zeichen. Umlaute (ä, ö, ü) werden nicht konvertiert (SQLite-Limitation).
+
+**A3.3:**
+
+- Liste alle Studenten mit *Name, Vorname*.
+- Die Ausgabe soll nach der Zeichenlänge (Anzahl Zeichen) des *Namens* absteigend sortiert sein.
+- > Hinweis: SQLite verwendet LENGTH() statt LEN()
+
+**A3.4:**
+
+- Liste alle Studenten mit der Kurzbezeichnung (**Erster Buchstabe aus Name u. Vorname**) aufsteigend.
+- Die Ausgabe soll *Name, Vorname* und die Spaltenüberschrift "*Kurzzeichen*" anzeigen.
+- > Hinweis: SUBSTR() in SQLite
+
+**A3.5:**
+
+- Liste alle Studenten mit *Vorname, Name und dem Geburtsjahr (z.B. 1990)*. Sortiere die Ausgabe nach dem *Geburtsjahr* absteigend.
+- > Hinweis: YEAR() → STRFTIME('%Y', ...) in SQLite; liefert Text, CAST für Sortierung
+
+**A3.6:**
+
+- Ermittle mit einer Abfrage die Studenten (*Vorname, Name, Geburtsdatum*) welche im Jahr *1989* geboren sind.
+
+**A3.7:**
+
+- Ermittle mit einer Abfrage die Studenten (*Vorname, Name, Geburtsdatum*) und deren *Alter* in Jahren.
+- > Hinweis: DATE('now') liefert das aktuelle Datum.
+- > Die Berechnung berücksichtigt, ob der Geburtstag dieses Jahr bereits war.
+
+---
+
+</br>
+
+**Teil 4: Aggregatfunktionen:**
+
+**A4.1:**
+
+- Ermittle die Anzahl der erfassten Studenten.
+- Spaltenübersicht "*AnzahlStudenten*".
+
+**A4.2:**
+
+- Ermittle die durchschnittliche Semester Anzahl aller Fachrichtungen.
+- Spaltenübersicht "*DurchschnittlicheSemester*".
+
+**A4.3:**
+
+- Ermittle die Anzahl der Studenten, die der Fachrichtung "*BWL*" zugeordnet sind.
+- Spaltenübersicht "*AnzahlStudenten*".
+
+**A4.4:**
+
+- Ermittle die Anzahl der Kurse, die von Student *Hans, Müller* belegt werden.
+- Die Liste soll die Spalten *StudentName, StudentVorname* und *AnzahlKurse* enthalten.
+
+**A4.5:**
+
+- Ermittle die Anzahl der Studierende pro Fachrichtung.
+- Die Ausgabe soll die Spalten *Fachrichtung u. AnzahlStudierende* enthalten.
+
+**A4.6:**
+
+- Ermittle die Anzahl der belegten Kurse pro Student.
+- Die Ausgabe soll die Spalten *StudentName, StudentVorname u. AnzahlBelegteKurse* enthalten.
+
+**A4.7:**
+
+- Ermittle die Studenten, die mehr als einen Kurs belegen.
+- Die Ausgabe soll die Spalten *StudentName, StudentVorname u. AnzahlBelegteKurse* enthalten.
+
+---
 
 © 2026 Lukas Müller – Licensed under CC BY-NC-ND 4.0
 See [LICENSE](..\license.md) file for details.
