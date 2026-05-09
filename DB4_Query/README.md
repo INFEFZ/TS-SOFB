@@ -130,9 +130,11 @@ Der Stern (`*`) wählt alle Spalten – praktisch zum Erkunden, aber in Produkti
 ```sql
 -- Alle Spalten (Entwicklung / Debugging)
 SELECT * FROM buecher;
+```
 
 ![WHERE COLUMN OR](./x_gitres/select-column-where-or.png)
 
+```sql
 -- Nur benötigte Spalten (bevorzugt)
 SELECT titel, genre, preis FROM buecher;
 ```
