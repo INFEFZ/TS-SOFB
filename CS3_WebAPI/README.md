@@ -139,6 +139,9 @@ cd SensorApi
 
 # SQLite-Paket hinzufügen
 dotnet add package Microsoft.Data.Sqlite
+
+# Swagger-Paket hinzufügen
+dotnet add package Swashbuckle.AspNetCore
 ```
 
 > Das Projekt enthält bereits Swagger (OpenAPI) – damit können Endpunkte direkt im Browser getestet werden, ohne ein externes Tool.
