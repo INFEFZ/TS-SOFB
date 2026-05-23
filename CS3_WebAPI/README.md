@@ -134,7 +134,7 @@ Content-Type: application/json
 
 ```bash
 # WebAPI-Projekt erstellen
-dotnet new webapi -n SensorApi
+dotnet new webapi -n SensorApi --use-controllers
 cd SensorApi
 
 # SQLite-Paket hinzufügen
