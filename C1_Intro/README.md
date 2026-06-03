@@ -278,6 +278,10 @@ Dieser **Sketch** lässt die eingebaute **LED (Pin 13)** im Sekundentakt blinken
 | **Zeitbedarf**      | 60min                                                             |
 | **Lösungselemente** | Funktionierendes Sketch                                           |
 
+**Aufgabe 1 – Grundaufgabe:**
+
+Bauen Sie die Schaltung auf dem Breadboard auf und bringen Sie den Ampel-Sketch zum Laufen.
+
 **Für diese Ampelsteuerung benötigen wird folgendes Material benötigt:**
 
 - Arduino UNO R4
@@ -364,8 +368,20 @@ void loop()
 **Sketch kompilieren und ausführen:**
 
 1. Klicken Sie auf **Verify / Kompilieren** (✓) – der Code wird auf Fehler geprüft.
-2. Klicken Sie auf** Upload / Hochladen** (→) – der Sketch wird auf das Board übertragen.
+2. Klicken Sie auf**Upload / Hochladen** (→) – der Sketch wird auf das Board übertragen.
 3. Nach dem Upload startet das Programm automatisch – die Ampel beginnt zu leuchten.
+
+**Aufgabe 2 – Anpassung:**
+
+Verändern Sie die delay()-Werte so, dass:
+
+- die Grünphase **5 Sekunden** dauert
+- die Gelbphasen nur **1 Sekunde** dauern
+
+**Aufgabe 3 – Erweiterung:**
+
+- Fügen Sie eine **Fussgängerampel** mit zwei weiteren LEDs (rot/grün) hinzu.
+- Während die Fahrzeugampel grün zeigt, leuchtet die Fussgängerampel rot – und umgekehrt.
 
 ---
 
