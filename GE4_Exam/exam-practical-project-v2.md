@@ -14,6 +14,7 @@
     - [1.6.1. Datenbank (SQLite)](#161-datenbank-sqlite)
     - [1.6.2. Programmierung (C mit Arduino)](#162-programmierung-c-mit-arduino)
     - [1.6.3. Integration](#163-integration)
+    - [1.6.4. Agile Umsetzung (Scrum – vereinfacht)](#164-agile-umsetzung-scrum--vereinfacht)
   - [1.7. Mögliche Themen (Team wählt eines)](#17-mögliche-themen-team-wählt-eines)
     - [1.7.1. Szenario 1: Parkplatz-Überwachungssystem](#171-szenario-1-parkplatz-überwachungssystem)
     - [1.7.2. Szenario 2: Raumklima-Monitoring](#172-szenario-2-raumklima-monitoring)
@@ -129,6 +130,18 @@ SQLite Datenbank
   - Messwerte speichern
   - Steuerbefehle aus DB senden
 
+### 1.6.4. Agile Umsetzung (Scrum – vereinfacht)
+
+- Durchführung von:
+  - Product Backlog
+  - Sprintplanung (1 Sprint reicht)
+  - Daily (kurz dokumentiert)
+  - Review + Retrospektive
+- Artefakte:
+  - Taskboard (z. B. Trello, GitHub Projects)
+
+---
+
 ## 1.7. Mögliche Themen (Team wählt eines)
 
 Jedes Team darf eines der folgenden Szenarien auswählen – oder **ein eigenes Thema** vorschlagen:
@@ -204,21 +217,14 @@ Jedes Team darf eines der folgenden Szenarien auswählen – oder **ein eigenes 
 ## 1.8. Dokumentation
 
 - Systemübersicht (Diagramm)
-  - Systemarchitektur
-  - Technologie Stack
-  - Voraussetzungen
-  - Eingesetzte Tools und Komponenten mit Versionen
 - Datenbankmodell (ERD oder Tabellenübersicht)
-  - ERM
-  - Datenmodell
-- Software Design
-  - UML (Aktivitätsdiagram)
+- Beschreibung:
+  - Funktionen
   - Datenfluss
-  - Modularisierung u. Funktionen
-- Reflexion
-  - Stolpersteine
-  - Lesson learned
-  - Fazit
+- Scrum-Artefakte:
+  - Backlog
+  - Sprintplan
+  - Reflexion
 
 ---
 
