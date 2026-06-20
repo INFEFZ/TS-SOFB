@@ -282,8 +282,9 @@ Das Team gibt ab:
 | Struktur, Verständlichkeit                              |     2      |
 | Live‑Demo & Ergebnisdarstellung                         |     2      |
 | Teamarbeit & Professionalität                           |     2      |
+| Fazit / Reflexion                                       |     2      |
 |                                                         |            |
-| **Total**                                               |   **44**   |
+| **Total**                                               |   **46**   |
 
 ## 2.1. Notenskala
 
